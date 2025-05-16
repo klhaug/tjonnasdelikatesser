@@ -5,7 +5,11 @@ export default function Home() {
   return (
     <div>
       <Text variant={"primaryBold"} content={"Hello World!"}/>
-      <Button variant={("primary")} text="testing" />
+      <div className="flex gap-2">
+        <Button variant={("primary")} text={"Primary Button"} />
+        <Button variant={("secondary")} text={"Secondary Button"} />
+        <Button variant={("tertiary")} text={"Tertiary Button"} />
+      </div>
     </div>
   );
 }
