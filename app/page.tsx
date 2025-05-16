@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Text variant={"primaryBold"} content={"Hello World!"}/>
-      <Button variant={("primay")} />
+      <Button variant={("primary")} text="testing" />
     </div>
   );
 }
