@@ -2,23 +2,19 @@ import React from 'react'
 
 type ButtonProps = {
   text: string,
-  variant: number
+  variant: keyof typeof variants;
+}
+ 
+const variants= {
+  primary: "bg-yellow-700",
+  secondary: "bg-yellow-500",
+  tertiary: "bg-yellow-350",
 }
 
-export function Button({text, variant}: ButtonProps) {
-  const variants = {
-    1: "bg-yellow-700",
-    2: "bg-yellow-500",
-    3: "bg-yellow-350",
-    4: "bg-yellow-300",
-    5: "bg-yellow-100",
-  }
-
-  const selectedVariant = variants[variant]
-
+export default function Button({text, variant}: ButtonProps) {
   return (
     <div>
-      <h2 className={`${selectedVariant}`}>{text}</h2>
+      <h2 className={`${variants[variant]}`}>{text}</h2>
     </div>
   )
 }
