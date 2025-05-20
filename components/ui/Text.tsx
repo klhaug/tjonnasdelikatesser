@@ -7,13 +7,16 @@ type Props = {
 }
 
 const allVariants = {
-  hero: "text-4xl leading-12",
-  headline: "text-2xl",
-  primary: "bg-red-600",
-  primaryBold: "font-bold"
+  hero: "text-[40px] leading-12",
+  headline: "text-2xl leading-7 font-medium",
+  subheadline: "text-sm uppercase",
+  primary: "text-base",
+  primaryBold: "text-base font-medium",
+  primarySmall: "text-sm",
+  captionLabel: "text-sm leading-[18px]",
 }
 
-export default function Text({variant, content, as = "p"}: Props) {
+export default function Text({variant, content, as = "p"}: Props): JSX.Element {
   const Component = as;
   const className = allVariants[variant];
       return (

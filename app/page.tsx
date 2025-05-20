@@ -4,7 +4,7 @@ import Text from "@/components/ui/Text"
 export default function Home() {
   return (
     <div className="flex gap-8 flex-col">
-      <Text variant="hero" as="h1" content="Hello World!"/>
+      <Text variant="captionLabel" as="p" content="Hello World!"/>
       <div className="flex gap-2 justify-evenly border p-8">
         <Button variant="primary-fill" text="Primary Button" href="/" />
         <Button variant="secondary-fixed" text="Secondary Button" href="/" />
