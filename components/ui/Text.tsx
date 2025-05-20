@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { JSX } from 'react'
 
 type Props = {
   variant: keyof typeof allVariants;
   content: string,
+  as?: keyof JSX.IntrinsicElements;
 }
 
 const allVariants = {
@@ -12,11 +13,10 @@ const allVariants = {
   primaryBold: "font-bold"
 }
 
-export default function Text({variant, content}: Props) {
-        return (
-          <>
-            <h1 className={`${allVariants[variant]}`}>{content}</h1>
-          </>  
-        )
-
+export default function Text({variant, content, as = "p"}: Props) {
+  const Component = as;
+  const className = allVariants[variant];
+      return (
+          <Component className={className}>{content}</Component>
+      );
 }

@@ -5,6 +5,10 @@
   --foreground: #141312;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
