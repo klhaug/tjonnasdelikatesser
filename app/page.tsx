@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text"
+import TestCard from "@/components/ui/TestCard"
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
         <Button variant="tertiary-fill" text="Tertiary Button" href="/" />
         <Button variant="secondary-fill" text="Secondary Button" href="/" />
       </div>
+      <TestCard />
+      <TestCard />
+      <TestCard />
     </div>
   );
 }
