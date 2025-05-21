@@ -3,6 +3,30 @@ import Text from "@/components/ui/Text"
 import TestCard from "@/components/ui/TestCard"
 import VerticalAccordionCard from "@/components/ui/VerticalAccordionCard"
 
+type Cafe = {
+  id: "tjonnas" | "norma" | "norvald"
+  title: string
+  ingress: string
+}
+
+const fakeDataBase: Cafe[] = [
+  {
+    id: "tjonnas",
+    title: "Tjønnås Delikatesser",
+    ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner."
+  },
+  {
+    id: "tjonnas",
+    title: "Tjønnås Delikatesser",
+    ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner."
+  },
+  {
+    id: "tjonnas",
+    title: "Tjønnås Delikatesser",
+    ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner."
+  },
+]
+
 export default function Home() {
   return (
     <div className="flex gap-8 flex-col">
@@ -18,7 +42,7 @@ export default function Home() {
         <Button variant="secondary-fill" text="Secondary Button" href="/" />
       </div>
       <TestCard />
-      <VerticalAccordionCard />
+      <VerticalAccordionCard id="tjonnas" title={fakeDataBase[0].title} ingress="fasd" imageUrl="/images/241A9065.jpg"/>
     </div>
   );
 }
