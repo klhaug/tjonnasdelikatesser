@@ -3,7 +3,7 @@ import React, { JSX } from 'react'
 type Props = {
   variant: keyof typeof allVariants;
   content: string,
-  as?: keyof JSX.IntrinsicElements;
+  as: keyof JSX.IntrinsicElements;
 }
 
 const allVariants = {

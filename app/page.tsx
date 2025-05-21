@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text"
 import TestCard from "@/components/ui/TestCard"
+import VerticalAccordionCard from "@/components/ui/VerticalAccordionCard"
 
 export default function Home() {
   return (
@@ -17,8 +18,7 @@ export default function Home() {
         <Button variant="secondary-fill" text="Secondary Button" href="/" />
       </div>
       <TestCard />
-      <TestCard />
-      <TestCard />
+      <VerticalAccordionCard />
     </div>
   );
 }
