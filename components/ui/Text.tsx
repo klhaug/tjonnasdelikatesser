@@ -13,7 +13,7 @@ export const allVariants = {
   primary: "text-base",
   primaryCenter: "text-base text-center",
   primaryBold: "text-base font-medium",
-  primarySmall: "text-sm overflow-hidden h-[123px]",
+  primarySmall: "text-sm overflow-hidden",
   captionLabel: "text-sm leading-[18px]",
 }
 
