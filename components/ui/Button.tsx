@@ -6,14 +6,15 @@ type ButtonProps = {
   variant: keyof typeof variants
   href: string
 }
+
  
 const variants= {
   "primary-fill":     "text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full hover:bg-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6",
   "primary-fixed":    "text-base h-[44px] bg-yellow-300 flex justify-center items-center w-[300px] hover:bg-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6",
   "secondary-fill":   "text-base h-[44px] bg-white flex justify-center items-center border text-nowrap w-full border-gray-500 text-black hover:bg-yellow-350 hover:border-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6",
   "secondary-fixed":  "text-base h-[44px] bg-white flex justify-center items-center border w-[300px] border-gray-500 text-black hover:bg-yellow-350 hover:border-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6",
-  "tertiary-fill":    "text-base h-[44px] bg-white flex justify-start items-center w-full text-nowrap text-black  gap-3 items-center hover:text-shadow-sm justify-center hover:cursor-pointer transition group h-11 rounded-lg",
-  "tertiary-fixed":   "text-base h-[44px] bg-white flex justify-start items-center w-[300px] text-black justify-center gap-3 items-center hover:text-shadow-sm hover:cursor-pointer transition group h-11 rounded-lg",
+  "tertiary-fill":    "text-base bg-white flex justify-start items-center w-full text-nowrap text-black  gap-3 items-center hover:text-shadow-sm justify-center hover:cursor-pointer transition group rounded-lg",
+  "tertiary-fixed":   "text-base bg-white flex justify-start items-center w-[300px] text-black justify-center gap-3 items-center hover:text-shadow-sm hover:cursor-pointer transition group rounded-lg",
 }
 
 export default function Button({text, variant, href}: ButtonProps): React.JSX.Element {

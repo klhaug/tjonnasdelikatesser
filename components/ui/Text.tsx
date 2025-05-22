@@ -12,7 +12,7 @@ const allVariants = {
   subheadline: "text-sm uppercase",
   primary: "text-base",
   primaryBold: "text-base font-medium",
-  primarySmall: "text-sm",
+  primarySmall: "text-sm overflow-hidden h-[123px]",
   captionLabel: "text-sm leading-[18px]",
 }
 
