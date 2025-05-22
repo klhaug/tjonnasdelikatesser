@@ -1,11 +1,11 @@
 import React from 'react'
 import Text from './Text'
-
+import { allVariants } from './Text'
 
 type TagProps = {
     variant: "tjonnas" | "norma" | "norvald"
     content: string
-    textStyle: keyof typeof Text
+    textStyle: keyof typeof allVariants;
 }
 
 const variants = {
