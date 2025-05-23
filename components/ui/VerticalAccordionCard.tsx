@@ -13,10 +13,16 @@ type Props = {
     imageUrl: string
 }
 
-const borderVariants = {
+const borderVariantsClosed = {
     tjonnas: "border-yellow-100 hover:border-yellow-300",
     norma: "border-red-100 hover:border-red-300",
-    norvald: "border-blue-100 hover:border-blue-500"
+    norvald: "border-blue-100 hover:border-blue-300" 
+}
+
+const borderVariantsOpen = {
+    tjonnas: "border-yellow-300",
+    norma: "border-red-300",
+    norvald: "border-blue-500"
 }
 
 export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Props) {
@@ -38,7 +44,7 @@ export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Pr
     }
 
   return (
-        <div onClick={openAccordion} className={`border-2 bg-white ${isOpen ? "h-[477px] justify-start" : "h-[101px] hover:cursor-pointer justify-center"} ${borderVariants[id]} overflow-hidden flex rounded-md transition-all w-full max-w-[392px] flex-col`}>
+        <div onClick={openAccordion} className={`border-2 bg-white ${isOpen ? `h-[477px] justify-start ${borderVariantsOpen[id]}` : `h-[101px] hover:cursor-pointer justify-center ${borderVariantsClosed[id]}`} overflow-hidden flex rounded-md transition-all w-full max-w-[392px] flex-col`}>
             {isOpen ? <Image className='mb-6 h-[208px] object-cover' src={imageUrl} width={500} height={500} alt='woman in cafe making food' /> : null}
             <div className='flex px-6 justify-between'>
                 <div className='flex flex-col gap-2'>
