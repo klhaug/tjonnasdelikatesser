@@ -59,6 +59,10 @@
 
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 
 body {
   background: var(--background);
@@ -92,9 +96,7 @@ body {
 .ham-menu span:nth-child(1) {    
   top: 25%;
 }
-.ham-menu span:nth-child(2) {    
 
-}
 .ham-menu span:nth-child(3) {    
 top: 75%;
 }
