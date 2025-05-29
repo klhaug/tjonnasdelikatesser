@@ -47,7 +47,7 @@ export default function Carousel() {
       <Swiper
         slidesPerView={1.25}
         breakpoints={{
-            521: {
+            554: {
               slidesPerView: 2,
               spaceBetween: 0,
             },

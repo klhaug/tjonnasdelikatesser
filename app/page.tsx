@@ -4,6 +4,7 @@ import Hero from "@/components/sections/Hero"
 import MobileNav from "@/components/sections/MobileNav"
 import Testimonials from "@/components/sections/Testimonials"
 import SoMe from "@/components/sections/SoMe"
+import Contact from "@/components/sections/Contact"
 
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Testimonials />
       <SoMe />
       <Products />
+      <Contact />
     </div>
   );
 }

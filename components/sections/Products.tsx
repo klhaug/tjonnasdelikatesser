@@ -7,8 +7,8 @@ import Link from 'next/link'
 
 export default function Products() {
   return (
-    <div className='bg-linear-120 from-yellow-100 to-red-100 flex flex-col relative gap-4 items-start py-14'>
-        <div className='flex flex-col px-6 w-full'>
+    <div className='bg-linear-120 from-yellow-100 to-red-100 flex flex-col justify-center items-center relative gap-4 py-14'>
+        <div className='flex flex-col max-w-[576px] px-6 w-full'>
             <Text variant='subheadline' extraStyling="text-red-500" content='Tjønnås anbefaler' as='p' />
             <div className='flex justify-between w-full items-end'>
                 <Text variant='headline' content='Smaker du må prøve' as='h3' />
