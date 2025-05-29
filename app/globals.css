@@ -20,7 +20,7 @@
   --color-yellow-350: #FFBF21;
   --color-yellow-300: #FBD577;
   --color-yellow-100: #FFF0CB;
-  --color-yellow-50: #FFF0CB;
+  --color-yellow-50: #FEFBF2;
 
   /* RED */
   --color-red-700: #713C23;
@@ -64,4 +64,57 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-work-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+.ham-menu {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  cursor: pointer;
+  z-index: 999;
+}
+.ham-menu:hover span {
+  background-color: black;
+}
+
+.ham-menu span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  transition: .2s ease;
+}
+
+.ham-menu span:nth-child(1) {    
+  top: 25%;
+}
+.ham-menu span:nth-child(2) {    
+
+}
+.ham-menu span:nth-child(3) {    
+top: 75%;
+}
+
+
+.ham-menu.active span {
+  background-color: black;
+}
+
+.ham-menu.active span:nth-child(1){
+  transform: translate(-50%, -50%) rotate(-45deg);
+  top: 50%;
+  width: 100%;
+}
+.ham-menu.active span:nth-child(2){
+  opacity: 0;
+}
+.ham-menu.active span:nth-child(3){
+  transform: translate(-50%, -50%) rotate(45deg);
+  top: 50%;
+  width: 100%;
+}
+

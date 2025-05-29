@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${workSans.variable} antialiased h-screen`}
+      <body id="body"
+        className={`${workSans.variable} noscroll antialiased h-screen`}
       >
         {children}
       </body>
