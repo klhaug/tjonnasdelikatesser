@@ -5,12 +5,14 @@ import MobileNav from "@/components/sections/MobileNav"
 import Testimonials from "@/components/sections/Testimonials"
 import SoMe from "@/components/sections/SoMe"
 import Contact from "@/components/sections/Contact"
+import Footer from "@/components/sections/Footer"
 
 
 export default function Home() {
   return (
     <div>
       <MobileNav />
+      <Footer />
       <Hero />
       <About />
       <Testimonials />
