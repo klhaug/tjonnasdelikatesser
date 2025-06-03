@@ -12,13 +12,13 @@ export default function Home() {
   return (
     <div>
       <MobileNav />
-      <Footer />
       <Hero />
       <About />
       <Testimonials />
       <SoMe />
       <Products />
       <Contact />
+      <Footer />
     </div>
   );
 }

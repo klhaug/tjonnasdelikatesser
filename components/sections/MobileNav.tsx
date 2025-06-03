@@ -53,7 +53,7 @@ export default function MobileNav() {
           </div>
           <div
             onClick={handleOnclick}
-            className={`${activeMenu && "active"} ham-menu`}
+            className={`${activeMenu && "active"} ham-menu active:bg-grey-100`}
           >
             <span className=""></span>
             <span className=""></span>
