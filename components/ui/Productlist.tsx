@@ -1,6 +1,17 @@
 import React from 'react'
+import HorisontalProductCard from './HorisontalProductCard';
 
-const fakeProductDB = [
+type FakeProduct = {
+  id: string
+  name: string
+  price: number
+  description: string
+  imgUrl: string
+  category: string
+  inStock: boolean
+}
+
+const fakeProductDB: FakeProduct[] = [
     {
       id: "1",
       name: "Black Truffle Pasta",
@@ -151,11 +162,24 @@ const fakeProductDB = [
 export default function Productlist({query}: {query: string}) {
     const re = new RegExp(String.raw`${query}`, "i");
     console.log("Regex:", re)
-    const filteredProducts = fakeProductDB.filter((product) => product.name.match(re))
+    const filteredProducts: FakeProduct[] = fakeProductDB.filter((product) => product.name.match(re))
     
   return (
-    <div>
-        {filteredProducts.map((product) => <h1 key={product.id}>{product.name}</h1>)}
+    <div className='flex flex-col px-6 py-6 gap-6'>
+        {filteredProducts.map((product) => {
+          const {name, id, description, price, imgUrl, category, inStock} = product
+          return(
+            <HorisontalProductCard
+              key={id} 
+              name={name} 
+              description={description}
+              price={price}
+              imgUrl={imgUrl}
+              category={category}
+              inStock={inStock}  
+            />
+          )
+          })}
     </div>
   )
 }
