@@ -7,20 +7,20 @@ import Tag from './Tag';
 import Image from 'next/image'
 
 type Props = {
-    id: "tjonnas" | "norma" | "norvald",
+    id: "tjonnasdelikatesser" | "norma" | "norvald",
     title: string,
     ingress: string
     imageUrl: string
 }
 
 const borderVariantsClosed = {
-    tjonnas: "border-yellow-100 hover:border-yellow-300",
+    tjonnasdelikatesser: "border-yellow-100 hover:border-yellow-300",
     norma: "border-red-100 hover:border-red-300",
     norvald: "border-blue-100 hover:border-blue-300" 
 }
 
 const borderVariantsOpen = {
-    tjonnas: "border-yellow-300",
+    tjonnasdelikatesser: "border-yellow-300",
     norma: "border-red-300",
     norvald: "border-blue-500"
 }
@@ -57,7 +57,7 @@ export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Pr
             <div className='px-6 mt-2 gap-2 flex flex-col pb-6 justify-between h-full'>
             <Text variant='primarySmall' content={ingress} as='p' />
                 <div className='flex relative top-1 justify-between'>
-                    <Button variant='tertiary-fill' text='Les mer' href='/tjonnas'/>
+                    <Button variant='tertiary-fill' text='Les mer' href={`/about/${id}`}/>
                     <button  onClick={handleClick}  className='flex color items-center gap-2 hover:cursor-pointer text-grey-500'>
                         <Text variant='captionLabel' content='Lukk' as='span'/>
                         <Image src="/icons/Close.svg" width={24} height={24}alt="Close accordion icon"/>

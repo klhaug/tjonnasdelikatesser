@@ -86,12 +86,12 @@ export default function Footer() {
           <Text variant="primary" content="Snarveier" extraStyling="text-white text-xl" as="h3"/>
         </div>
         <div className="px-4">
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Tjønnås Delikatesser" as="p" extraStyling="text-white"/></Link>
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norma" as="p" extraStyling="text-white"/></Link>
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norvald" as="p" extraStyling="text-white"/></Link>
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Produkter" as="p" extraStyling="text-white"/></Link>
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Kontakt" as="p" extraStyling="text-white"/></Link>
-         <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Menyer" as="p" extraStyling="text-white"/></Link>
+         <Link href="/tjonnasdelikatesser" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Tjønnås Delikatesser" as="p" extraStyling="text-white"/></Link>
+         <Link href="/norma" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norma" as="p" extraStyling="text-white"/></Link>
+         <Link href="/norvald" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norvald" as="p" extraStyling="text-white"/></Link>
+         <Link href="/products" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Produkter" as="p" extraStyling="text-white"/></Link>
+         <Link href="/contact" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Kontakt" as="p" extraStyling="text-white"/></Link>
+         <Link href="/menu" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Menyer" as="p" extraStyling="text-white"/></Link>
          <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Facebook" as="p" extraStyling="text-white"/></Link>
          <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Instagram" as="p" extraStyling="text-white"/></Link>
          <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Informasjonskapsler" as="p" extraStyling="text-white"/></Link>

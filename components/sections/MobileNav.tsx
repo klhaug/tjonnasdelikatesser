@@ -38,19 +38,19 @@ export default function MobileNav() {
           } h-screen w-full max-w-[800px] flex items-center justify-center bg-yellow-50 z-[999] absolute top-0 duration-500`}
         >
           <ul className='flex flex-col gap-8 relative top-'>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Hjem' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Tjønnås delikatesser' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Norvald' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Norma' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Produkter' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Menyer' as='li' /></Link>
-            <Link href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Kontakt oss' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Hjem' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'><Text variant='headline' content='Tjønnås delikatesser' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2'><Text variant='headline' content='Norvald' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2'><Text variant='headline' content='Norma' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/products" className='hover:underline underline-offset-2'><Text variant='headline' content='Produkter' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/menu" className='hover:underline underline-offset-2'><Text variant='headline' content='Menyer' as='li' /></Link>
+            <Link onClick={handleOnclick} href="/contact" className='hover:underline underline-offset-2'><Text variant='headline' content='Kontakt oss' as='li' /></Link>
           </ul>
         </div>
         <nav className="w-full p-6 border-b border-grey-100 flex items-center justify-between">
-          <div className='h-fit'>
+          <Link href="/" className='h-fit'>
               <Image src="/images/Tjønnås_Ikon-oker.png" height={34} width={28} alt='icon'/> 
-          </div>
+          </Link>
           <div
             onClick={handleOnclick}
             className={`${activeMenu && "active"} ham-menu active:bg-grey-100`}

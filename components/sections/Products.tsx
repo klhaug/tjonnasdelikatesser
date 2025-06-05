@@ -12,7 +12,7 @@ export default function Products() {
             <Text variant='subheadline' extraStyling="text-red-500" content='Tjønnås anbefaler' as='p' />
             <div className='flex justify-between w-full items-end'>
                 <Text variant='headline' content='Smaker du må prøve' as='h3' />
-                <Link className='hover:cursor-pointer hover:underline text-red-500 underline-offset-2 z-50'  href="/" ><Text content='Se alle' variant='primaryBold' as='p' /></Link>
+                <Link className='hover:cursor-pointer hover:underline text-red-500 underline-offset-2 z-50'  href="/products" ><Text content='Se alle' variant='primaryBold' as='p' /></Link>
             </div>
         </div>
         <div className='w-1/2 opacity-15 right-0 top-0 rounded-tl-full z-1 absolute h-full bg-red-300'></div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Work_Sans} from "next/font/google";
 import "./globals.css";
+import MobileNav from "@/components/sections/MobileNav";
+import Footer from "@/components/sections/Footer";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -22,7 +24,9 @@ export default function RootLayout({
       <body id="body"
         className={`${workSans.variable} noscroll antialiased h-screen`}
       >
+        <MobileNav/>
         {children}
+        <Footer />
       </body>
     </html>
   );

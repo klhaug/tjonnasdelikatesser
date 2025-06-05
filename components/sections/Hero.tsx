@@ -14,7 +14,7 @@ export default function Hero() {
       </div>
       <div className='flex flex-col w-full gap-4 max-w-[576px]'>
           <Button text='Ta kontakt' variant='primary-fill' href='/contact' />
-          <Button text='Les mer' variant='secondary-fill' href='/tjonnas-delikatesser' />
+          <Button text='Les mer' variant='secondary-fill' href='/about/tjonnasdelikatesser' />
       </div>
       <Image className='rounded-lg' src="/images/241A9090.jpg" height={576} width={576} alt='woman smiling in cafe with food around her' />
     </div>
