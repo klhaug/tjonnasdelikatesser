@@ -171,7 +171,7 @@ export default async function Productlist({query}: {query: string}) {
         setTimeout(() => {
           console.log("WHAT")
           resolve(db.filter((product) => product.name.match(re)))
-        }, 500)
+        }, 10)
       })
     }
 
@@ -181,7 +181,7 @@ export default async function Productlist({query}: {query: string}) {
     
   return (
     <div className='flex flex-col gap-6'>
-        {filteredProducts.map((product) => {
+        {filteredProducts.length > 0 ? filteredProducts.map((product) => {
           const {name, id, description, price, imgUrl, category, inStock} = product
           return(
             <HorisontalProductCard
@@ -194,7 +194,9 @@ export default async function Productlist({query}: {query: string}) {
               inStock={inStock}  
             />
           )
-          })}
+          })
+        : <h1>{query} finnes ikke i vår sortiment</h1>
+        }
     </div>
   )
 }
