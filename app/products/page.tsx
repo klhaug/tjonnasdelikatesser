@@ -1,13 +1,18 @@
+
 import Search from '@/components/ui/Search'
 import React, { Suspense } from 'react'
 import Productlist from "@/components/ui/Productlist"
 import MobileFilter from "@/components/ui/MobileFilter"
 import {CardsSkeleton } from '@/components/ui/Skeletons';
 import Text from '@/components/ui/Text';
+import DebugReplaceLogger from '@/components/DebugReplaceLogger'; // 👈 Import it
 
 
 
 export default async function Page(props: {
+
+
+
   searchParams?: Promise<{
     query?: string;
   }>;
@@ -20,6 +25,7 @@ export default async function Page(props: {
   const resultsNumber = 192;
 
   return(
+    <DebugReplaceLogger>
     <div>
       <div className='flex flex-col justify-center items-center border-b border-grey-100 gap-4 py-8 px-6'>
         <Text content='Produkter' variant='headline' as='h1'/>
@@ -34,6 +40,7 @@ export default async function Page(props: {
         </Suspense>
       </div>
     </div>
+    </DebugReplaceLogger>
   )
 
 }
