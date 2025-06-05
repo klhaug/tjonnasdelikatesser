@@ -1,6 +1,7 @@
 import Search from '@/components/ui/Search'
-import React from 'react'
+import React, { Suspense } from 'react'
 import Productlist from "@/components/ui/Productlist"
+import { CardSkeleton, CardsSkeleton } from '@/components/ui/Skeletons';
 
 
 export default async function Page(props: {
@@ -17,7 +18,11 @@ console.log(query)
   return(
     <div>
       <Search placeholder='Søk etter...' />
-      <Productlist query={query} />
+      <div className="flex flex-col gap-7 px-6 py-6">
+        <Suspense key={query} fallback={<CardsSkeleton />}>
+          <Productlist query={query} />
+        </Suspense>
+      </div>
     </div>
   )
 

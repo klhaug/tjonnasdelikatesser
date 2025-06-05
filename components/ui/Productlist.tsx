@@ -159,13 +159,28 @@ const fakeProductDB: FakeProduct[] = [
   
 ]
 
-export default function Productlist({query}: {query: string}) {
+
+export default async function Productlist({query}: {query: string}) {
     const re = new RegExp(String.raw`${query}`, "i");
+    
     console.log("Regex:", re)
-    const filteredProducts: FakeProduct[] = fakeProductDB.filter((product) => product.name.match(re))
+
+   
+    async function filterProduct(db: FakeProduct[]): Promise<FakeProduct[]> {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log("WHAT")
+          resolve(db.filter((product) => product.name.match(re)))
+        }, 500)
+      })
+    }
+
+    
+
+    const filteredProducts =  await filterProduct(fakeProductDB)
     
   return (
-    <div className='flex flex-col px-6 py-6 gap-6'>
+    <div className='flex flex-col gap-6'>
         {filteredProducts.map((product) => {
           const {name, id, description, price, imgUrl, category, inStock} = product
           return(
