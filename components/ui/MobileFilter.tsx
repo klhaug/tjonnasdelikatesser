@@ -6,25 +6,25 @@ import Form from 'next/form'
 import Text from './Text';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter} from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
 
 export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
     const [activeMenu, setActiveMenu] = useState(false);
 
-    const [sliderValue, setSliderValue] = useState([100, 900])
+    const [sliderValue, setSliderValue] = useState([0, 1000])
     const formRef = useRef<HTMLFormElement>(null)
 
     const pathname = usePathname();
     const { replace } = useRouter();
 
-  const handleRadioInputChange = (term) => {
-    console.log(`Searching... ${term}`);
+  const handleRadioInputChange = (input: string) => {
+    console.log(`Searching... ${input}`);
    
     const params = new URLSearchParams(window.location.search);
-    if (term) {
-      params.set('filter', term);
+    if (input) {
+      params.set('filter', input);
     } else {
       params.delete('filter');
     }
@@ -32,12 +32,13 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
     replace(`${pathname}?${params.toString()}`);
   };
 
-  const sliderUrlUpdate = useDebouncedCallback( (term) => {
-    console.log(`Searching... ${term}`);
+  const sliderUrlUpdate = useDebouncedCallback( (input) => {
+    console.log(`Searching... ${input}`);
    
     const params = new URLSearchParams(window.location.search);
-    if (term) {
-      params.set('price', term);
+    if (input) {
+      params.set('price_min', input[0]);
+      params.set('price_max', input[1]);
     } else {
       params.delete('price');
     }
@@ -51,11 +52,21 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
     //     formRef.current.requestSubmit() // modern, better than `.submit()`
     //   }
     // }
+    function resetFilter(){
+      const params = new URLSearchParams(window.location.search);
+        params.delete('filter');
+        params.delete('price_min');
+        params.delete('price_max');
+        params.delete('query');
+        console.log("REPLACING URL", `${pathname}?${params.toString()}`);
+        setSliderValue([0,1000])
+       replace(`${pathname}?${params.toString()}`);
+    };
+    
 
-    function handleSliderInputChange(event) {
-        const inputValue = `${event[0]}+TO+${event[1]}`
-        console.log(inputValue)
-        sliderUrlUpdate(inputValue)
+
+    function handleSliderInputChange(event: number[]) {
+        sliderUrlUpdate(event)
         setSliderValue(event)
     }
 
@@ -102,7 +113,7 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
             >
                     <div className="flex justify-between border-b border-grey-100 py-6">
                         <Text variant='headline' extraStyling='order-1' content='Filter' as='h2'/>
-                        <button className='hover:cursor-pointer order-0 text-blue-500 hover:text-blue-600'>Nullstill</button>
+                        <button onClick={resetFilter} type="reset" className='hover:cursor-pointer order-0 text-blue-500 hover:text-blue-600'>Nullstill</button>
                         <Image className="hover:cursor-pointer active:bg-grey-100 order-2" onClick={handleOnclick} src='/icons/Close.svg' height={30} width={30} alt='icon' />
                     </div>
                     <fieldset className='flex flex-col gap-4 pt-4'>
@@ -127,13 +138,13 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
                     <fieldset className=' flex flex-col gap-8 mt-4'>
                         <legend className='text-base font-bold mb-4'>Pris</legend>
                          <div className='flex justify-between'>
-                             <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 w-1/6'>{sliderValue[0]}</h1>
-                             <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 w-1/6'>{sliderValue[1]}</h1>
+                             <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 min-w-[75px] w-1/6'>{sliderValue[0]}</h1>
+                             <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 min-w-[75px] w-1/6'>{sliderValue[1]}</h1>
                          </div>
                         <RangeSlider
                          min={0}
                          max={1000}
-                         value={sliderValue}
+                         value={[sliderValue[0], sliderValue[1]]}
                          onInput={(event) => handleSliderInputChange(event) }
                          />
 
