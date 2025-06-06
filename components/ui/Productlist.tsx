@@ -1,5 +1,6 @@
 import React from 'react'
 import HorisontalProductCard from './HorisontalProductCard';
+import LoadMoreButton from './LoadMoreButton';
 
 type FakeProduct = {
   id: string
@@ -161,23 +162,37 @@ const fakeProductDB: FakeProduct[] = [
 
 
 export default async function Productlist({query}: {query: string}) {
+  
     const re = new RegExp(String.raw`${query}`, "i");
+
+    let listLength: number = 3;
     
     console.log("Regex:", re)
 
    
-    async function filterProduct(db: FakeProduct[]): Promise<FakeProduct[]> {
+    async function filterProduct(db: FakeProduct[], listLength: number): Promise<FakeProduct[]> {
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log("WHAT")
-          resolve(db.filter((product) => product.name.match(re)))
-        }, 10)
+          const allFilteredProducts = db.filter((product) => product.name.match(re))
+          const cappedProductList = [];
+          for(let i = 0; i < listLength; i++){
+            cappedProductList.push(allFilteredProducts[i])
+          }
+          resolve(
+            cappedProductList
+          )
+        }, 100)
       })
+    }
+
+    function loadMoreHandler(){
+      listLength += 10
     }
 
     
 
-    const filteredProducts =  await filterProduct(fakeProductDB)
+    const filteredProducts =  await filterProduct(fakeProductDB, listLength)
+
     
   return (
     <div className='flex flex-col gap-6'>
@@ -197,6 +212,7 @@ export default async function Productlist({query}: {query: string}) {
           })
         : <h1>{query} finnes ikke i vår sortiment</h1>
         }
+        <LoadMoreButton loadMoreHandler={loadMoreHandler()} />
     </div>
   )
 }
