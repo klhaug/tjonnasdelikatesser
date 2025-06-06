@@ -1,6 +1,6 @@
 import React from 'react'
 import HorisontalProductCard from './HorisontalProductCard';
-import LoadMoreButton from './LoadMoreButton';
+
 
 type FakeProduct = {
   id: string
@@ -161,22 +161,27 @@ const fakeProductDB: FakeProduct[] = [
 ]
 
 
-export default async function Productlist({query}: {query: string}) {
+export default async function Productlist({query, limit}: {query: string}) {
   
     const re = new RegExp(String.raw`${query}`, "i");
-
-    let listLength: number = 3;
+    
     
     console.log("Regex:", re)
+    console.log("Query", query)
+    console.log("Limit", limit)
 
    
-    async function filterProduct(db: FakeProduct[], listLength: number): Promise<FakeProduct[]> {
+    async function filterProduct(db: FakeProduct[], limit: number): Promise<FakeProduct[]> {
       return new Promise((resolve) => {
         setTimeout(() => {
           const allFilteredProducts = db.filter((product) => product.name.match(re))
           const cappedProductList = [];
-          for(let i = 0; i < listLength; i++){
-            cappedProductList.push(allFilteredProducts[i])
+          if(allFilteredProducts.length >= limit) {for(let i = 0; i < limit; i++){
+            cappedProductList.push(allFilteredProducts[i])}
+          } else if(allFilteredProducts.length < limit){
+            for(let i = 0; i<allFilteredProducts.length; i++ ){
+              cappedProductList.push(allFilteredProducts[i])
+            }
           }
           resolve(
             cappedProductList
@@ -184,14 +189,10 @@ export default async function Productlist({query}: {query: string}) {
         }, 100)
       })
     }
-
-    function loadMoreHandler(){
-      listLength += 10
-    }
-
     
 
-    const filteredProducts =  await filterProduct(fakeProductDB, listLength)
+    const filteredProducts =  await filterProduct(fakeProductDB, limit)
+    console.log("Filtered Products", filteredProducts)
 
     
   return (
@@ -212,7 +213,6 @@ export default async function Productlist({query}: {query: string}) {
           })
         : <h1>{query} finnes ikke i vår sortiment</h1>
         }
-        <LoadMoreButton loadMoreHandler={loadMoreHandler()} />
     </div>
   )
 }

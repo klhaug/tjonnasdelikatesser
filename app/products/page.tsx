@@ -5,8 +5,7 @@ import Productlist from "@/components/ui/Productlist"
 import MobileFilter from "@/components/ui/MobileFilter"
 import {CardsSkeleton } from '@/components/ui/Skeletons';
 import Text from '@/components/ui/Text';
-import DebugReplaceLogger from '@/components/DebugReplaceLogger'; // 👈 Import it
-
+import LoadMoreButton from '@/components/ui/LoadMoreButton';
 
 
 export default async function Page(props: {
@@ -15,17 +14,19 @@ export default async function Page(props: {
 
   searchParams?: Promise<{
     query?: string;
+    limit?: number
   }>;
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
+  const limit = searchParams?.limit || 10;
   // const currentPage = Number(searchParams?.page) || 1;
   // const totalPages = await fetchInvoicesPages(query);
 
   const resultsNumber = 192;
 
   return(
-    <DebugReplaceLogger>
+
     <div>
       <div className='flex flex-col justify-center items-center border-b border-grey-100 gap-4 py-8 px-6'>
         <Text content='Produkter' variant='headline' as='h1'/>
@@ -36,11 +37,11 @@ export default async function Page(props: {
       <MobileFilter resultsNumber={resultsNumber} />
       <div className="flex flex-col gap-7 px-6 py-6">
         <Suspense key={query} fallback={<CardsSkeleton />}>
-          <Productlist query={query} />
+          <Productlist query={query} limit={limit} />
         </Suspense>
+        <LoadMoreButton />
       </div>
     </div>
-    </DebugReplaceLogger>
   )
 
 }
