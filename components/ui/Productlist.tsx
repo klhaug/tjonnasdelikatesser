@@ -1,5 +1,6 @@
 import React from 'react'
 import HorisontalProductCard from './HorisontalProductCard';
+import { error } from 'console';
 
 
 type FakeProduct = {
@@ -173,18 +174,19 @@ const fakeProductDB: FakeProduct[] = [
 
 export default async function Productlist({query, limit, priceMax, priceMin, filter}: Props) {
 
+  const limitInt = typeof limit === "string" ? parseFloat(limit) : null;
+  console.log(limitInt)
+
   // Vi vil ha en basic liste sortert alfabetisk når man kommer inn på produktsiden
   // Vi vil ha muligheten til å sortere denne listen
   // Sorteringen må ta utgangspunkt i hele databasen
   // Men antallet kan begrenses i etterkant hvor man legger til 10 og 10 dersom det er fler enn 10 resultater
   // Man bør lage en funksjon for hver filtreringsprosess
 
-  if(!query && !limit && !priceMax && !priceMin && !filter) {
-
-  }
+  
 
 // SORTING FUNCTIONS
-
+// Disse fire påvirker vel det originale arrayet
   function sortByAscName(array: FakeProduct[]){
 
     array.sort((a, b) => {
@@ -229,57 +231,93 @@ export default async function Productlist({query, limit, priceMax, priceMin, fil
     array.sort((a, b) => b.price - a.price);
   }
 
- 
-
+// Denne returnerer en shallow copy
   function filterBySearch(db, query){
     const re = new RegExp(String.raw`${query}`, "i");
-    const filteredProducts = db.filter((product) => product.name.match(re))
-    return filteredProducts;
+    return db.filter((product) => product.name.match(re))
+  }
+  
+  //Hovedfunksjoner
+  function filterByPriceDirection(db, filter){
+    if(filter === "priceAsc"){
+      sortByAscPrice(db)
+      return;
+    } else if(filter === "priceDesc"){
+      sortByDescPrice(db)
+      return;
+    } else {
+      console.error("Unknown Filter Value", error)
+      return;
+    }
   }
 
-  console.log(filterBySearch(fakeProductDB, "de"))
 
-  function filterByPriceDirection(filter){
-
+  function filterByPriceRange(db: FakeProduct[], priceMin:string, priceMax:string){
+    const minPrice = parseFloat(priceMin)
+    const maxPrice = parseFloat(priceMax)
+    const lowerPriceRangeRemoved = db.filter((product) => product.price > minPrice);
+    const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price < maxPrice);
+    return bothRangesRemoved;
   }
 
-  function filterByPriceRange(priceMin, priceMax){
 
-  }
-
-  function filterByName(filter){
-
+  function filterByName(db, filter){
+    if(filter === "nameAsc"){
+      sortByAscName(db)
+      return;
+    } else if(filter === "nameDesc"){
+      sortByDescName(db)
+      return;
+    } else {
+      console.error("Unknown Filter Value", error)
+      return;
+    }
   }
 
     
    
-    async function filterProduct(db: FakeProduct[], limit: number): Promise<FakeProduct[]> {
+    async function getProducts(db: FakeProduct[]): Promise<FakeProduct[]> {
       return new Promise((resolve) => {
-
         setTimeout(() => {
+          
+          const returnedArray = db;
+          const priceRangeArray = [];
 
-          const allFilteredProducts = db.filter((product) => product.name.match(re))
-          const cappedProductList = [];
-
-          if(allFilteredProducts.length >= limit) {for(let i = 0; i < limit; i++){
-            cappedProductList.push(allFilteredProducts[i])}
-          } 
-          else if(allFilteredProducts.length < limit)
-            {
-            for(let i = 0; i<allFilteredProducts.length; i++ ){
-              cappedProductList.push(allFilteredProducts[i])
-            }
+          if(filter === "nameAsc" || filter === null) {
+            sortByAscName(returnedArray);
           }
+          if(filter === "nameDesc") {
+            sortByDescName(returnedArray);
+          }
+
+          if(filter === "priceAsc") {
+            sortByAscPrice(returnedArray);
+          }
+
+          if(filter === "priceDesc") {
+            sortByDescPrice(returnedArray);
+          }
+
+          if(priceMax !== null && priceMin !== null){
+          console.log("YOUVE ENTERED")
+            priceRangeArray.push(filterByPriceRange(returnedArray, priceMin, priceMax,))
+          }
+
+          const finalArray = priceRangeArray.length > 0 ? priceRangeArray[0] : returnedArray
+          console.log(finalArray)
+
+
           resolve(
-            cappedProductList
+            //Her må du lage en løsning dersom resultatene er mindre enn antallet...
+
+            limitInt === null ? finalArray.slice(0,5) : finalArray.slice(0,limitInt)
           )
-        }, 100)
+        }, 500)
       })
     }
     
 
-    const filteredProducts =  await filterProduct(fakeProductDB, limit)
-    console.log("Filtered Products", filteredProducts)
+    const filteredProducts =  await getProducts(fakeProductDB)
 
     
   return (

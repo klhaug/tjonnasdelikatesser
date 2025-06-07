@@ -13,7 +13,7 @@ import { useDebouncedCallback } from 'use-debounce';
 export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
     const [activeMenu, setActiveMenu] = useState(false);
 
-    const [sliderValue, setSliderValue] = useState([0, 1000])
+    const [sliderValue, setSliderValue] = useState([0, 2000])
     const formRef = useRef<HTMLFormElement>(null)
 
     const pathname = usePathname();
@@ -144,7 +144,7 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
                          </div>
                         <RangeSlider
                          min={0}
-                         max={1000}
+                         max={2000}
                          value={[sliderValue[0], sliderValue[1]]}
                          onInput={(event) => handleSliderInputChange(event) }
                          />
