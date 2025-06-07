@@ -58,6 +58,7 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
         params.delete('price_min');
         params.delete('price_max');
         params.delete('query');
+        params.delete('limit');
         console.log("REPLACING URL", `${pathname}?${params.toString()}`);
         setSliderValue([0,1000])
        replace(`${pathname}?${params.toString()}`);

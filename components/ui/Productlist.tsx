@@ -12,6 +12,14 @@ type FakeProduct = {
   inStock: boolean
 }
 
+type Props = {
+    query?: string | null
+    limit?: string | null
+    filter?: string | null
+    priceMin?: string | null
+    priceMax?: string | null
+}
+
 const fakeProductDB: FakeProduct[] = [
     {
       id: "1",
@@ -161,24 +169,103 @@ const fakeProductDB: FakeProduct[] = [
 ]
 
 
-export default async function Productlist({query, limit}: {query: string}) {
-  
-    const re = new RegExp(String.raw`${query}`, "i");
-    
-    
-    console.log("Regex:", re)
-    console.log("Query", query)
-    console.log("Limit", limit)
 
+
+export default async function Productlist({query, limit, priceMax, priceMin, filter}: Props) {
+
+  // Vi vil ha en basic liste sortert alfabetisk når man kommer inn på produktsiden
+  // Vi vil ha muligheten til å sortere denne listen
+  // Sorteringen må ta utgangspunkt i hele databasen
+  // Men antallet kan begrenses i etterkant hvor man legger til 10 og 10 dersom det er fler enn 10 resultater
+  // Man bør lage en funksjon for hver filtreringsprosess
+
+  if(!query && !limit && !priceMax && !priceMin && !filter) {
+
+  }
+
+// SORTING FUNCTIONS
+
+  function sortByAscName(array: FakeProduct[]){
+
+    array.sort((a, b) => {
+
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
+  }
+
+  function sortByDescName(array: FakeProduct[]){
+
+    array.sort((a, b) => {
+
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
+  }
+
+  function sortByAscPrice(array: FakeProduct[]){
+   array.sort((a, b) => a.price - b.price);
+  }
+
+  function sortByDescPrice(array: FakeProduct[]){
+    array.sort((a, b) => b.price - a.price);
+  }
+
+ 
+
+  function filterBySearch(db, query){
+    const re = new RegExp(String.raw`${query}`, "i");
+    const filteredProducts = db.filter((product) => product.name.match(re))
+    return filteredProducts;
+  }
+
+  console.log(filterBySearch(fakeProductDB, "de"))
+
+  function filterByPriceDirection(filter){
+
+  }
+
+  function filterByPriceRange(priceMin, priceMax){
+
+  }
+
+  function filterByName(filter){
+
+  }
+
+    
    
     async function filterProduct(db: FakeProduct[], limit: number): Promise<FakeProduct[]> {
       return new Promise((resolve) => {
+
         setTimeout(() => {
+
           const allFilteredProducts = db.filter((product) => product.name.match(re))
           const cappedProductList = [];
+
           if(allFilteredProducts.length >= limit) {for(let i = 0; i < limit; i++){
             cappedProductList.push(allFilteredProducts[i])}
-          } else if(allFilteredProducts.length < limit){
+          } 
+          else if(allFilteredProducts.length < limit)
+            {
             for(let i = 0; i<allFilteredProducts.length; i++ ){
               cappedProductList.push(allFilteredProducts[i])
             }

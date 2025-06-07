@@ -10,16 +10,23 @@ import LoadMoreButton from '@/components/ui/LoadMoreButton';
 
 export default async function Page(props: {
 
-
-
   searchParams?: Promise<{
-    query?: string;
-    limit?: number
+    query?: string | null
+    limit?: string | null
+    filter?: string | null
+    price_min?: string | null
+    price_max?: string | null
   }>;
 }) {
   const searchParams = await props.searchParams;
-  const query = searchParams?.query || '';
-  const limit = searchParams?.limit || 10;
+  const query = searchParams?.query || null;
+  const limit = searchParams?.limit || null;
+  const filter = searchParams?.filter || null;
+  const priceMin = searchParams?.price_min || null;
+  const priceMax = searchParams?.price_max || null;
+
+  console.log("All params", typeof query, typeof filter, typeof priceMin, typeof priceMax, typeof limit)
+  console.log("SearchParams:", searchParams)
   // const currentPage = Number(searchParams?.page) || 1;
   // const totalPages = await fetchInvoicesPages(query);
 
@@ -37,7 +44,7 @@ export default async function Page(props: {
       <MobileFilter resultsNumber={resultsNumber} />
       <div className="flex flex-col gap-7 px-6 py-6">
         <Suspense key={query} fallback={<CardsSkeleton />}>
-          <Productlist query={query} limit={limit} />
+          <Productlist query={query} limit={limit} filter={filter} priceMin={priceMin} priceMax={priceMax}  />
         </Suspense>
         <LoadMoreButton />
       </div>
