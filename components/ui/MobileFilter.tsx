@@ -1,28 +1,31 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import Form from 'next/form'
 import Text from './Text';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
-import { usePathname, useRouter} from 'next/navigation';
+import { usePathname, useRouter, useSearchParams} from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
 
-export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
+export default function MobileFilter({
+  resultsNumber, setFilter, setSlider, setQuery, filter, sliderValue}: 
+  {resultsNumber: number, setFilter: (value: string) => void, setSlider: (value: number[]) => void, setQuery: (value:string) => void, sliderValue: number[] }) {
+    
     const [activeMenu, setActiveMenu] = useState(false);
-
-    const [sliderValue, setSliderValue] = useState([0, 2000])
     const formRef = useRef<HTMLFormElement>(null)
-
+    const isResetting = useRef(false);
+    const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
 
-  const handleRadioInputChange = (input: string) => {
-    console.log(`Searching... ${input}`);
+
+
    
-    const params = new URLSearchParams(window.location.search);
+  const debouncedRadioUrlUpdate = useDebouncedCallback((input: string) => {
+    const params = new URLSearchParams(searchParams);
     if (input) {
       params.set('filter', input);
     } else {
@@ -30,46 +33,59 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  };
+  }, 200);
+
+  useEffect(() => {
+    if (!filter) return;
+    debouncedRadioUrlUpdate(filter);
+  }, [filter, debouncedRadioUrlUpdate]);
+  
+
 
   const sliderUrlUpdate = useDebouncedCallback( (input) => {
     console.log(`Searching... ${input}`);
    
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams);
     if (input) {
       params.set('price_min', input[0]);
       params.set('price_max', input[1]);
     } else {
-      params.delete('price');
+      params.delete('price_min');
+      params.delete('price_max');
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  },300);
+  },100);
 
-    // function handleInputChange() {
-    //   // Submit the form when an input changes
-    //   if (formRef.current) {
-    //     formRef.current.requestSubmit() // modern, better than `.submit()`
-    //   }
-    // }
-    function resetFilter(){
-      const params = new URLSearchParams(window.location.search);
+    
+  function resetFilter(){
+    isResetting.current = true;
+    
+      const params = new URLSearchParams(searchParams);
+      console.log("PARAMS", params.has("price_min"))
         params.delete('filter');
         params.delete('price_min');
         params.delete('price_max');
         params.delete('query');
         params.delete('limit');
         console.log("REPLACING URL", `${pathname}?${params.toString()}`);
-        setSliderValue([0,1000])
        replace(`${pathname}?${params.toString()}`);
+       setFilter('')
+       setSlider([0, 2000])
+       setQuery('')
+
+       setTimeout(() => {
+        isResetting.current = false;
+      }, 0);
     };
     
 
+        useEffect(() => {
+          if (isResetting.current) return;
+          sliderUrlUpdate(sliderValue)
+        }, [sliderUrlUpdate, sliderValue]);
+        
 
-    function handleSliderInputChange(event: number[]) {
-        sliderUrlUpdate(event)
-        setSliderValue(event)
-    }
 
 
     const closeMenu = () => {
@@ -120,19 +136,19 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
                     <fieldset className='flex flex-col gap-4 pt-4'>
                         <legend className='text-base font-bold pt-4'>Sorter</legend>
                         <div className='flex gap-2'>
-                            <input onChange={(e)=>handleRadioInputChange(e.target.value)} id='nameAsc' name='filter' value="nameAsc" type='radio'/>
+                            <input onChange={(e)=>setFilter(e.target.value)} id='nameAsc' checked={filter === "nameAsc" ? true : false} name='filter' value="nameAsc" type='radio'/>
                             <label className="text-base" htmlFor='nameAsc'>Navn A-Z</label>
                         </div>
                         <div className='flex gap-2'>
-                            <input onChange={(e)=>handleRadioInputChange(e.target.value)} id='nameDesc' name='filter' value="nameDesc" type='radio'/>
+                            <input onChange={(e)=>setFilter(e.target.value)} id='nameDesc' checked={filter === "nameDesc" ? true : false} name='filter' value="nameDesc" type='radio'/>
                             <label className="text-base" htmlFor='nameDesc'>Navn Z-A</label>
                         </div>
                         <div className='flex gap-2'>
-                            <input onChange={(e)=>handleRadioInputChange(e.target.value)} id='priceAsc' name='filter' value="priceAsc" type='radio'/>
+                            <input onChange={(e)=>setFilter(e.target.value)} id='priceAsc' checked ={filter === "priceAsc" ? true : false} name='filter' value="priceAsc" type='radio'/>
                             <label className="text-base" htmlFor='priceAsc'>Pris stigende</label>
                         </div>
                         <div className='flex gap-2'>
-                            <input onChange={(e)=>handleRadioInputChange(e.target.value)} id='priceDesc' name='filter' value="priceDesc" type='radio'/>
+                            <input onChange={(e)=>setFilter(e.target.value)} id='priceDesc' checked={filter === "priceDesc" ? true : false} name='filter' value="priceDesc" type='radio'/>
                             <label className="text-base" htmlFor='priceDesc'>Pris synkende</label>
                         </div>
                     </fieldset>
@@ -146,7 +162,7 @@ export default function MobileFilter({resultsNumber}: {resultsNumber: number}) {
                          min={0}
                          max={2000}
                          value={[sliderValue[0], sliderValue[1]]}
-                         onInput={(event) => handleSliderInputChange(event) }
+                         onInput={(event) => setSlider(event) }
                          />
 
                     </fieldset>
