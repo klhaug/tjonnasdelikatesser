@@ -19,7 +19,7 @@ export default function Search({ placeholder, setQuery, query }: { placeholder: 
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  }, 300);
+  }, 100);
 
   const handleSearch = (input) => {
     console.log(input)

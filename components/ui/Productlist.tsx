@@ -3,12 +3,12 @@
 import HorisontalProductCard from './HorisontalProductCard';
 
 
-export default function Productlist({products}) {
+export default function Productlist({products, query}) {
 
 
     
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col py-8 gap-6'>
         {products.length > 0 ? products.map((product) => {
           const {name, id, description, price, imgUrl, category, inStock} = product
           return(
@@ -23,7 +23,10 @@ export default function Productlist({products}) {
               />
           )
           })
-        : <h1>Denne varen finnes ikke i vår sortiment</h1>
+        : <div>
+          <h1 className='text-2xl'>Du har søkt på {query}</h1>
+          <p>Denne varen finnes ikke i vår sortiment</p>
+        </div>
         }
     </div>
   )

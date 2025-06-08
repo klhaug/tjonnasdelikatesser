@@ -5,21 +5,25 @@ import MobileFilter from "@/components/ui/MobileFilter"
 import Text from '@/components/ui/Text';
 import LoadMoreButton from '@/components/ui/LoadMoreButton';
 import Productlist from './Productlist';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function ClientWrapper({products}) {
 
  const [filter, setFilter] = useState("");
  const [query, setQuery] = useState("");
+ const [debouncedQuery, setDebouncedQuery] = useState("")
  const [priceMinMax, setPriceMinMax] = useState([0, 2000])
  const [hasHydrated, setHasHydrated] = useState(false);
+ const [listLength, setListLength] = useState(10)
  
  const searchParams = useSearchParams();
  const getFilter = searchParams.get('filter')
  const getQuery = searchParams.get("query")
  const getPriceMin = searchParams.get("price_min")
  const getPriceMax = searchParams.get("price_max")
+
 
 
      if(!hasHydrated) {
@@ -51,6 +55,12 @@ export default function ClientWrapper({products}) {
         setPriceMinMax(input)
      }
 
+     const updateListLength = (input) => {
+        const newListLength = input + 10;
+        console.log("Listlength updated:", newListLength)
+        setListLength(newListLength)
+     }
+
 
 
  //TANKER:
@@ -59,11 +69,22 @@ export default function ClientWrapper({products}) {
 // State og URL må da henge sammen. 
 // Hvordan skal man løse at man evt. sender en link med en url til noen og at shadow-staten allerede er på plass?
 
-    
-const allProducts = products;
+function filterBySearch(db, query){
+    const re = new RegExp(String.raw`${query}`, "i");
+    return db.filter((product) => product.name.match(re))
+  }
+
+const allProducts = filterBySearch(products, debouncedQuery)
+const allProductsLength = allProducts.length
+const cappedProductList = allProducts.slice(0, listLength)
   
+const updateDebouncedUrl = useDebouncedCallback((query) => {   
+    setDebouncedQuery(query)
+  }, 200);
 
-
+useEffect(() => {
+    updateDebouncedUrl(query)
+}, [query])
 
 
 
@@ -132,11 +153,6 @@ const allProducts = products;
     array.sort((a, b) => b.price - a.price);
   }
 
-// Denne returnerer en shallow copy
-  function filterBySearch(db, query){
-    const re = new RegExp(String.raw`${query}`, "i");
-    return db.filter((product) => product.name.match(re))
-  }
   
   //Hovedfunksjoner
   function filterByPriceDirection(db, filter){
@@ -220,11 +236,11 @@ const allProducts = products;
           <Search placeholder='Søk blant våre produkter' setQuery={updateQuery} query={query} />
         </div>
       </div>
-      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProducts.length} />
+      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
       <div className="flex flex-col gap-7 px-6 py-6">
-        <Productlist products={allProducts} />
+        <Productlist query={query} products={cappedProductList} />
       </div>
-      <LoadMoreButton />
+      <LoadMoreButton fullListLength={allProductsLength} listlength={listLength} setListLength={updateListLength}/>
     </div>
   )
 }

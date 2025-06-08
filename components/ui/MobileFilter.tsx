@@ -11,7 +11,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 
 export default function MobileFilter({
-  resultsNumber, setFilter, setSlider, setQuery, filter, sliderValue}: 
+  resultsNumber, setFilter, setSlider, setQuery, filter, sliderValue, setListLength}: 
   {resultsNumber: number, setFilter: (value: string) => void, setSlider: (value: number[]) => void, setQuery: (value:string) => void, sliderValue: number[] }) {
     
     const [activeMenu, setActiveMenu] = useState(false);
@@ -55,7 +55,7 @@ export default function MobileFilter({
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  },100);
+  },200);
 
     
   function resetFilter(){
@@ -73,6 +73,7 @@ export default function MobileFilter({
        setFilter('')
        setSlider([0, 2000])
        setQuery('')
+       setListLength(10)
 
        setTimeout(() => {
         isResetting.current = false;
