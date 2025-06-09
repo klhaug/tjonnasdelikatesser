@@ -16,7 +16,7 @@ type Props = {
 const borderVariantsClosed = {
     tjonnasdelikatesser: "border-yellow-100 hover:border-yellow-300",
     norma: "border-red-100 hover:border-red-300",
-    norvald: "border-blue-100 hover:border-blue-300" 
+    norvald: "border-blue-100 hover:border-blue-500" 
 }
 
 const borderVariantsOpen = {

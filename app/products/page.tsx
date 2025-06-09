@@ -1,4 +1,5 @@
 import ClientWrapper from "@/components/ui/ClientWrapper"
+import Breadcrumbs from "@/components/ui/Breadcrumbs"
 
 type FakeProduct = {
   id: string
@@ -10,6 +11,18 @@ type FakeProduct = {
   inStock: boolean
 }
 
+type Params = Promise<{ slug: string }>
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export async function generateMetadata(props: {
+  params: Params
+  searchParams: SearchParams
+}) {
+  const params = await props.params
+  const searchParams = await props.searchParams
+  const slug = params.slug
+  const query = searchParams.query
+}
 
 
 const fakeProductDB: FakeProduct[] = [
@@ -1833,6 +1846,14 @@ export default async function Page() {
 
   return(
     <div>
+          <Breadcrumbs breadcrumbs={[
+          { label: 'Forsiden', href: '/' },
+          {
+            label: 'Produkter',
+            href: '/products',
+            active: true,
+          },
+        ]} />
           <ClientWrapper products={filteredProducts} />
     </div>
   )

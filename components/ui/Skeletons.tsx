@@ -1,4 +1,5 @@
 import React from "react";
+import Breadcrumbs from "./Breadcrumbs";
 
 export function CardSkeleton() {
   return (
@@ -24,6 +25,14 @@ export function CardSkeleton() {
 export function CardsSkeleton() {
     return (
       <>
+        <Breadcrumbs breadcrumbs={[
+          { label: 'Forsiden', href: '/' },
+          {
+            label: 'Produkter',
+            href: '/products',
+            active: true,
+          },
+        ]} />
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />

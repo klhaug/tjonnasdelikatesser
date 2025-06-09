@@ -9,7 +9,7 @@ export default function Productlist({products, query}) {
 
     
   return (
-    <div className='flex flex-col py-8 gap-6'>
+    <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 py-8 gap-6'>
         {products.length > 0 ? products.map((product) => {
           const {name, id, description, price, imgUrl, category, inStock} = product
           return(

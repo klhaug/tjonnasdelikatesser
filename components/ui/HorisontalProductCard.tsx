@@ -16,7 +16,7 @@ type Props = {
 
 export default function HorisontalProductCard({name, price, description, imgUrl, category, inStock}: Props) {
   return (
-    <Link href={`/products/${name}`} className=' shadow-md max-h-[250px] hover:cursor-pointer rounded-md flex gap-2 hover:shadow-lg active:scale-95'>
+    <Link href={`/products/${name}`} className=' shadow-md h-full hover:cursor-pointer rounded-md flex gap-2 hover:shadow-lg active:scale-95'>
       <Image src={imgUrl} className='w-2/5 rounded-l-lg object-cover' height={500} width={500} alt={name} />
       <div className="flex flex-col p-6 gap-2">
         <Tag variant='tjonnasdelikatesser' content={category} textStyle='captionLabel' />

@@ -1,23 +1,32 @@
-'use client'
-
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
 //DENNE SKAL IKKE VÆRE CLIENT... MIDLERTIDIG FOR RENDERING AV PATHNAMEGØY
 
-import { usePathname } from 'next/navigation';
 import React from 'react'
 
-export default  function Page(props: {
-  searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>;
-}) {
+type Params = Promise<{ slug: string }>
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
-  const pathname = usePathname();
+export default async function Page(props: {
+  params: Params
+  searchParams: SearchParams
+}) {
+  const params = await props.params
+  const searchParams = await props.searchParams
+  const slug = params.slug
+  const query = searchParams.query
 
   
 return(
     <div>
-      <h1>{pathname}</h1>
+        <Breadcrumbs breadcrumbs={[
+          { label: 'Forsiden', href: '/' },
+          { label: 'Produkter', href: '/products' },
+          {
+            label:`${slug}`,
+            href: `/dashboard/invoices/${slug}`,
+            active: true,
+          },
+        ]} />
     </div>
   )
 }

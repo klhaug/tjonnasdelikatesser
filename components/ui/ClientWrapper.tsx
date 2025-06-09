@@ -5,15 +5,13 @@ import MobileFilter from "@/components/ui/MobileFilter"
 import Text from '@/components/ui/Text';
 import LoadMoreButton from '@/components/ui/LoadMoreButton';
 import Productlist from './Productlist';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
 
 export default function ClientWrapper({products}) {
 
  const [filter, setFilter] = useState("");
  const [query, setQuery] = useState("");
-//  const [debouncedQuery, setDebouncedQuery] = useState("")
  const [priceMinMax, setPriceMinMax] = useState([0, 2000])
  const [shadowPriceMinMax, setShadowPriceMinMax] = useState([])
  const [hasHydrated, setHasHydrated] = useState(false);
@@ -72,11 +70,6 @@ function filterBySearch(db, query){
     return db.filter((product) => product.name.match(re))
   }
 
-// const allProducts = filterBySearch(products, debouncedQuery)
-// const allProductsLength = allProducts.length
-// const cappedProductList = allProducts.slice(0, listLength)
-
-
 
 function getProducts() {
   const allProducts = filterBySearch(products, query)
@@ -115,33 +108,6 @@ const productInfoArray = getProducts()
 const allProductsLength = productInfoArray[1]
 const cappedProductList = productInfoArray[2]
   
-// const updateDebouncedUrl = useDebouncedCallback((query) => {   
-//     setDebouncedQuery(query)
-//   }, 200);
-
-// useEffect(() => {
-//     updateDebouncedUrl(query)
-// }, [query, updateDebouncedUrl])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // SORTING FUNCTIONS
@@ -190,40 +156,13 @@ const cappedProductList = productInfoArray[2]
     array.sort((a, b) => b.price - a.price);
   }
 
-  
-  //Hovedfunksjoner
-  function filterByPriceDirection(db, filter){
-    if(filter === "priceAsc"){
-      sortByAscPrice(db)
-      return;
-    } else if(filter === "priceDesc"){
-      sortByDescPrice(db)
-      return;
-    } else {
-      console.error("Unknown Filter Value", error)
-      return;
-    }
-  }
-
   function filterByPriceRange(db: FakeProduct[], priceRange:number[]){
     const lowerPriceRangeRemoved = db.filter((product) => product.price > priceRange[0]);
     const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price < priceRange[1]);
     return bothRangesRemoved;
   }
 
-  function filterByName(db, filter){
-    if(filter === "nameAsc"){
-      sortByAscName(db)
-      return;
-    } else if(filter === "nameDesc"){
-      sortByDescName(db)
-      return;
-    } else {
-      console.error("Unknown Filter Value", error)
-      return;
-    }
-  }
-  
+
     
   return (
     <div>
