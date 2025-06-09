@@ -23,7 +23,7 @@ export default function HorisontalProductCard({name, price, description, imgUrl,
         <Text content={name} variant='primaryBold' as='h2' />
         <Text content={description} variant='primarySmall' as='p' />
         <Text content={`${price.toString()},-`} variant='primaryBold' as='p' />
-        <Text content={inStock ? "På lager":"Ikke på lager "} variant='captionLabel' as='p' />
+        <Text content={inStock ? "På lager":"Ikke på lager "} extraStyling={`mt-auto w-fit font-semibold rounded-sm ${inStock ? "text-green-500" : "text-red-500"}`} variant='captionLabel' as='p' />
       </div>
     </Link>
   )

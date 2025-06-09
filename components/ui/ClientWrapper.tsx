@@ -13,9 +13,9 @@ export default function ClientWrapper({products}) {
 
  const [filter, setFilter] = useState("");
  const [query, setQuery] = useState("");
- const [debouncedQuery, setDebouncedQuery] = useState("")
+//  const [debouncedQuery, setDebouncedQuery] = useState("")
  const [priceMinMax, setPriceMinMax] = useState([0, 2000])
- const [shadowPriceMinMAx, setShadowPriceMinMax] = useState([])
+ const [shadowPriceMinMax, setShadowPriceMinMax] = useState([])
  const [hasHydrated, setHasHydrated] = useState(false);
  const [listLength, setListLength] = useState(10)
  
@@ -79,49 +79,49 @@ function filterBySearch(db, query){
 
 
 function getProducts() {
-  const allProducts = filterBySearch(products, debouncedQuery)
+  const allProducts = filterBySearch(products, query)
+  const allProductsWithinRange = filterByPriceRange(allProducts, priceMinMax)
 
   switch(filter) {
     case "nameAsc":
       console.log("Filter triggered: Name Ascending")
-      sortByAscName(allProducts)
+      sortByAscName(allProductsWithinRange)
       break;
     case "nameDesc":
       console.log("Filter triggered: Name Descending")
-      sortByDescName(allProducts)
+      sortByDescName(allProductsWithinRange)
       break;
     case "priceAsc":
       console.log("Filter triggered: Price Ascending")
-      sortByAscPrice(allProducts)
+      sortByAscPrice(allProductsWithinRange)
       break;
     case "priceDesc":
       console.log("Filter triggered: Price Descending")
-      sortByDescPrice(allProducts)
+      sortByDescPrice(allProductsWithinRange)
       break;
     default:
       console.log("No filter added or matches. Default to sortByAsc")
-      sortByAscName(allProducts)
+      sortByAscName(allProductsWithinRange)
   }
 
 
-  const allProductsLength = allProducts.length
-  const cappedProductList = allProducts.slice(0, listLength)
+  const allProductsWithinRangeLength = allProductsWithinRange.length
+  const cappedProductList = allProductsWithinRange.slice(0, listLength)
 
-  return [allProducts, allProductsLength, cappedProductList]
+  return [allProductsWithinRange, allProductsWithinRangeLength, cappedProductList]
 }
 
 const productInfoArray = getProducts()
-const allProducts = productInfoArray[0]
 const allProductsLength = productInfoArray[1]
 const cappedProductList = productInfoArray[2]
   
-const updateDebouncedUrl = useDebouncedCallback((query) => {   
-    setDebouncedQuery(query)
-  }, 200);
+// const updateDebouncedUrl = useDebouncedCallback((query) => {   
+//     setDebouncedQuery(query)
+//   }, 200);
 
-useEffect(() => {
-    updateDebouncedUrl(query)
-}, [query])
+// useEffect(() => {
+//     updateDebouncedUrl(query)
+// }, [query, updateDebouncedUrl])
 
 
 
@@ -233,7 +233,7 @@ useEffect(() => {
           <Search placeholder='Søk blant våre produkter' setQuery={updateQuery} query={query} />
         </div>
       </div>
-      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} shadowPriceMinMax={shadowPriceMinMAx} setShadowPriceMinMax={setShadowPriceMinMax} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
+      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} shadowPriceMinMax={shadowPriceMinMax} setShadowPriceMinMax={setShadowPriceMinMax} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
       <div className="flex flex-col gap-7 px-6 py-6">
         <Productlist query={query} products={cappedProductList} />
       </div>

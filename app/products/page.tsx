@@ -20,7 +20,7 @@ const fakeProductDB: FakeProduct[] = [
     "description": "Topped with aged parmesan and herbs.",
     "imgUrl": "/images/241A9411-1.jpg",
     "category": "Risotto",
-    "inStock": true
+    "inStock": false
   },
   {
     "id": "2",
@@ -65,7 +65,7 @@ const fakeProductDB: FakeProduct[] = [
     "description": "Served with a creamy gourmet sauce.",
     "imgUrl": "/images/241A9411-1.jpg",
     "category": "Gnocchi",
-    "inStock": true
+    "inStock": false
   },
   {
     "id": "7",
