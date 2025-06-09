@@ -98,6 +98,9 @@ function getProducts() {
       console.log("Filter triggered: Price Descending")
       sortByDescPrice(allProducts)
       break;
+    default:
+      console.log("No filter added or matches. Default to sortByAsc")
+      sortByAscName(allProducts)
   }
 
 
