@@ -3,6 +3,7 @@
 import React from 'react'
 
 export default function LoadMoreButton({fullListLength, listlength, setListLength}) {
+  console.log("Load More rebuilding")
   
   const loadMore = () => {
     setListLength(listlength)

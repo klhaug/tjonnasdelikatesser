@@ -15,6 +15,7 @@ export default function ClientWrapper({products}) {
  const [query, setQuery] = useState("");
  const [debouncedQuery, setDebouncedQuery] = useState("")
  const [priceMinMax, setPriceMinMax] = useState([0, 2000])
+ const [shadowPriceMinMAx, setShadowPriceMinMax] = useState([])
  const [hasHydrated, setHasHydrated] = useState(false);
  const [listLength, setListLength] = useState(10)
  
@@ -24,7 +25,7 @@ export default function ClientWrapper({products}) {
  const getPriceMin = searchParams.get("price_min")
  const getPriceMax = searchParams.get("price_max")
 
-
+console.log("Has Hydrated", hasHydrated)
 
      if(!hasHydrated) {
         if(getFilter !== null) {
@@ -34,8 +35,11 @@ export default function ClientWrapper({products}) {
             setQuery(getQuery)
         }
         if(getPriceMin !== null && getPriceMax !== null){
-            const getPriceMinMax = [getPriceMin, getPriceMax]
+            console.log(getPriceMin, getPriceMax)
+            console.log("triggered")
+            const getPriceMinMax = [parseFloat(getPriceMin), parseFloat(getPriceMax)]
             setPriceMinMax(getPriceMinMax)
+            setShadowPriceMinMax(getPriceMinMax)
         }
         setHasHydrated(true)
      } 
@@ -63,20 +67,50 @@ export default function ClientWrapper({products}) {
 
 
 
- //TANKER:
-// Filtrer og sorter må vise ALLE resultater, mens listen kan rendre 10 og 10   
-// Vi må ha state samtidig som URL-en oppdateres, og update-state funksjonene må passes som props til filter og søk
-// State og URL må da henge sammen. 
-// Hvordan skal man løse at man evt. sender en link med en url til noen og at shadow-staten allerede er på plass?
-
 function filterBySearch(db, query){
     const re = new RegExp(String.raw`${query}`, "i");
     return db.filter((product) => product.name.match(re))
   }
 
-const allProducts = filterBySearch(products, debouncedQuery)
-const allProductsLength = allProducts.length
-const cappedProductList = allProducts.slice(0, listLength)
+// const allProducts = filterBySearch(products, debouncedQuery)
+// const allProductsLength = allProducts.length
+// const cappedProductList = allProducts.slice(0, listLength)
+
+
+
+function getProducts() {
+  const allProducts = filterBySearch(products, debouncedQuery)
+
+  switch(filter) {
+    case "nameAsc":
+      console.log("Filter triggered: Name Ascending")
+      sortByAscName(allProducts)
+      break;
+    case "nameDesc":
+      console.log("Filter triggered: Name Descending")
+      sortByDescName(allProducts)
+      break;
+    case "priceAsc":
+      console.log("Filter triggered: Price Ascending")
+      sortByAscPrice(allProducts)
+      break;
+    case "priceDesc":
+      console.log("Filter triggered: Price Descending")
+      sortByDescPrice(allProducts)
+      break;
+  }
+
+
+  const allProductsLength = allProducts.length
+  const cappedProductList = allProducts.slice(0, listLength)
+
+  return [allProducts, allProductsLength, cappedProductList]
+}
+
+const productInfoArray = getProducts()
+const allProducts = productInfoArray[0]
+const allProductsLength = productInfoArray[1]
+const cappedProductList = productInfoArray[2]
   
 const updateDebouncedUrl = useDebouncedCallback((query) => {   
     setDebouncedQuery(query)
@@ -168,11 +202,9 @@ useEffect(() => {
     }
   }
 
-  function filterByPriceRange(db: FakeProduct[], priceMin:string, priceMax:string){
-    const minPrice = parseFloat(priceMin)
-    const maxPrice = parseFloat(priceMax)
-    const lowerPriceRangeRemoved = db.filter((product) => product.price > minPrice);
-    const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price < maxPrice);
+  function filterByPriceRange(db: FakeProduct[], priceRange:number[]){
+    const lowerPriceRangeRemoved = db.filter((product) => product.price > priceRange[0]);
+    const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price < priceRange[1]);
     return bothRangesRemoved;
   }
 
@@ -189,44 +221,6 @@ useEffect(() => {
     }
   }
   
-  async function getProducts(db: FakeProduct[]): Promise<FakeProduct[]> {
-        return new Promise((resolve) => {
-        setTimeout(() => {
-            
-            const returnedArray = db;
-            const priceRangeArray = [];
-
-            if(filter === "nameAsc" || filter === null) {
-            sortByAscName(returnedArray);
-            }
-            if(filter === "nameDesc") {
-            sortByDescName(returnedArray);
-            }
-
-            if(filter === "priceAsc") {
-            sortByAscPrice(returnedArray);
-            }
-
-            if(filter === "priceDesc") {
-            sortByDescPrice(returnedArray);
-            }
-
-            if(priceMax !== null && priceMin !== null){
-            priceRangeArray.push(filterByPriceRange(returnedArray, priceMin, priceMax,))
-            }
-
-            const finalArray = priceRangeArray.length > 0 ? priceRangeArray[0] : returnedArray
-            console.log(finalArray)
-
-
-            resolve(
-            //Her må du lage en løsning dersom resultatene er mindre enn antallet...
-
-            limitInt === null ? finalArray.slice(0,5) : finalArray.slice(0,limitInt)
-            )
-        }, 500)
-        })
-    }
     
   return (
     <div>
@@ -236,7 +230,7 @@ useEffect(() => {
           <Search placeholder='Søk blant våre produkter' setQuery={updateQuery} query={query} />
         </div>
       </div>
-      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
+      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} shadowPriceMinMax={shadowPriceMinMAx} setShadowPriceMinMax={setShadowPriceMinMax} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
       <div className="flex flex-col gap-7 px-6 py-6">
         <Productlist query={query} products={cappedProductList} />
       </div>

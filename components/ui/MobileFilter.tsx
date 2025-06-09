@@ -11,8 +11,8 @@ import { useDebouncedCallback } from 'use-debounce';
 
 
 export default function MobileFilter({
-  resultsNumber, setFilter, setSlider, setQuery, filter, sliderValue, setListLength}: 
-  {resultsNumber: number, setFilter: (value: string) => void, setSlider: (value: number[]) => void, setQuery: (value:string) => void, sliderValue: number[] }) {
+  resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: 
+  {resultsNumber: number, setFilter: (value: string) => void, setSlider: (value: number[]) => void, setQuery: (value:string) => void, sliderValue: number[], shadowPriceMinMax: number[] }) {
     
     const [activeMenu, setActiveMenu] = useState(false);
     const formRef = useRef<HTMLFormElement>(null)
@@ -20,6 +20,8 @@ export default function MobileFilter({
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
+
+    console.log("MobileFilter Rebuilding")
 
 
 
@@ -33,7 +35,7 @@ export default function MobileFilter({
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  }, 200);
+  }, 1);
 
   useEffect(() => {
     if (!filter) return;
@@ -43,8 +45,6 @@ export default function MobileFilter({
 
 
   const sliderUrlUpdate = useDebouncedCallback( (input) => {
-    console.log(`Searching... ${input}`);
-   
     const params = new URLSearchParams(searchParams);
     if (input) {
       params.set('price_min', input[0]);
@@ -60,20 +60,17 @@ export default function MobileFilter({
     
   function resetFilter(){
     isResetting.current = true;
-    
       const params = new URLSearchParams(searchParams);
-      console.log("PARAMS", params.has("price_min"))
         params.delete('filter');
         params.delete('price_min');
         params.delete('price_max');
         params.delete('query');
-        params.delete('limit');
         console.log("REPLACING URL", `${pathname}?${params.toString()}`);
-       replace(`${pathname}?${params.toString()}`);
-       setFilter('')
-       setSlider([0, 2000])
-       setQuery('')
-       setListLength(10)
+        replace(`${pathname}?${params.toString()}`);
+        setFilter('')
+        setSlider([0, 2000])
+        setQuery('')
+        setListLength(10)
 
        setTimeout(() => {
         isResetting.current = false;
@@ -82,11 +79,15 @@ export default function MobileFilter({
     
 
         useEffect(() => {
-          if (isResetting.current) return;
+          if (isResetting.current || shadowPriceMinMax.length === 0) return;
+          console.log('UseEffect IM TRIGGERED')
           sliderUrlUpdate(sliderValue)
-        }, [sliderUrlUpdate, sliderValue]);
+        }, [sliderUrlUpdate, sliderValue, shadowPriceMinMax]);
         
-
+// Denne triggeres onLoad fordi sliderValue er tilgjengelig og sendes ned, og det er ingenting som da stopper den fra å rendre. 
+// Det jeg da trenger er en kondisjon som stopper den fra å rendre onLoad
+// Problemet er at veldig mye annet også er avhengig av den staten
+// Hva om man har en state som er "hasChanged" som oppdaterer seg ved første gang staten blir endret? 
 
 
     const closeMenu = () => {
@@ -109,6 +110,11 @@ export default function MobileFilter({
         } else {
             showMenu();
         }
+    }
+
+    const handleSliderChange = (event) => {
+      setSlider(event)
+      setShadowPriceMinMax(event)
     }
 
 
@@ -163,7 +169,7 @@ export default function MobileFilter({
                          min={0}
                          max={2000}
                          value={[sliderValue[0], sliderValue[1]]}
-                         onInput={(event) => setSlider(event) }
+                         onInput={(event) => handleSliderChange(event) }
                          />
 
                     </fieldset>
