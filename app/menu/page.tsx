@@ -29,8 +29,10 @@ export default async function Page() {
             active: true,
           },
         ]} />
-      <Text variant='headline' content='Våre menyer' as='h2' />
-      <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
+      <div className='p-4 flex flex-col gap-4'>
+        <Text variant='headline' content='Våre menyer' as='h2' />
+        <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
+      </div>
       <MenuClientWrapper />
       
       <h1>Meny</h1>
