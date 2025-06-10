@@ -162,7 +162,6 @@ const cappedProductList = productInfoArray[2]
     return bothRangesRemoved;
   }
 
-
     
   return (
     <div>
