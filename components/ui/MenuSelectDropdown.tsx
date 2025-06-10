@@ -21,7 +21,7 @@ const menuBasedOnState = {
 
 export default function MenuSelectDropdown({selectedMenu, setSelectedMenu}: {selectedMenu: "tjonnasdelikatesser" | "catering" | "norvald", setSelectedMenu: (value: "tjonnasdelikatesser" | "norvald" | "catering") => void}) {
   
-  const searchParams = useSearchParams(); 
+
 
 
   const [isOpen, setIsOpen] = useState(false)
