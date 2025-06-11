@@ -5,7 +5,7 @@ import MenuSelectDropdown from '@/components/ui/MenuSelectDropdown';
 import MenuComponent from '@/components/ui/MenuComponent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export default function MenuClientWrapper() {
+export default function MenuClientWrapper({tjonnasMenu}) {
     const [selectedMenu, setSelectedMenu] = useState("tjonnasdelikatesser")
 
     const searchParams = useSearchParams();
@@ -41,7 +41,7 @@ export default function MenuClientWrapper() {
   return (
     <div className='p-4'>
       <MenuSelectDropdown selectedMenu={selectedMenu} setSelectedMenu={updateSelectedMenu} />
-      <MenuComponent selectedMenu={selectedMenu} />
+      <MenuComponent selectedMenu={selectedMenu} tjonnasMenu = {tjonnasMenu} />
     </div>
   )
 }

@@ -46,7 +46,7 @@ export default function MenuSelectDropdown({selectedMenu, setSelectedMenu}: {sel
       <Text  variant='primary' extraStyling='' content={menuBasedOnState[selectedMenu]} as='p' />
       <Image  className={`${isOpen ? null : "-rotate-90" } transition-all`} src="/icons/Arrow drop down.svg" height={24} width={24} alt='icon' />
       </div>
-        <div className={`${isOpen ? "flex" : 'hidden'} absolute flex-col top-18 rounded-b-md w-full shadow-xl  bg-white border border-grey-100`}>
+        <div className={`${isOpen ? "flex" : 'hidden'} absolute flex-col top-18 rounded-b-md w-full shadow-xl  bg-white border-2 border-grey-100`}>
           <button onClick={(e) => handleOnClick(e)} value="tjonnasdelikatesser" className='hover:bg-yellow-300 hover:cursor-pointer p-4'>Tjønnas Delikatesser</button>
           <button onClick={(e) => handleOnClick(e)} value="norvald" className='hover:bg-blue-500 hover:cursor-pointer p-4'>Norvald</button>
           <button onClick={(e) => handleOnClick(e)} value="catering" className='hover:bg-green-500 hover:cursor-pointer p-4 hover:text-white rounded-b-md'>Catering</button>

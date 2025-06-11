@@ -3,6 +3,51 @@ import Text from '@/components/ui/Text';
 import MenuClientWrapper from '@/components/ui/MenuClientWrapper';
 import React from 'react'
 
+const fakeTjonnasMenu = [
+  {
+    category: 'kaffe',
+    items: [
+      {
+        name: "latte",
+        price: "55"
+      },
+      {
+        name: "cortado",
+        price: "55"
+      },
+      {
+        name: "espresso",
+        price: "55"
+      },
+      {
+        name: "filter kaffe",
+        price: "55"
+      },
+    ]
+  },
+  {
+    category: 'Varme drikker',
+    items: [
+      {
+        name: "Chai latte",
+        price: "60"
+      },
+      {
+        name: "Dirty chai",
+        price: "60"
+      },
+      {
+        name: "Espresso",
+        price: "55"
+      },
+      {
+        name: "Filter Kaffe",
+        price: "55"
+      },
+    ]
+  },
+]
+
 export default async function Page() {
 
   async function getMenues(db): Promise<[]> {
@@ -17,7 +62,7 @@ export default async function Page() {
     })
   }
 
-    // const allMenues = await getMenues(fakeProductDB)
+    const tjonnasMenu = await getMenues(fakeTjonnasMenu)
 
   return (
     <div>
@@ -29,13 +74,11 @@ export default async function Page() {
             active: true,
           },
         ]} />
-      <div className='p-4 flex flex-col gap-4'>
+      <div className='p-4 flex mt-13 flex-col gap-4'>
         <Text variant='headline' content='Våre menyer' as='h2' />
         <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
       </div>
-      <MenuClientWrapper />
-      
-      <h1>Meny</h1>
+      <MenuClientWrapper tjonnasMenu = {tjonnasMenu} />
     </div>
   )
 }
