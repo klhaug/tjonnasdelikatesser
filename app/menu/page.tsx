@@ -46,6 +46,23 @@ const fakeTjonnasMenu = [
       },
     ]
   },
+  {
+    category: "Mat(Toast)",
+    items: [
+      {
+        name: "Ostetallerken",
+        price: "155"
+      },
+      {
+        name: "Spekefat",
+        price: "155"
+      }
+    ]
+  },
+  {
+    category: "Lyst på noe søtt? Kom innom og sjekk disken",
+    items: []
+  }
 ]
 
 export default async function Page() {
