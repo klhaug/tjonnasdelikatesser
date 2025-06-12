@@ -4,6 +4,7 @@ import Text from './Text'
 import { capitalizeFirstLetter } from './TjonnasMenu'
 
 
+
 export default function NorvaldMenu({norvaldMenu}) {
 
   return (
@@ -18,21 +19,26 @@ export default function NorvaldMenu({norvaldMenu}) {
           const {items, category} = catalogeItem;
         
           return (
-            <table key={index} className='w-full mb-8 table-fixed border-separate border-spacing-2 '>
+            <table key={index} className='w-full mb-8 table-fixed border-separate border-spacing-y-3 '>
             <thead>
               <tr>
-                <th className='w-4/6  text-left text-2xl font-medium text-grey-700'>{`${category[0].toUpperCase()}${category.slice(1)}`}</th>
+                <th className='w-4/6  text-left text-2xl font-medium text-grey-700'>{category === "red-wine" ? "Rødvin" : "Hvitvin"}</th>
                 <th className='sr-only'>Price</th>
               </tr>
             </thead>
             <tbody className=''>
               {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                const {name, price} = item;
+                const {name, price, description, id, isHouseWine} = item;
                 const capitalizedWord = capitalizeFirstLetter(name);
         
                 return(
                 <tr key={index}>
-                  <td className='mt-2 font-normal'>{capitalizedWord}</td>
+                  <td className='mt-2 font-normal'>
+                    {isHouseWine ? 
+                      <span className={`${category === "red-wine" ? "bg-blue-700 text-white" : "bg-blue-300"} p-1 text-sm rounded-sm w-fit`}>Husets {category === "red-wine" ? "rød" : "hvit"}vin</span> : null}
+                      <Text variant='primaryBold' extraStyling='' content={capitalizedWord} as='h3'/>
+                      <Text variant='primarySmall' content={description} as='h3'/>
+                  </td>
                   <td className=' text-right font-semibold align-top'>{price}</td>
                 </tr>
                 )
@@ -42,7 +48,6 @@ export default function NorvaldMenu({norvaldMenu}) {
           )
         })
         }
-          <p className='text-left text-2xl font-medium text-yellow-700'>Lyst på noe søtt? Kom innom og sjekk disken</p>  
         </section>
     </div>
   )

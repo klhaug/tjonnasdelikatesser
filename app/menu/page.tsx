@@ -83,21 +83,21 @@ const fakeNorvaldMenu = [
         name: "Meinkland Burgenland 2023",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseRedwine: true
+        isHouseWine: true
       },
       {
         id: 2,
         name: "Fenocchia Barbera d'Alba Superioere 2022",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseRedwine: false
+        isHouseWine: false
       },
       {
         id: 3,
         name: "Meinkland Burgenland 2023",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseRedwine: false
+        isHouseWine: false
       },
     ]
   },
@@ -109,22 +109,122 @@ const fakeNorvaldMenu = [
         name: "Meinkland Burgenland 2023",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseWhitewine: true
+        isHouseWine: true
       },
       {
         id: 2,
         name: "Fenocchia Barbera d'Alba Superioere 2022",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseRedwine: false
+        isHouseWine: false
       },
       {
         id: 3,
         name: "Meinkland Burgenland 2023",
         description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
         price: "115,-/575,-",
-        houseRedwine: false
+        isHouseWine: false
       },
+    ]
+  },
+]
+
+const fakeCateringMenu = [
+  {
+    category: "Fingermat",
+    items: [
+      {
+        id: 1,
+        description: "Brie, manchego/comte, italiensk salami, oliven, frukt, grissini",
+        price: "149,- / 165,- per pers",
+        comment: [
+        ]
+      }
+    ]
+  },
+  {
+    category: "Chacrutiere-boks",
+    items: [
+      {
+        id: 1,
+        description: "Brie, manchego/comte, rødkittost, syltetøy, nøtter, italiensk salami, spekeskinke, oliven, aioli, pesto, focaccia, grissini, frukt",
+        price: "Fingermat til 6 pers - 1200,-",
+        comment: [
+        ]
+      }
+    ]
+  },
+  {
+    category: "Chacrutiere-buffet",
+    items: [
+      {
+        id: 1,
+        description: "Brie, manchego/comte, rødkittost, syltetøy, nøtter, italiensk salami, spekeskinke, oliven, aioli, pesto, focaccia, grissini, frukt, søtt",
+        price: "399,- / 425,- per pers",
+        comment: [
+        ]
+      }
+    ]
+  },
+  {
+    category: "Tillegg",
+    items: [
+      {
+        id: 1,
+        description: "Blåmuggost med fikenkjeks",
+        price: "50,- / pers",
+        comment: [
+        ]
+      },
+      {
+        id: 1,
+        description: "Crostini med kremost og røkelaks",
+        price: "75,- / 2stk",
+        comment: [
+          {
+            description: "",
+            price: ""
+          }
+        ]
+      },
+      {
+        id: 1,
+        description: "Lammekjøttboller med tzatsiki (varm/kald)",
+        price: "75,- / 2stk",
+        comment: []
+      },
+    ]
+  },
+  {
+    category: "Boeuf Bourgignon",
+    items: [
+      {
+        id: 1,
+        description: "Fransk oksegryte med poteter, salat og focaccia",
+        price: "",
+        comment:[
+          {
+            description: "Catering: Leveres kaldt i engangsemballasje og må varmes selv",
+            price: "399,- per pers / Selskap på Norvald: 399,-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: "3 retters sesongmeny",
+    items: [
+      {
+        id: 1,
+        description: "Fransk oksegryte med poteter, salat og focaccia",
+        price: "675,-",
+        comment: [
+          {
+            description: "Lyst på noe mer? hva med å legge til en ostetallerken?",
+            price: "129,- per pers"
+          }
+        ]
+      }
     ]
   },
 ]
@@ -145,6 +245,7 @@ export default async function Page() {
 
     const tjonnasMenu = await getMenues(fakeTjonnasMenu)
     const norvaldMenu = await getMenues(fakeNorvaldMenu)
+    const cateringMenu = await getMenues(fakeCateringMenu);
 
   return (
     <div>
@@ -160,7 +261,7 @@ export default async function Page() {
         <Text variant='headline' content='Våre menyer' as='h2' />
         <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
       </div>
-      <MenuClientWrapper tjonnasMenu = {tjonnasMenu} norvaldMenu = {norvaldMenu} />
+      <MenuClientWrapper tjonnasMenu = {tjonnasMenu} norvaldMenu = {norvaldMenu} cateringMenu = {cateringMenu} />
     </div>
   )
 }
