@@ -2,6 +2,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import Text from '@/components/ui/Text';
 import MenuClientWrapper from '@/components/ui/MenuClientWrapper';
 import React from 'react'
+import Contact from '@/components/sections/Contact';
 
 const fakeTjonnasMenu = [
   {
@@ -239,7 +240,7 @@ export default async function Page() {
         resolve(
           allData
         )
-      }, 600)
+      }, 1000)
     })
   }
 
@@ -262,6 +263,7 @@ export default async function Page() {
         <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
       </div>
       <MenuClientWrapper tjonnasMenu = {tjonnasMenu} norvaldMenu = {norvaldMenu} cateringMenu = {cateringMenu} />
+      <Contact />
     </div>
   )
 }

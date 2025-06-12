@@ -1,12 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MenuSelectDropdown from '@/components/ui/MenuSelectDropdown';
 import MenuComponent from '@/components/ui/MenuComponent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}) {
+
     const [selectedMenu, setSelectedMenu] = useState("tjonnasdelikatesser")
+    const [isHydrated, setIsHydrated] = useState(false);
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -18,15 +20,22 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
         params.set('menu', input);
       } else {
         params.delete('menu');
-
       }
       console.log("REPLACING URL", `${pathname}?${params.toString()}`);
-      replace(`${pathname}?${params.toString()}`);
+      window.history.pushState(null, '', `${pathname}?${params.toString()}`);
     };
 
-    useEffect(() => {
-      menuUrlUpdate(selectedMenu)
-    }, [selectedMenu])
+    if(!isHydrated){
+      const params = new URLSearchParams(searchParams)
+      if(params.has("menu")) {
+        const menu = params.get("menu");
+        if(typeof menu === "string") {
+          setSelectedMenu(menu)
+          setIsHydrated(true)
+        }
+      }
+    }
+
   
 
     
@@ -35,6 +44,7 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
 
     const updateSelectedMenu = (input: string) => {
       console.log(input)
+      menuUrlUpdate(input)
       setSelectedMenu(input)
     }
 
