@@ -3,6 +3,7 @@ import { Work_Sans} from "next/font/google";
 import "./globals.css";
 import MobileNav from "@/components/sections/MobileNav";
 import Footer from "@/components/sections/Footer";
+import { SanityLive } from "@/sanity/live";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({
       >
         <MobileNav/>
         {children}
+        <SanityLive />
         <Footer />
       </body>
     </html>

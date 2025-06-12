@@ -3,6 +3,8 @@ import Text from '@/components/ui/Text';
 import MenuClientWrapper from '@/components/ui/MenuClientWrapper';
 import React from 'react'
 import Contact from '@/components/sections/Contact';
+import { defineQuery } from 'next-sanity';
+import { sanityFetch } from '@/sanity/live';
 
 const fakeTjonnasMenu = [
   {
@@ -230,7 +232,15 @@ const fakeCateringMenu = [
   },
 ]
 
+const EVENTS_QUERY = defineQuery(`*[
+  _type == "tjonnasMenuType"
+]{_id, name, price, date, category, _createdAt}|order(date desc)`);
+
 export default async function Page() {
+
+  const { data } = await sanityFetch({ query: EVENTS_QUERY });
+
+  console.log("SANITY", data)
 
   async function getMenues(db): Promise<[]> {
     return new Promise((resolve) => {

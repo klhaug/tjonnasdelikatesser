@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
-import { client } from "/Users/kristianhaug/Desktop/Desktop/Web Development 2.0/Tjønnås Delikatesser/tjonnas-website/sanity/client.ts";
+import { client } from "/Users/kristianhaug/Desktop/Desktop/Web Development 2.0/Tjønnås Delikatesser/tjonnas-website/sanity/client";
 import React from "react";
 
 const POSTS_QUERY = `*[
