@@ -74,6 +74,61 @@ const fakeTjonnasMenu = [
  
 ]
 
+const fakeNorvaldMenu = [
+  {
+    category: "red-wine",
+    items: [
+      {
+        id: 1,
+        name: "Meinkland Burgenland 2023",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseRedwine: true
+      },
+      {
+        id: 2,
+        name: "Fenocchia Barbera d'Alba Superioere 2022",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseRedwine: false
+      },
+      {
+        id: 3,
+        name: "Meinkland Burgenland 2023",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseRedwine: false
+      },
+    ]
+  },
+  {
+    category: "white-wine",
+    items: [
+      {
+        id: 1,
+        name: "Meinkland Burgenland 2023",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseWhitewine: true
+      },
+      {
+        id: 2,
+        name: "Fenocchia Barbera d'Alba Superioere 2022",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseRedwine: false
+      },
+      {
+        id: 3,
+        name: "Meinkland Burgenland 2023",
+        description: "Frisk og saftig, med preg av røde bær, grønne urter og litt krydder",
+        price: "115,-/575,-",
+        houseRedwine: false
+      },
+    ]
+  },
+]
+
 export default async function Page() {
 
   async function getMenues(db): Promise<[]> {
@@ -89,6 +144,7 @@ export default async function Page() {
   }
 
     const tjonnasMenu = await getMenues(fakeTjonnasMenu)
+    const norvaldMenu = await getMenues(fakeNorvaldMenu)
 
   return (
     <div>
@@ -104,7 +160,7 @@ export default async function Page() {
         <Text variant='headline' content='Våre menyer' as='h2' />
         <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />
       </div>
-      <MenuClientWrapper tjonnasMenu = {tjonnasMenu} />
+      <MenuClientWrapper tjonnasMenu = {tjonnasMenu} norvaldMenu = {norvaldMenu} />
     </div>
   )
 }

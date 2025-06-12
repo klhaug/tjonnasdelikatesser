@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import Text from './Text'
 
-function capitalizeFirstLetter(input:string) {
+export function capitalizeFirstLetter(input:string) {
   const firstLetter = input[0]
   const firstLetterCap = firstLetter.toUpperCase();
   const remainingLetters = input.slice(1)
@@ -15,7 +15,7 @@ export default function TjonnasMenu({tjonnasMenu}) {
   return (
     <div>
       <div className="flex mt-2 items-center justify-between p-6 bg-yellow-300">
-        <Image src="/images/Tjønnås_Logo-sort 2.png" height={200} width={200} alt='tjonnas logo' />
+        <Image src="/images/Tjønnås_Logo-sort 2.png" height={55} width={175} alt='tjonnas logo' />
         <Text content='Kafè' variant='subheadline' as='p' />
       </div>
 

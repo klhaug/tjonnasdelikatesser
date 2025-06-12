@@ -66,8 +66,7 @@ console.log("Has Hydrated", hasHydrated)
 
 
 function filterBySearch(db, query){
-    const re = new RegExp(String.raw`${query}`, "i");
-    return db.filter((product) => product.name.match(re))
+    return db.filter((product) => product.name.toLowerCase().includes(query))
   }
 
 
