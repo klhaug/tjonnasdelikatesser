@@ -39,8 +39,10 @@ export default function MenuClientWrapper({tjonnasMenu}) {
     }
 
   return (
-    <div className='p-4'>
-      <MenuSelectDropdown selectedMenu={selectedMenu} setSelectedMenu={updateSelectedMenu} />
+    <div className=''>
+      <div className="px-4">
+        <MenuSelectDropdown selectedMenu={selectedMenu} setSelectedMenu={updateSelectedMenu} />
+      </div>
       <MenuComponent selectedMenu={selectedMenu} tjonnasMenu = {tjonnasMenu} />
     </div>
   )

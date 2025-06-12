@@ -9,19 +9,19 @@ const fakeTjonnasMenu = [
     items: [
       {
         name: "latte",
-        price: "55"
+        price: "55,-"
       },
       {
         name: "cortado",
-        price: "55"
+        price: "55,-"
       },
       {
         name: "espresso",
-        price: "55"
+        price: "55,-"
       },
       {
         name: "filter kaffe",
-        price: "55"
+        price: "55,-"
       },
     ]
   },
@@ -30,39 +30,48 @@ const fakeTjonnasMenu = [
     items: [
       {
         name: "Chai latte",
-        price: "60"
+        price: "60,-"
       },
       {
         name: "Dirty chai",
-        price: "60"
+        price: "60,-"
       },
       {
         name: "Espresso",
-        price: "55"
+        price: "55,-"
       },
       {
         name: "Filter Kaffe",
-        price: "55"
+        price: "55,-"
       },
     ]
   },
   {
-    category: "Mat(Toast)",
+    category: "Mat (Toast)",
     items: [
       {
         name: "Ostetallerken",
-        price: "155"
+        price: "pris p/vekt"
       },
       {
         name: "Spekefat",
-        price: "155"
-      }
+        price: "pris p/vekt"
+      },
+      {
+        name: "Toast med mozzarella og grønn pesto",
+        price: "65,-/115,-"
+      },
+      {
+        name: "Spekefat",
+        price: "155,-"
+      },
+      {
+        name: "Spekefat",
+        price: "155,-"
+      },
     ]
   },
-  {
-    category: "Lyst på noe søtt? Kom innom og sjekk disken",
-    items: []
-  }
+ 
 ]
 
 export default async function Page() {
