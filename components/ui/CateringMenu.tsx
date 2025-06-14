@@ -2,10 +2,26 @@ import Image from 'next/image'
 import React from 'react'
 import Text from './Text'
 
-//HOLY MOLY Det må finnes en penere måte å skrive dette på...
+
+function getUniqueValues<T>(arr:T[]) {
+  return [...new Set(arr)];
+}
 
 
 export default function CateringMenu({cateringMenu}) {
+
+  const categoryArray = cateringMenu.map((item) => item.categoriTitle)
+  const uniqueCategories = getUniqueValues(categoryArray);
+
+  const filteredCateringMenu= [];
+  uniqueCategories.map((category) => {
+    const filtered = cateringMenu.filter((item) => item.categoriTitle === category)
+    filteredCateringMenu.push({
+      category: category,
+      items: filtered
+    })
+  })
+
 
   return (
     <div>
@@ -15,8 +31,11 @@ export default function CateringMenu({cateringMenu}) {
       </div>
       <section className='bg-yellow-50 px-6 py-13'>
 
-        {cateringMenu.map((catalogeItem, index) => {
+        {/* EGEN MAP FOR TILLEGG SLIK AT DEN HAR ANNEN LAYOUT */}
+
+        {filteredCateringMenu.map((catalogeItem, index) => {
           const {items, category} = catalogeItem;
+          const {price, description, name, conditionalPrice} = items[0]
           
           if (category === "Tillegg") {
             return (
@@ -29,13 +48,13 @@ export default function CateringMenu({cateringMenu}) {
             </thead>
             <tbody className=''>
 
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                const {description, price} = item;
+              {items.length > 0 ? items.map((item) => {
+                const {price, _id, name} = item;
         
                 return (
-                  <tr key={index} >
+                  <tr key={_id} >
                     <td className='mt-2 font-normal'>
-                        <Text variant='primarySmall' content={description} as='h3'/>
+                        <Text variant='primarySmall' content={name} as='h3'/>
                     </td>
                         <td className=' text-right font-semibold align-top'>{price}</td>
                   </tr>
@@ -45,6 +64,8 @@ export default function CateringMenu({cateringMenu}) {
           </table>
             )
           }
+
+          // RESTEN AV MENYEN
         
           return (
             <table key={index} className='w-full mb-4 table-fixed border-separate border-spacing-y-3 '>
@@ -54,73 +75,29 @@ export default function CateringMenu({cateringMenu}) {
               </tr>
             </thead>
             <tbody>
-
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                const {description} = item;
-
-                if(description.length === 0 || description === undefined) return;
-
-                return (
                   <tr key={index} >
                     <td className='mt-2 font-normal'>
-                        <Text variant='primarySmall' content={description} as='h3'/>
+                        <Text variant='primarySmall' content={name} as='h3'/>
                     </td>
                   </tr>
-                )
-              }) : null}
-
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                const {price} = item;
-
-                if(price.length === 0 || price === undefined) return;
-                
-                return (
-                    <tr key={index}>
+                  <tr>
                       <td className=' text-left font-semibold align-top'>{price}</td>
                     </tr>
-                )
-              }) : null}
-
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                
-                const {comment} = item;
-
-                if(comment.length === 0 || comment === undefined) return;
-
-                const {description} = comment[0];
-
-                return (
-                    <tr key={index}>
+                    {description ? <tr>
                       <td className=' text-left align-top'>
                        <Text content={description} variant='subheadline' as='p' /> 
                       </td>
-                    </tr>
-                )
-              }) : null}
- 
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
-                
-                const {comment} = item;
-
-                if(comment.length === 0 || comment === undefined) return;
-
-                const {price} = comment[0];
-
-                return (
-                    <tr key={index}>
+                    </tr> : null}
+                    {conditionalPrice ? <tr>
                       <td className=' text-left align-top'>
-                       <Text content={price} variant='primaryBold' as='p' /> 
+                       <Text content={conditionalPrice} variant='primaryBold' as='p' /> 
                       </td>
-                    </tr>
-                )
-              }) : null}
-
+                    </tr> : null}
             </tbody>
           </table>
           )
         })
         }
-
         </section>
     </div>
   )

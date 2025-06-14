@@ -2,6 +2,24 @@ import Image from 'next/image'
 import React from 'react'
 import Text from './Text'
 
+function getUniqueValues<T>(arr:T[]) {
+  return [...new Set(arr)];
+}
+
+type MenuItems = {
+  _id: string
+  conditionalPrice: string
+  name: string
+  description: string
+  housePick: boolean
+  price: string
+}
+
+type Menu = {
+  categoriTitle: string
+  items: MenuItems
+}
+
 export function capitalizeFirstLetter(input:string) {
   const firstLetter = input[0]
   const firstLetterCap = firstLetter.toUpperCase();
@@ -12,6 +30,18 @@ export function capitalizeFirstLetter(input:string) {
 
 export default function TjonnasMenu({tjonnasMenu}) {
 
+  const categoryArray = tjonnasMenu.map((item) => item.categoriTitle)
+  const uniqueCategories = getUniqueValues(categoryArray);
+
+  const filteredTjonnasMenu= [];
+  uniqueCategories.map((category) => {
+    const filtered = tjonnasMenu.filter((item) => item.categoriTitle === category)
+    filteredTjonnasMenu.push({
+      category: category,
+      items: filtered
+    })
+  })
+
   return (
     <div>
       <div className="flex mt-2 items-center justify-between p-6 bg-yellow-300">
@@ -20,14 +50,14 @@ export default function TjonnasMenu({tjonnasMenu}) {
       </div>
 
       <section className='bg-yellow-50 px-6 py-13'>
-        {tjonnasMenu.map((catalogeItem, index) => {
+        {filteredTjonnasMenu.map((catalogeItem, index) => {
           const {items, category} = catalogeItem;
         
           return (
-            <table key={index} className='w-full mb-8 table-fixed border-separate border-spacing-2 '>
+            <table key={index} className='w-full mb-8 table-fixed border-separate border-spacing-y-3'>
             <thead>
               <tr>
-                <th className='w-4/6  text-left text-2xl font-medium text-yellow-700'>{`${category[0].toUpperCase()}${category.slice(1)}`}</th>
+                <th className='w-4/6  text-left text-2xl font-medium text-yellow-700'>{category}</th>
                 <th className='sr-only'>Price</th>
               </tr>
             </thead>

@@ -246,36 +246,50 @@ const TJONNAS_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="tjonnasdelik
   },
 }
 `);
+const CATERING_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="catering"] {
+  _id,
+  nameOfMenu,
+  menuItems[] -> {
+      _id,
+       conditionalPrice,
+         name,
+      categoriTitle,
+      description,
+      housePick,
+      price     
+  },
+}
+`);
+const NORVALD_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="norvald"] {
+  _id,
+  nameOfMenu,
+  menuItems[] -> {
+      _id,
+       conditionalPrice,
+         name,
+      categoriTitle,
+      description,
+      housePick,
+      price     
+  },
+}
+`);
 
 export default async function Page() {
 
-  const { data }  = await sanityFetch({ query: TJONNAS_QUERY });
 
-  console.log("SANITY", data[0])
+  const getTjonnasMenu  = await sanityFetch({ query: TJONNAS_QUERY });
+  const tjonnasMenu = getTjonnasMenu.data[0].menuItems
 
-  async function getMenues(db): Promise<[]> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const allData = db;
-      
-        resolve(
-          allData
-        )
-      }, 1000)
-    })
-  }
+  const getCateringMenu = await sanityFetch({ query: CATERING_QUERY })
+  const cateringMenu = getCateringMenu.data[0].menuItems
 
-    const tjonnasMenu = await getMenues(fakeTjonnasMenu)
-    const norvaldMenu = await getMenues(fakeNorvaldMenu)
-    const cateringMenu = await getMenues(fakeCateringMenu);
+  const getNorvaldMenu = await sanityFetch({ query: NORVALD_QUERY })
+  const norvaldMenu = getNorvaldMenu.data[0].menuItems
+
 
   return (
     <div>
-      {data[0].menuItems.map((item) => {
-        return (
-          <p key={item._id}>{item.name}</p>
-        )
-      })}
       <Breadcrumbs breadcrumbs={[
           { label: 'Forsiden', href: '/' },
           {

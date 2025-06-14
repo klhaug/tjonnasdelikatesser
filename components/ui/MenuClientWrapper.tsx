@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import MenuSelectDropdown from '@/components/ui/MenuSelectDropdown';
 import MenuComponent from '@/components/ui/MenuComponent';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}) {
 
@@ -12,7 +12,6 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
-    const { replace } = useRouter();
 
     const menuUrlUpdate = (input: string) => {
       const params = new URLSearchParams(searchParams);
@@ -53,7 +52,7 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
       <div className="px-4">
         <MenuSelectDropdown selectedMenu={selectedMenu} setSelectedMenu={updateSelectedMenu} />
       </div>
-      <MenuComponent selectedMenu={selectedMenu} tjonnasMenu = {tjonnasMenu} norvaldMenu={norvaldMenu} cateringMenu={cateringMenu}/>
+      <MenuComponent selectedMenu={selectedMenu} tjonnasMenu={tjonnasMenu} norvaldMenu={norvaldMenu} cateringMenu={cateringMenu}/>
     </div>
   )
 }

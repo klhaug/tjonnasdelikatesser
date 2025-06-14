@@ -111,7 +111,7 @@ const cappedProductList = productInfoArray[2]
 
 // SORTING FUNCTIONS
 // Disse fire påvirker vel det originale arrayet
-  function sortByAscName(array: FakeProduct[]){
+  function sortByAscName(array: Fakeproduct[]){
 
     array.sort((a, b) => {
 
