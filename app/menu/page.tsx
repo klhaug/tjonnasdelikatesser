@@ -232,15 +232,26 @@ const fakeCateringMenu = [
   },
 ]
 
-const EVENTS_QUERY = defineQuery(`*[
-  _type == "tjonnasMenuType"
-]{_id, name, price, date, category, _createdAt}|order(date desc)`);
+const TJONNAS_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {
+  _id,
+  nameOfMenu,
+  menuItems[] -> {
+      _id,
+       conditionalPrice,
+         name,
+      categoriTitle,
+      description,
+      housePick,
+      price     
+  },
+}
+`);
 
 export default async function Page() {
 
-  const { data } = await sanityFetch({ query: EVENTS_QUERY });
+  const { data }  = await sanityFetch({ query: TJONNAS_QUERY });
 
-  console.log("SANITY", data)
+  console.log("SANITY", data[0])
 
   async function getMenues(db): Promise<[]> {
     return new Promise((resolve) => {
@@ -260,6 +271,11 @@ export default async function Page() {
 
   return (
     <div>
+      {data[0].menuItems.map((item) => {
+        return (
+          <p key={item._id}>{item.name}</p>
+        )
+      })}
       <Breadcrumbs breadcrumbs={[
           { label: 'Forsiden', href: '/' },
           {
