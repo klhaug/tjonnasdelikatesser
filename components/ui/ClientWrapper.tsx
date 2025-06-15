@@ -66,7 +66,7 @@ console.log("Has Hydrated", hasHydrated)
 
 
 function filterBySearch(db, query){
-    return db.filter((product) => product.name.toLowerCase().includes(query))
+    return db.filter((product) => product.productName.toLowerCase().includes(query))
   }
 
 
