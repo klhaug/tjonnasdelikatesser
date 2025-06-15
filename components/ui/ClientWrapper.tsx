@@ -66,7 +66,7 @@ console.log("Has Hydrated", hasHydrated)
 
 
 function filterBySearch(db, query){
-    return db.filter((product) => product.productName.toLowerCase().includes(query))
+    return db.filter((product) => product.productName.toLowerCase().trim().includes(query.trim()))
   }
 
 
@@ -115,8 +115,8 @@ const cappedProductList = productInfoArray[2]
 
     array.sort((a, b) => {
 
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      const nameA = a.productName.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.productName.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
@@ -133,8 +133,8 @@ const cappedProductList = productInfoArray[2]
 
     array.sort((a, b) => {
 
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      const nameA = a.productName.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.productName.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return 1;
       }

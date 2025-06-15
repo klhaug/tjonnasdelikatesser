@@ -14,27 +14,23 @@ const urlFor = (source: SanityImageSource) =>
 
 
 
-export default function Productlist({products, query}) {
-  console.log('Product List rebuilding')
+export default function Productlist({products, query}) {    
 
-
-
-    console.log("MY PRODUCTS", products[0])
-    
-    
   return (
     <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 py-8 gap-6'>
         {products.length > 0 ? products.map((product) => {
-          const {productName, _id, description, price, image, category, inStock} = product;
+          const {productName, _id, description, price, lead, image, category, inStock, slug} = product;
           const imgUrl = image ? urlFor(image)?.width(750).url() : null;
 
           return(
               <HorisontalProductCard
                 key={_id}
                 name={productName}
-                description={description}
+                description={lead}
                 price={price}
                 imgUrl={imgUrl}
+                alt={image.alt}
+                slug={slug.current}
                 category={category}
                 inStock={inStock}
               />

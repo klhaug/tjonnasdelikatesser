@@ -1,19 +1,11 @@
 import ClientWrapper from "@/components/ui/ClientWrapper"
 import Breadcrumbs from "@/components/ui/Breadcrumbs"
-import { client } from "@/sanity/client";
 import { defineQuery } from "next-sanity"
 import { sanityFetch } from "@/sanity/live"
-import imageUrlBuilder from "@sanity/image-url";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { notFound } from "next/navigation";
 
 
-
-
-
 const PRODUCT_QUERY = defineQuery(`*[_type=="productItem"]`);
-
-
 
 
 export default async function Page() {
@@ -24,9 +16,6 @@ export default async function Page() {
   if (!products) {
     notFound();
   }
-
- 
-  
   
   
   return(
