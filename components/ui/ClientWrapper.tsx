@@ -7,13 +7,16 @@ import LoadMoreButton from '@/components/ui/LoadMoreButton';
 import Productlist from './Productlist';
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import {PRODUCTS_QUERYResult} from '@/sanity/types'
 
-export default function ClientWrapper({products}) {
+
+
+export default function ClientWrapper({products}: {products: PRODUCTS_QUERYResult}) {
 
  const [filter, setFilter] = useState("");
  const [query, setQuery] = useState("");
  const [priceMinMax, setPriceMinMax] = useState([0, 2000])
- const [shadowPriceMinMax, setShadowPriceMinMax] = useState([])
+ const [shadowPriceMinMax, setShadowPriceMinMax] = useState<number[]>([])
  const [hasHydrated, setHasHydrated] = useState(false);
  const [listLength, setListLength] = useState(10)
  
@@ -24,6 +27,7 @@ export default function ClientWrapper({products}) {
  const getPriceMax = searchParams.get("price_max")
 
 console.log("Has Hydrated", hasHydrated)
+
 
      if(!hasHydrated) {
         if(getFilter !== null) {
@@ -42,22 +46,22 @@ console.log("Has Hydrated", hasHydrated)
         setHasHydrated(true)
      } 
 
-     const updateFilter = (input) => {
+     const updateFilter = (input: string) => {
         console.log("Update filter", input)
         setFilter(input)
      }
 
-     const updateQuery = (input) => {
+     const updateQuery = (input: string) => {
         console.log("Update Query:", input)
         setQuery(input)
      }
 
-     const updateSlider = (input) => {
+     const updateSlider = (input: number[]) => {
         console.log("Update Slider:", input)
         setPriceMinMax(input)
      }
 
-     const updateListLength = (input) => {
+     const updateListLength = (input: number) => {
         const newListLength = input + 10;
         console.log("Listlength updated:", newListLength)
         setListLength(newListLength)
@@ -65,12 +69,17 @@ console.log("Has Hydrated", hasHydrated)
 
 
 
-function filterBySearch(db, query){
-    return db.filter((product) => product.productName.toLowerCase().trim().includes(query.trim()))
+function filterBySearch(db: PRODUCTS_QUERYResult, query: string){
+    return db.filter((product) => product.productName ? product.productName.toLowerCase().trim().includes(query.trim()) : null)
   }
 
+  type ReturnTypes = {
+    allProductsWithinRange: PRODUCTS_QUERYResult
+    allProductsWithinRangeLength: number
+    cappedProductList: PRODUCTS_QUERYResult
+  }
 
-function getProducts() {
+function getProducts(): ReturnTypes {
   const allProducts = filterBySearch(products, query)
   const allProductsWithinRange = filterByPriceRange(allProducts, priceMinMax)
 
@@ -100,23 +109,22 @@ function getProducts() {
   const allProductsWithinRangeLength = allProductsWithinRange.length
   const cappedProductList = allProductsWithinRange.slice(0, listLength)
 
-  return [allProductsWithinRange, allProductsWithinRangeLength, cappedProductList]
+  return {allProductsWithinRange, allProductsWithinRangeLength, cappedProductList}
 }
 
 const productInfoArray = getProducts()
-const allProductsLength = productInfoArray[1]
-const cappedProductList = productInfoArray[2]
+const allProductsLength = productInfoArray.allProductsWithinRangeLength
+const cappedProductList = productInfoArray.cappedProductList
   
 
 
 // SORTING FUNCTIONS
-// Disse fire påvirker vel det originale arrayet
-  function sortByAscName(array: Fakeproduct[]){
+  function sortByAscName(array: PRODUCTS_QUERYResult){
 
     array.sort((a, b) => {
 
-      const nameA = a.productName.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.productName.toUpperCase(); // ignore upper and lowercase
+      const nameA = a.productName ? a.productName.toUpperCase() : "" // ignore upper and lowercase
+      const nameB = b.productName ? b.productName.toUpperCase() : "" // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
@@ -129,12 +137,12 @@ const cappedProductList = productInfoArray[2]
     });
   }
 
-  function sortByDescName(array: FakeProduct[]){
+  function sortByDescName(array: PRODUCTS_QUERYResult){
 
     array.sort((a, b) => {
 
-      const nameA = a.productName.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.productName.toUpperCase(); // ignore upper and lowercase
+      const nameA = a.productName ? a.productName.toUpperCase() : "" // ignore upper and lowercase
+      const nameB = b.productName ? b.productName.toUpperCase() : "" // ignore upper and lowercase
       if (nameA < nameB) {
         return 1;
       }
@@ -147,17 +155,17 @@ const cappedProductList = productInfoArray[2]
     });
   }
 
-  function sortByAscPrice(array: FakeProduct[]){
-   array.sort((a, b) => a.price - b.price);
+  function sortByAscPrice(array: PRODUCTS_QUERYResult){
+      array.sort((a, b) => a.price && b.price ? a.price - b.price : 0);
   }
 
-  function sortByDescPrice(array: FakeProduct[]){
-    array.sort((a, b) => b.price - a.price);
+  function sortByDescPrice(array: PRODUCTS_QUERYResult){
+    array.sort((a, b) => b.price && a.price ? b.price - a.price : 0);
   }
 
-  function filterByPriceRange(db: FakeProduct[], priceRange:number[]){
-    const lowerPriceRangeRemoved = db.filter((product) => product.price > priceRange[0]);
-    const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price < priceRange[1]);
+  function filterByPriceRange(db: PRODUCTS_QUERYResult, priceRange:number[]){
+    const lowerPriceRangeRemoved = db.filter((product) => product.price ? product.price > priceRange[0] : null);
+    const bothRangesRemoved = lowerPriceRangeRemoved.filter((product) => product.price ?  product.price < priceRange[1] : null);
     return bothRangesRemoved;
   }
 
@@ -167,14 +175,31 @@ const cappedProductList = productInfoArray[2]
        <div className='flex flex-col justify-center items-center border-b border-grey-100 gap-4 py-8 px-6'>
         <Text content='Produkter' variant='headline' as='h1'/>
         <div className='w-full'>
-          <Search placeholder='Søk blant våre produkter' setQuery={updateQuery} query={query} />
+          <Search 
+            placeholder='Søk blant våre produkter' 
+            setQuery={updateQuery} 
+            query={query} />
         </div>
       </div>
-      <MobileFilter setFilter={updateFilter} setSlider={updateSlider} setQuery={updateQuery} shadowPriceMinMax={shadowPriceMinMax} setShadowPriceMinMax={setShadowPriceMinMax} setListLength={updateListLength} filter={filter} sliderValue={priceMinMax}  resultsNumber={allProductsLength} />
+      <MobileFilter 
+        setFilter={updateFilter} 
+        setSlider={updateSlider} 
+        setQuery={updateQuery} 
+        shadowPriceMinMax={shadowPriceMinMax} 
+        setShadowPriceMinMax={setShadowPriceMinMax} 
+        setListLength={updateListLength} 
+        filter={filter} 
+        sliderValue={priceMinMax}  
+        resultsNumber={allProductsLength} />
       <div className="flex flex-col gap-7 px-6 py-6">
-        <Productlist query={query} products={cappedProductList} />
+        <Productlist 
+          query={query} 
+          products={cappedProductList} />
       </div>
-      <LoadMoreButton fullListLength={allProductsLength} listlength={listLength} setListLength={updateListLength}/>
+      <LoadMoreButton 
+        fullListLength={allProductsLength} 
+        listlength={listLength} 
+        setListLength={updateListLength}/>
     </div>
   )
 }

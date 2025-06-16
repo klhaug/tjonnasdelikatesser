@@ -9,10 +9,21 @@ import 'react-range-slider-input/dist/style.css';
 import { usePathname, useRouter, useSearchParams} from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
+type Props = {
+  resultsNumber: number
+  setFilter: (input: string) => void
+  setSlider: (input: number[]) => void
+  setQuery: (input: string) => void
+  shadowPriceMinMax: number[]
+  filter: string
+  sliderValue: number[]
+  setShadowPriceMinMax: (input: number[]) => void
+  setListLength: (input: number) => void
+}
+
 
 export default function MobileFilter({
-  resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: 
-  {resultsNumber: number, setFilter: (value: string) => void, setSlider: (value: number[]) => void, setQuery: (value:string) => void, sliderValue: number[], shadowPriceMinMax: number[] }) {
+  resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
     
     const [activeMenu, setActiveMenu] = useState(false);
     const formRef = useRef<HTMLFormElement>(null)
@@ -112,7 +123,7 @@ export default function MobileFilter({
         }
     }
 
-    const handleSliderChange = (event) => {
+    const handleSliderChange = (event: number[]) => {
       setSlider(event)
       setShadowPriceMinMax(event)
     }

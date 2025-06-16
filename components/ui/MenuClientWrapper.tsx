@@ -5,9 +5,48 @@ import MenuSelectDropdown from '@/components/ui/MenuSelectDropdown';
 import MenuComponent from '@/components/ui/MenuComponent';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}) {
 
-    const [selectedMenu, setSelectedMenu] = useState("tjonnasdelikatesser")
+type Tjonnas = {
+    _id: string;
+    conditionalPrice: string | null;
+    name: string | null;
+    categoriTitle: string | null;
+    description: string | null;
+    housePick: boolean | null;
+    price: string | null;
+}[] | null
+
+
+type Norvald = {
+    _id: string;
+    conditionalPrice: string | null;
+    name: string | null;
+    categoriTitle: string | null;
+    description: string | null;
+    housePick: boolean | null;
+    price: string | null;
+}[] | null
+
+
+type Catering = {
+    _id: string;
+    conditionalPrice: string | null;
+    name: string | null;
+    categoriTitle: string | null;
+    description: string | null;
+
+    housePick: boolean | null;
+    price: string | null;
+}[] | null
+
+
+
+
+
+
+export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}: {tjonnasMenu: Tjonnas, norvaldMenu: Norvald, cateringMenu: Catering}) {
+
+    const [selectedMenu, setSelectedMenu] = useState<"tjonnasdelikatesser"|"norvald"|"catering">("tjonnasdelikatesser")
     const [isHydrated, setIsHydrated] = useState(false);
 
     const searchParams = useSearchParams();
@@ -28,7 +67,7 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
       const params = new URLSearchParams(searchParams)
       if(params.has("menu")) {
         const menu = params.get("menu");
-        if(typeof menu === "string") {
+        if(menu === "tjonnasdelikatesser" || menu === "norvald" || menu === "catering") {
           setSelectedMenu(menu)
           setIsHydrated(true)
         }
@@ -41,7 +80,7 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
 
     console.log(selectedMenu)
 
-    const updateSelectedMenu = (input: string) => {
+    const updateSelectedMenu = (input: "tjonnasdelikatesser" | "norvald" | "catering") => {
       console.log(input)
       menuUrlUpdate(input)
       setSelectedMenu(input)

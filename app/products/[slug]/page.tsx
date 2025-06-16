@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import React, { Suspense } from 'react'
+import React from 'react'
 import { client } from "@/sanity/client";
 import { sanityFetch } from "@/sanity/live";
 import imageUrlBuilder from "@sanity/image-url";
@@ -9,7 +9,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Tag from '@/components/ui/Tag';
 import Text from '@/components/ui/Text';
-import { CardSkeleton } from '@/components/ui/Skeletons';
 import Link from 'next/link';
 
 const PRODUCT_QUERY = defineQuery(`*[
@@ -37,8 +36,6 @@ export default async function EventPage({
   if (!product) {
     notFound();
   }
-
-  console.log(params)
 
   const {
     productName,
@@ -70,26 +67,45 @@ return(
         ]} />
         
       <section className='flex flex-col px-6 py-12 gap-4'>
-        <Tag variant='tjonnasdelikatesser' textStyle='primary' content={category}/>
-        {productName ? (
-          <Text content={productName} variant='headline' as='h2' />
-        )
-        : null
-        }
-          { description ? (
+          {category ? (
+              <Tag variant='tjonnasdelikatesser' textStyle='primary' content={category}/> 
+            )
+            :null
+          }
+          {productName ? (
+              <Text content={productName} variant='headline' as='h2' />
+            )
+            : null
+          }
+          {description ? (
             <PortableText value={description} />
-          )
-          : null}
+            )
+            : null}
           {price ? (
             <Text content={`${price.toString()},-`} variant='primaryBold' extraStyling='text-xl' as='p' />
-        ): null}
-          <Text content={inStock ? "På lager":"Ikke på lager "} extraStyling={`mt-auto w-fit font-semibold rounded-sm ${inStock ? "text-green-500" : "text-red-500"}`} variant='captionLabel' as='p' />
-            <Suspense fallback={<CardSkeleton />}>
-              <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={500} alt={alt} />
-            </Suspense>
-          <Link href={'/products'} className='text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full transition-all hover:bg-yellow-350 hover:cursor-pointer gap-2 group rounded-lg pl-6 pr-6'><Image src='/icons/arrow.svg' className='group-hover:-translate-x-1 transition-all rotate-180' alt='icon' height={16} width={16} />Tilbake</Link>
+            )
+            : null}
+           {inStock ?  ( 
+            <Text content={inStock ? "På lager":"Ikke på lager "} extraStyling={`mt-auto w-fit font-semibold rounded-sm ${inStock ? "text-green-500" : "text-red-500"}`} variant='captionLabel' as='p' />
+          )
+          : null}
+          { productImageUrl ? (
+                <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={500} alt={alt} />
+            )
+            : null}
+          <Link 
+            href={'/products'} 
+            className='text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full transition-all hover:bg-yellow-350 hover:cursor-pointer gap-2 group rounded-lg pl-6 pr-6'>
+              <Image 
+                src='/icons/arrow.svg' 
+                className='group-hover:-translate-x-1 transition-all rotate-180' 
+                alt='icon' 
+                height={16} 
+                width={16} 
+                />
+                  Tilbake
+            </Link>
       </section>
-
     </div>
   )
 }

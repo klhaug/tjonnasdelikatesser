@@ -5,12 +5,14 @@ import Text from './Text'
 import Tag from './Tag'
 
 type Props = {
-  name: string
-  price: number
-  description: string
-  imgUrl: string
-  category: string
-  inStock: boolean
+  name: string | undefined
+  price: number | undefined
+  description: string | undefined
+  imgUrl: string | undefined | null
+  category: string | undefined
+  inStock: boolean | undefined
+  slug: string | undefined
+  alt: string | undefined
 }
   
 

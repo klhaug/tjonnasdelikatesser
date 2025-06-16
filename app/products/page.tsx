@@ -5,13 +5,13 @@ import { sanityFetch } from "@/sanity/live"
 import { notFound } from "next/navigation";
 
 
-const PRODUCT_QUERY = defineQuery(`*[_type=="productItem"]`);
+const PRODUCTS_QUERY = defineQuery(`*[_type=="productItem"]`);
 
 
 export default async function Page() {
 
   const { data: products } = await sanityFetch({
-    query: PRODUCT_QUERY,
+    query: PRODUCTS_QUERY,
   });
   if (!products) {
     notFound();

@@ -4,7 +4,13 @@ import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
-export default function Search({ placeholder, setQuery, query }: { placeholder: string, setQuery: (value: string) => void }) {
+type Props = {
+  placeholder: string
+  setQuery: (value: string) => void
+  query: string
+}
+
+export default function Search({ placeholder, setQuery, query }: Props) {
   console.log("Search Rebuilding")
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -21,7 +27,7 @@ export default function Search({ placeholder, setQuery, query }: { placeholder: 
     replace(`${pathname}?${params.toString()}`);
   }, 100);
 
-  const handleSearch = (input) => {
+  const handleSearch = (input: string) => {
     console.log(input)
     setQuery(input)
     staggeredUrlUpdate(input)

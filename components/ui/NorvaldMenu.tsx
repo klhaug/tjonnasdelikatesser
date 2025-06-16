@@ -7,13 +7,29 @@ function getUniqueValues<T>(arr:T[]) {
   return [...new Set(arr)];
 }
 
+type Norvald = {
+  _id: string;
+  conditionalPrice: string | null;
+  name: string | null;
+  categoriTitle: string | null;
+  description: string | null;
+  housePick: boolean | null;
+  price: string | null;
+}[] | null
 
-export default function NorvaldMenu({norvaldMenu}) {
+type Menu = {
+  category: string
+  items: Norvald[]
+}
+
+
+export default function NorvaldMenu({norvaldMenu}: {norvaldMenu: Norvald}) {
+  if(norvaldMenu === null) return;
 
   const categoryArray = norvaldMenu.map((item) => item.categoriTitle)
   const uniqueCategories = getUniqueValues(categoryArray);
 
-  const filteredNorvaldMenu= [];
+  const filteredNorvaldMenu<Menu[]>= [];
   uniqueCategories.map((category) => {
     const filtered = norvaldMenu.filter((item) => item.categoriTitle === category)
     filteredNorvaldMenu.push({
