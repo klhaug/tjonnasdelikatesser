@@ -70,7 +70,8 @@ console.log("Has Hydrated", hasHydrated)
 
 
 function filterBySearch(db: PRODUCTS_QUERYResult, query: string){
-    return db.filter((product) => product.productName ? product.productName.toLowerCase().trim().includes(query.trim()) : null)
+    const search = query.toLowerCase()
+    return db.filter((product) => product.productName ? product.productName.toLowerCase().trim().includes(search.trim()) : null)
   }
 
 type ReturnTypes = {

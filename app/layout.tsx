@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body id="body"
-        className={`${workSans.variable} noscroll antialiased h-screen`}
+        className={`${workSans.variable} noscroll max-w-full overflow-x-hidden antialiased h-screen`}
       >
         <MobileNav/>
         {children}
