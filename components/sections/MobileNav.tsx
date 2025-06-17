@@ -6,7 +6,8 @@ import Text from '../ui/Text'
 import Link from 'next/link';
 
 export default function MobileNav() {
-
+  const [activeMenu, setActiveMenu] = useState(false);
+  
     const closeMenu = () => {
         setActiveMenu(false)
         document.body.style.overflowY = 'unset';
@@ -28,7 +29,6 @@ export default function MobileNav() {
         }
     }
 
-    const [activeMenu, setActiveMenu] = useState(false);
     return (
       <div>
         {/* off-screen menu */}
