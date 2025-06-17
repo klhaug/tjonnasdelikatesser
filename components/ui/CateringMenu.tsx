@@ -1,19 +1,34 @@
 import Image from 'next/image'
 import React from 'react'
 import Text from './Text'
+import type { FilteredMenu } from './NorvaldMenu';
 
 
 function getUniqueValues<T>(arr:T[]) {
   return [...new Set(arr)];
 }
 
+type Catering = {
+  _id: string;
+  conditionalPrice: string | null;
+  name: string | null;
+  categoriTitle: string | null;
+  description: string | null;
+  housePick: boolean | null;
+  price: string | null;
+}[] | null
 
-export default function CateringMenu({cateringMenu}) {
+
+
+
+export default function CateringMenu({cateringMenu}: {cateringMenu: Catering}) {
+
+  if(!cateringMenu) return;
 
   const categoryArray = cateringMenu.map((item) => item.categoriTitle)
   const uniqueCategories = getUniqueValues(categoryArray);
 
-  const filteredCateringMenu= [];
+  const filteredCateringMenu: FilteredMenu[]= [];
   uniqueCategories.map((category) => {
     const filtered = cateringMenu.filter((item) => item.categoriTitle === category)
     filteredCateringMenu.push({
@@ -54,7 +69,7 @@ export default function CateringMenu({cateringMenu}) {
                 return (
                   <tr key={_id} >
                     <td className='mt-2 font-normal'>
-                        <Text variant='primarySmall' content={name} as='h3'/>
+                        <Text variant='primarySmall' content={name ? name : ""} as='h3'/>
                     </td>
                         <td className=' text-right font-semibold align-top'>{price}</td>
                   </tr>
@@ -77,7 +92,7 @@ export default function CateringMenu({cateringMenu}) {
             <tbody>
                   <tr key={index} >
                     <td className='mt-2 font-normal'>
-                        <Text variant='primarySmall' content={name} as='h3'/>
+                        <Text variant='primarySmall' content={name ? name : ''} as='h3'/>
                     </td>
                   </tr>
                   <tr>

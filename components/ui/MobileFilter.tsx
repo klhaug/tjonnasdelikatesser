@@ -26,15 +26,11 @@ export default function MobileFilter({
   resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
     
     const [activeMenu, setActiveMenu] = useState(false);
-    const formRef = useRef<HTMLFormElement>(null)
+    // const formRef = useRef<HTMLFormElement>(null)
     const isResetting = useRef(false);
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
-
-    console.log("MobileFilter Rebuilding")
-
-
 
    
   const debouncedRadioUrlUpdate = useDebouncedCallback((input: string) => {
@@ -46,7 +42,8 @@ export default function MobileFilter({
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
-  }, 1);
+   }, 1);
+
 
   useEffect(() => {
     if (!filter) return;
@@ -91,15 +88,9 @@ export default function MobileFilter({
 
         useEffect(() => {
           if (isResetting.current || shadowPriceMinMax.length === 0) return;
-          console.log('UseEffect IM TRIGGERED')
           sliderUrlUpdate(sliderValue)
         }, [sliderUrlUpdate, sliderValue, shadowPriceMinMax]);
         
-// Denne triggeres onLoad fordi sliderValue er tilgjengelig og sendes ned, og det er ingenting som da stopper den fra å rendre. 
-// Det jeg da trenger er en kondisjon som stopper den fra å rendre onLoad
-// Problemet er at veldig mye annet også er avhengig av den staten
-// Hva om man har en state som er "hasChanged" som oppdaterer seg ved første gang staten blir endret? 
-
 
     const closeMenu = () => {
         sliderUrlUpdate.flush()
@@ -142,7 +133,7 @@ export default function MobileFilter({
             } h-screen w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
         >
             <Form 
-                ref={formRef} 
+                // ref={formRef} 
                 action={''} 
                 className='w-full px-6'
             >

@@ -73,7 +73,7 @@ function filterBySearch(db: PRODUCTS_QUERYResult, query: string){
     return db.filter((product) => product.productName ? product.productName.toLowerCase().trim().includes(query.trim()) : null)
   }
 
-  type ReturnTypes = {
+type ReturnTypes = {
     allProductsWithinRange: PRODUCTS_QUERYResult
     allProductsWithinRangeLength: number
     cappedProductList: PRODUCTS_QUERYResult
@@ -198,7 +198,7 @@ const cappedProductList = productInfoArray.cappedProductList
       </div>
       <LoadMoreButton 
         fullListLength={allProductsLength} 
-        listlength={listLength} 
+        listLength={listLength} 
         setListLength={updateListLength}/>
     </div>
   )

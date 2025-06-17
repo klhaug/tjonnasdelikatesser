@@ -37,17 +37,19 @@ export default async function EventPage({
     notFound();
   }
 
+  console.log(product.slug)
+
   const {
     productName,
     price,
     inStock,
     image,
-    image: {alt},
     description,
     category,
-    slug: {current: slug},
   } = product;
 
+  const alt = product.image?.alt
+  const slug = product.slug?.current
 
   const productImageUrl = image
   ? urlFor(image)?.url()
@@ -90,7 +92,7 @@ return(
           )
           : null}
           { productImageUrl ? (
-                <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={500} alt={alt} />
+                <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={500} alt={alt ? alt : ''} />
             )
             : null}
           <Link 

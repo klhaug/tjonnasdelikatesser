@@ -6,19 +6,27 @@ function getUniqueValues<T>(arr:T[]) {
   return [...new Set(arr)];
 }
 
-type MenuItems = {
-  _id: string
-  conditionalPrice: string
-  name: string
-  description: string
-  housePick: boolean
-  price: string
-}
+type Tjonnas = {
+  _id: string;
+  conditionalPrice: string | null;
+  name: string | null;
+  categoriTitle: string | null;
+  description: string | null;
+  housePick: boolean | null;
+  price: string | null;
+}[] | null
 
-type Menu = {
-  categoriTitle: string
-  items: MenuItems
-}
+type FilteredMenu = { 
+  category: string | null; 
+  items: { 
+    _id: string; 
+    conditionalPrice: string | null; 
+    name: string | null; 
+    categoriTitle: string | null; 
+    description: string | null; 
+    housePick: boolean | null; 
+    price: string | null; 
+  }[]; }
 
 export function capitalizeFirstLetter(input:string) {
   const firstLetter = input[0]
@@ -28,12 +36,14 @@ export function capitalizeFirstLetter(input:string) {
   return capitalizedWord;
 }
 
-export default function TjonnasMenu({tjonnasMenu}) {
+export default function TjonnasMenu({tjonnasMenu}: {tjonnasMenu: Tjonnas}) {
+
+  if(tjonnasMenu === null) return;
 
   const categoryArray = tjonnasMenu.map((item) => item.categoriTitle)
   const uniqueCategories = getUniqueValues(categoryArray);
 
-  const filteredTjonnasMenu= [];
+  const filteredTjonnasMenu: FilteredMenu[]= [];
   uniqueCategories.map((category) => {
     const filtered = tjonnasMenu.filter((item) => item.categoriTitle === category)
     filteredTjonnasMenu.push({
@@ -62,9 +72,9 @@ export default function TjonnasMenu({tjonnasMenu}) {
               </tr>
             </thead>
             <tbody className=''>
-              {items.length > 0 ? items.map((item: {name: string, price: string}, index: number) => {
+              {items.length > 0 ? items.map((item) => {
                 const {name, price} = item;
-                const capitalizedWord = capitalizeFirstLetter(name);
+                const capitalizedWord = name ? capitalizeFirstLetter(name) : '';
         
                 return(
                 <tr key={index}>

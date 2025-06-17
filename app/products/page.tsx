@@ -3,6 +3,7 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs"
 import { defineQuery } from "next-sanity"
 import { sanityFetch } from "@/sanity/live"
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 
 const PRODUCTS_QUERY = defineQuery(`*[_type=="productItem"]`);
@@ -28,7 +29,9 @@ export default async function Page() {
             active: true,
           },
         ]} />
-          <ClientWrapper products={products} />
+          <Suspense>
+            <ClientWrapper products={products} />
+          </Suspense>
     </div>
   )
 }
