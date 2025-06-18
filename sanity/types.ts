@@ -13,6 +13,252 @@
  */
 
 // Source: schema.json
+export type OpeningHours = {
+  _id: string;
+  _type: "openingHours";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  day?: string;
+  time?: string;
+};
+
+export type About = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  aboutName?: "tjonnasdelikatesser" | "norvald" | "norma";
+  hero?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "aboutHero";
+  };
+  about?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "aboutAbout";
+  };
+  focus?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "aboutFocus";
+  };
+  inspiration?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "aboutInspiration";
+  };
+  where?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "aboutWhere";
+  };
+};
+
+export type AboutWhere = {
+  _id: string;
+  _type: "aboutWhere";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  whichAbout?: "tjonnasdelikatesser" | "norvald" | "norma";
+  headline?: string;
+  text?: string;
+  address?: Address;
+  secHeadline?: string;
+  secText?: string;
+  openingHours?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "openingHours";
+  }>;
+};
+
+export type Address = {
+  _type: "address";
+  address?: string;
+  postNo?: number;
+  place?: string;
+};
+
+export type AboutInspiration = {
+  _id: string;
+  _type: "aboutInspiration";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  whichAbout?: "tjonnasdelikatesser" | "norvald" | "norma";
+  headline?: string;
+  image1?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+  image2?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+  image3?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+  image4?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+};
+
+export type AboutFocus = {
+  _id: string;
+  _type: "aboutFocus";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  whichAbout?: "tjonnasdelikatesser" | "norvald" | "norma";
+  headline?: string;
+  focusPoint1?: FocusPoint;
+  focusPoint2?: FocusPoint;
+  focusPoint3?: FocusPoint;
+};
+
+export type FocusPoint = {
+  _type: "focusPoint";
+  title?: string;
+  text?: string;
+};
+
+export type AboutAbout = {
+  _id: string;
+  _type: "aboutAbout";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  whichAbout?: "tjonnasdelikatesser" | "norvald" | "norma";
+  headline?: string;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+};
+
+export type AboutHero = {
+  _id: string;
+  _type: "aboutHero";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  whichAbout?: "tjonnasdelikatesser" | "norvald" | "norma";
+  eyebrow?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  };
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type ProductItem = {
   _id: string;
   _type: "productItem";
@@ -94,56 +340,6 @@ export type Menu = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "menuItem";
-  }>;
-};
-
-export type Event = {
-  _id: string;
-  _type: "event";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-};
-
-export type Post = {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishedAt?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
   }>;
 };
 
@@ -265,8 +461,159 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = ProductItem | MenuItem | MenuCategory | Menu | Event | Post | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = OpeningHours | About | AboutWhere | Address | AboutInspiration | AboutFocus | FocusPoint | AboutAbout | AboutHero | ProductItem | MenuItem | MenuCategory | Menu | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ../tjonnas-website/app/about/[slug]/page.tsx
+// Variable: ABOUT_QUERY
+// Query: *[_type=="about" && aboutName == $slug][0] {  aboutName,  about -> {    headline,    image,     text,  },  focus ->{    headline,    focusPoint1,    focusPoint2,    focusPoint3  },  hero -> {    whichAbout,    eyebrow,    image,    text,  },  inspiration -> {    headline,    image1,    image2,    image3,    image4  },  where -> {    address,    headline,     openingHours[] -> {      day,      time    }  }}
+export type ABOUT_QUERYResult = {
+  aboutName: "norma" | "norvald" | "tjonnasdelikatesser" | null;
+  about: {
+    headline: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+  } | null;
+  focus: {
+    headline: string | null;
+    focusPoint1: FocusPoint | null;
+    focusPoint2: FocusPoint | null;
+    focusPoint3: FocusPoint | null;
+  } | null;
+  hero: {
+    whichAbout: "norma" | "norvald" | "tjonnasdelikatesser" | null;
+    eyebrow: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+  } | null;
+  inspiration: {
+    headline: string | null;
+    image1: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+    image2: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+    image3: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+    image4: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      photoCredits?: string;
+      _type: "image";
+    } | null;
+  } | null;
+  where: {
+    address: Address | null;
+    headline: string | null;
+    openingHours: Array<{
+      day: string | null;
+      time: string | null;
+    }> | null;
+  } | null;
+} | null;
+
 // Source: ../tjonnas-website/app/menu/page.tsx
 // Variable: TJONNAS_QUERY
 // Query: *[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {  _id,  nameOfMenu,  menuItems[] -> {      _id,       conditionalPrice,         name,      categoriTitle,      description,      housePick,      price       },}
@@ -316,7 +663,7 @@ export type NORVALD_QUERYResult = Array<{
 
 // Source: ../tjonnas-website/app/products/[slug]/page.tsx
 // Variable: PRODUCT_QUERY
-// Query: *[  _type == "productItem" &&  slug.current == $slug][0]
+// Query: *[_type == "productItem" && slug.current == $slug][0]
 export type PRODUCT_QUERYResult = {
   _id: string;
   _type: "productItem";
@@ -414,10 +761,11 @@ export type PRODUCTS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type==\"about\" && aboutName == $slug][0] {\n  aboutName,\n  about -> {\n    headline,\n    image, \n    text,\n  },\n  focus ->{\n    headline,\n    focusPoint1,\n    focusPoint2,\n    focusPoint3\n  },\n  hero -> {\n    whichAbout,\n    eyebrow,\n    image,\n    text,\n  },\n  inspiration -> {\n    headline,\n    image1,\n    image2,\n    image3,\n    image4\n  },\n  where -> {\n    address,\n    headline, \n    openingHours[] -> {\n      day,\n      time\n    }\n  }\n} ": ABOUT_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"tjonnasdelikatesser\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": TJONNAS_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"catering\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": CATERING_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"norvald\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": NORVALD_QUERYResult;
-    "*[\n  _type == \"productItem\" &&\n  slug.current == $slug\n][0]": PRODUCT_QUERYResult;
+    "*[_type == \"productItem\" && slug.current == $slug][0]": PRODUCT_QUERYResult;
     "*[_type==\"productItem\"]": PRODUCTS_QUERYResult;
   }
 }
