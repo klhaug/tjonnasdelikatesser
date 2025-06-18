@@ -11,10 +11,7 @@ import Tag from '@/components/ui/Tag';
 import Text from '@/components/ui/Text';
 import Link from 'next/link';
 
-const PRODUCT_QUERY = defineQuery(`*[
-  _type == "productItem" &&
-  slug.current == $slug
-][0]`);
+const PRODUCT_QUERY = defineQuery(`*[_type == "productItem" && slug.current == $slug][0]`);
 
 
 const { projectId, dataset } = client.config();
@@ -36,8 +33,6 @@ export default async function EventPage({
   if (!product) {
     notFound();
   }
-
-  console.log(product.slug)
 
   const {
     productName,
