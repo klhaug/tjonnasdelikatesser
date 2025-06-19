@@ -25,8 +25,10 @@
   /* RED */
   --color-red-700: #713C23;
   --color-red-500: #9B4D2B;
+  --color-red-350: #E9763A;
   --color-red-300: #DA8559;
   --color-red-100: #FFD5C3;
+  --color-red-50: #FFF5F0;
 
   /* BLUE */
   --color-blue-700: #1F5599;

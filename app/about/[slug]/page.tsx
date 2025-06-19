@@ -53,7 +53,14 @@ const ABOUT_QUERY = defineQuery(`*[_type=="about" && aboutName == $slug][0] {
   },
   where -> {
     address,
-    headline, 
+    headline,
+    text, 
+    secHeadline,
+    secText,
+    coordinates {
+    lat,
+    lng
+    },
     openingHours[] -> {
       day,
       time
@@ -157,13 +164,14 @@ export default async function EventPage({
 
   const whereSectionData = where;
 
-  const dependantStyling = {
-    tjonnasdelikatesser: "yellow",
-    norma: "red",
-    norvald: "blue"
-  }
 
-console.log(focus)
+
+
+ 
+
+  console.log(aboutName)
+
+
 
   // const productImageUrl = image
   // ? urlFor(image)?.url()
@@ -172,20 +180,30 @@ console.log(focus)
   const iconList = [
     "/icons/staricon.svg","/icons/globeicon.svg","/icons/handshakeicon.svg"
   ]
+
+  const dependantStyling = {
+    tjonnasdelikatesser: "bg-yellow-50",
+    norma: "bg-red-50",
+    norvald: "bg-blue-50"
+  }
+
+  const colorInput: "tjonnasdelikatesser" | "norma" | "norvald" = aboutName === "tjonnasdelikatesser" || aboutName === "norma" || aboutName === "norvald" ? aboutName : "grey"
+
+
   
   
   return (
     <div className={`flex flex-col`}>
       {/* HERO */}
-        <section id="hero" className={`bg-${aboutName ? dependantStyling[aboutName] : "yellow"}-50 flex flex-col justify-center items-center px-6 py-18 gap-6`}>
+        <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
               <Image src='/images/Tjønnås_Logo-sort 2.png' alt="icon" height={80} width={250} />
             ) : null}
             {aboutName === "norma" ? (
-              <Text variant="headline" content="Norma" as="h1" />
+              <Text variant="hero" content="Norma" as="h1" />
             ) : null}
             {aboutName ==="norvald" ? (
-              <Text variant="headline" content="Norvald" as="h1" />
+              <Text variant="hero" content="Norvald" as="h1" />
             ) : null}
             {aboutName === null ? (
               <Text variant="headline" content="Vi har dessverre problemer med henting av data for øyeblikket." as="h1" />
@@ -208,7 +226,7 @@ console.log(focus)
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="flex flex-col justify-center items-center px-6 py-18 gap-6">
+        <section id="about" className="flex flex-col bg-white justify-center items-center px-6 py-18 gap-6">
           {aboutSectionData.headline ? (
             <Text variant="headline" content={aboutSectionData.headline} extraStyling="text-left w-full max-w-[768px]" as="h2" />
           ): null}
@@ -226,7 +244,7 @@ console.log(focus)
         </section>
         
         {/* VAART FOKUS  */}
-        <section id="fokus" className={`bg-${aboutName ? dependantStyling[aboutName] : "yellow"}-50 flex flex-col justify-center items-center px-6 py-18 gap-6`}>
+        <section id="fokus" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
         <div className="flex flex-col gap-4 items-start max-w-[768px]">
         {focusSectionData.headline ? (
             <Text variant="headline" content={focusSectionData.headline} extraStyling="text-left w-full max-w-[768px]" as="h2" />
@@ -257,7 +275,6 @@ console.log(focus)
             
           {inspirationSectionData.images.length > 0 ? (
             inspirationSectionData.images.map((image, index) => {
-              console.log(image)
               const {imageUrl, imageAlt} = image
               if(imageUrl === null || imageAlt === null) return;
               if(imageUrl === undefined || imageAlt === undefined) return;
@@ -268,14 +285,34 @@ console.log(focus)
           ): null}
           </div>
           {inspirationSectionData.headline ? (<div className="w-full flex flex-col gap-4 max-w-[768px]">
-          <Button text="Se alle produkter" variant="primary-fill" color={`bg-${dependantStyling[aboutName ?? "tjonnasdelikatesser"]}-300`} href="/products" />
+          <Button text="Se alle produkter" variant="primary-fill" color={`bg-${dependantStyling[colorInput]}-300`} href="/products" />
           <Button text="Se menyer" variant="secondary-fill" href="/menu" />
           </div>
           ): null}
         </section>
-        <section id="where" className="flex flex-col justify-center items-center px-6 py-18 gap-6">
-          <div className="rounded-md overflow-hidden outline-2 outline-yellow-300">
-            <GoogleMaps />
+        <section id="where" className={`flex flex-col justify-center items-center px-6 py-18 gap-6 ${dependantStyling[colorInput]}`}>
+          <div className="flex flex-col gap-2 max-w-[768px]">
+            <Text variant="headline" content={whereSectionData.headline} extraStyling="text-left w-full" as="h2" />
+            <Text variant="primary" content={whereSectionData.text} as="p" />
+          </div>
+          <div className="rounded-md overflow-hidden w-full max-w-[768px]">
+            <GoogleMaps color={colorInput} position={whereSectionData.coordinates} />
+          </div>
+          <div className="flex flex-col gap-2 w-full mt-4 max-w-[768px]">
+            <Text variant="headline" extraStyling="text-left w-full"  content={whereSectionData.secHeadline} as="h2" />
+            <Text variant="primary"  extraStyling="text-left w-full" content={whereSectionData.secText} as="p" />
+            <div className="flex flex-col w-full">
+              {whereSectionData.openingHours.map((openingHour, index) => {
+                const {day, time} = openingHour;
+            
+                return (
+                  <div key={`${day}_${index}`} className="flex justify-between w-full  gap-4">
+                    <Text variant="primary" extraStyling="flex-1" content={`${day}:`} as="p" />
+                    <Text variant="primary" extraStyling="flex-1" content={time} as="p" />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </section>
         <Contact />
