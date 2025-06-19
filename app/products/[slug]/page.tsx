@@ -63,45 +63,47 @@ return(
           },
         ]} />
         
-      <section className='flex flex-col px-6 py-12 gap-4'>
-          {category ? (
-              <Tag variant='tjonnasdelikatesser' textStyle='primary' content={category}/> 
-            )
-            :null
-          }
-          {productName ? (
-              <Text content={productName} variant='headline' as='h2' />
-            )
-            : null
-          }
-          {description ? (
-            <PortableText value={description} />
-            )
-            : null}
-          {price ? (
-            <Text content={`${price.toString()},-`} variant='primaryBold' extraStyling='text-xl' as='p' />
-            )
-            : null}
-           {inStock ?  ( 
-            <Text content={inStock ? "På lager":"Ikke på lager "} extraStyling={`mt-auto w-fit font-semibold rounded-sm ${inStock ? "text-green-500" : "text-red-500"}`} variant='captionLabel' as='p' />
-          )
-          : null}
-          { productImageUrl ? (
-                <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={500} alt={alt ? alt : ''} />
+      <section className='flex flex-col items-center'>
+          <div className='max-w-[768px] px-6 py-12 flex flex-col justify-center items-start gap-4'>
+            {category ? (
+                <Tag variant='tjonnasdelikatesser' textStyle='primary' content={category}/>
+              )
+              :null
+            }
+            {productName ? (
+                <Text content={productName} variant='headline' as='h2' />
+              )
+              : null
+            }
+            {description ? (
+              <PortableText value={description} />
+              )
+              : null}
+            {price ? (
+              <Text content={`${price.toString()},-`} variant='primaryBold' extraStyling='text-xl' as='p' />
+              )
+              : null}
+             {inStock ?  (
+              <Text content={inStock ? "På lager":"Ikke på lager "} extraStyling={`mt-auto w-fit font-semibold rounded-sm ${inStock ? "text-green-500" : "text-red-500"}`} variant='captionLabel' as='p' />
             )
             : null}
-          <Link 
-            href={'/products'} 
-            className='text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full transition-all hover:bg-yellow-350 hover:cursor-pointer gap-2 group rounded-lg pl-6 pr-6'>
-              <Image 
-                src='/icons/arrow.svg' 
-                className='group-hover:-translate-x-1 transition-all rotate-180' 
-                alt='icon' 
-                height={16} 
-                width={16} 
-                />
-                  Tilbake
-            </Link>
+            { productImageUrl ? (
+                  <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={768} alt={alt ? alt : ''} />
+              )
+              : null}
+            <Link
+              href={'/products'}
+              className='text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full transition-all hover:bg-yellow-350 hover:cursor-pointer gap-2 group rounded-lg pl-6 pr-6'>
+                <Image
+                  src='/icons/arrow.svg'
+                  className='group-hover:-translate-x-1 transition-all rotate-180'
+                  alt='icon'
+                  height={16}
+                  width={16}
+                  />
+                    Tilbake
+              </Link>
+          </div>
       </section>
     </div>
   )

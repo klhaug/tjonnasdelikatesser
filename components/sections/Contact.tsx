@@ -5,7 +5,7 @@ import Text from '../ui/Text'
 export default function Contact() {
   return (
     <div className='flex flex-col pb-23 items-center justify-center w-full'>
-        <div className='w-full bg-white -z-100 flex flex-col items-center justify-end relative h-[135px]'>
+        <div className='w-full bg-white -z-10 flex flex-col items-center justify-end relative h-[135px]'>
             <div className='bg-yellow-300 h-3/5 rounded-tr-full -z-10 absolute bottom-0 w-full'></div>
             <div className='h-3/5 flex flex-col items-start w-full max-w-[576px] justify-center gap-1 px-7'>
                 <Text variant='subheadline' content='Ta kontakt' extraStyling='bg-yellow-100 w-fit px-2 rounded-sm' as='p' />

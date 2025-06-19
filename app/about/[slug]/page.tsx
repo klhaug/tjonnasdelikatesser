@@ -11,6 +11,7 @@ import Image from "next/image";
 import Text from "@/components/ui/Text";
 import GoogleMaps from "@/components/googlemaps/GoogleMaps";
 import Button from "@/components/ui/Button";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 type Params = Promise<{ slug: string }>
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
@@ -77,7 +78,7 @@ const urlFor = (source: SanityImageSource) =>
 
 
 
-export default async function EventPage({
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -89,6 +90,8 @@ export default async function EventPage({
   if (!aboutData) {
     notFound();
   }
+
+  const slug = (await params).slug
 
   const {
     about,
@@ -188,12 +191,28 @@ export default async function EventPage({
   }
 
   const colorInput: "tjonnasdelikatesser" | "norma" | "norvald" = aboutName === "tjonnasdelikatesser" || aboutName === "norma" || aboutName === "norvald" ? aboutName : "grey"
+ 
+ 
+  const label = {
+    tjonnasdelikatesser: "Tjønnås Delikatesser",
+    norma: "Norma",
+    norvald: "Norvald"
+  }
 
+  const currentLabel = label[slug]
 
   
   
   return (
-    <div className={`flex flex-col`}>
+    <div>
+        <Breadcrumbs breadcrumbs={[
+          { label: 'Forsiden', href: '/' },
+          {
+            label: currentLabel,
+            href: `/about/${slug}`,
+            active: true,
+          },
+        ]} />
       {/* HERO */}
         <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
@@ -296,7 +315,7 @@ export default async function EventPage({
             <Text variant="primary" content={whereSectionData.text} as="p" />
           </div>
           <div className="rounded-md overflow-hidden w-full max-w-[768px]">
-            <GoogleMaps color={colorInput} position={whereSectionData.coordinates} />
+            <GoogleMaps position={whereSectionData.coordinates} />
           </div>
           <div className="flex flex-col gap-2 w-full mt-4 max-w-[768px]">
             <Text variant="headline" extraStyling="text-left w-full"  content={whereSectionData.secHeadline} as="h2" />

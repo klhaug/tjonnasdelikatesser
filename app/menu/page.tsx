@@ -5,6 +5,7 @@ import React from 'react'
 import Contact from '@/components/sections/Contact';
 import { defineQuery } from 'next-sanity';
 import { sanityFetch } from '@/sanity/live';
+import { MenuSelectSkeleton, MenuSkeleton } from '@/components/ui/Skeletons';
 
 
 const TJONNAS_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {
@@ -73,6 +74,7 @@ export default async function Page() {
             active: true,
           },
         ]} />
+
       <div className='p-4 flex mt-13 flex-col gap-4'>
         <Text variant='headline' content='Våre menyer' as='h2' />
         <Text variant='primary' content='Utforsk våre fristende menyer – velg mellom Tjønnås Delikatesser, Norvald og Catering i nedtrekksmenyen. Hver meny byr på nøye utvalgte retter laget med råvarer av høy kvalitet og lidenskap for god smak.' as='h2' />

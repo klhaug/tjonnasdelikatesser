@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import { MenuSelectSkeleton, MenuSkeleton } from '@/components/ui/Skeletons';
+import { ContactSkeleton } from '@/components/ui/Skeletons';
 import React from 'react'
 
 
@@ -9,13 +9,12 @@ export default function Loading() {
       <Breadcrumbs breadcrumbs={[
           { label: 'Forsiden', href: '/' },
           {
-            label: 'Menyer',
-            href: '/menu',
+            label: 'Kontakt',
+            href: '/contact',
             active: true,
           },
         ]} />
-      <MenuSelectSkeleton />
-      <MenuSkeleton />
+    <ContactSkeleton />
     </div>
   );
 }

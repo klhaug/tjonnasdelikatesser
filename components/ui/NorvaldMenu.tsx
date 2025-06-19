@@ -59,11 +59,11 @@ export default function NorvaldMenu({norvaldMenu}: {norvaldMenu: Norvald}) {
       <section className='bg-yellow-50 px-6 py-13 '>
         {filteredNorvaldMenu.length > 0 ? 
           (
-            filteredNorvaldMenu.map((catalogeItem, index) => {
+            filteredNorvaldMenu.map((catalogeItem) => {
               const {items, category} = catalogeItem;
             
                 return (
-                  <table key={index} className='w-full mb-4 table-fixed border-separate border-spacing-y-3 '>
+                  <table key={`${category}_${items[0]._id}`} className='w-full mb-4 table-fixed border-separate border-spacing-y-3 '>
                   <thead>
                     <tr>
                       <th className='w-4/6  text-left text-2xl font-medium text-grey-700'>{category}</th>

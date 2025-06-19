@@ -54,7 +54,7 @@ export default function CateringMenu({cateringMenu}: {cateringMenu: Catering}) {
           
           if (category === "Tillegg") {
             return (
-              <table key={index} className='w-full mb-4 table-fixed border-separate border-spacing-y-3 '>
+              <table key={`${category}_${items[1]._id}`} className='w-full mb-4 table-fixed border-separate border-spacing-y-3 '>
             <thead>
               <tr>
                 <th className='w-4/6  text-left text-2xl font-medium text-green-500'>{category}</th>
