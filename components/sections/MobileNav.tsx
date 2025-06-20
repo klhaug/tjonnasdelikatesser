@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 export default function MobileNav() {
   const [activeMenu, setActiveMenu] = useState(false);
+  const [instantHide, setInstantHide] = useState(true);
   
     const closeMenu = () => {
         setActiveMenu(false)
@@ -30,7 +31,7 @@ export default function MobileNav() {
     }
 
     return (
-      <div>
+      <div className='sticky top-0'>
         {/* off-screen menu */}
         <div
           className={`${
@@ -49,7 +50,7 @@ export default function MobileNav() {
             </ul>
           </nav>
         </div>
-        <nav className="w-full p-6 border-b border-grey-100 flex items-center justify-between">
+        <nav className="w-full p-6 border-b sticky top-0 border-grey-100 flex items-center justify-between">
           <Link href="/" className='h-fit'>
               <Image src="/images/Tjønnås_Ikon-oker.png" height={34} width={28} alt='icon'/> 
           </Link>
