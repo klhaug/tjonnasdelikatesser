@@ -106,7 +106,9 @@ const urlFor = (source: SanityImageSource) =>
                 <Text content={whereText} variant='primary' as='p' />)
                 :null}
             <div className="rounded-md overflow-hidden w-full max-w-[768px]">
-                <GoogleMaps position={coordinates} />
+            {coordinates?.lat && coordinates.lng ? (
+              <GoogleMaps position={coordinates} />
+              ): null}
               </div>
                 <div className="flex flex-col gap-2 w-full mt-4 max-w-[768px] py-4">
 
