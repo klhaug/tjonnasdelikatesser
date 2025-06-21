@@ -15,9 +15,9 @@ export default function GoogleMaps({position}: {position: {lat: number | null , 
         lng: position.lng
     }
   return (
-      <APIProvider apiKey={typeof process.env.NEXT_PUBLIC_GOOGLE_MAPS === "string" ? process.env.NEXT_PUBLIC_GOOGLE_MAPS : ''}>
+      <APIProvider apiKey={typeof process.env.GOOGLE_MAPS === "string" ? process.env.GOOGLE_MAPS : ''}>
           <div className='h-[400px] rounded-md w-full'>
-            <Map defaultZoom={16} defaultCenter={certainPosition} mapId={process.env.NEXT_PUBLIC_MAP_ID}>
+            <Map defaultZoom={16} defaultCenter={certainPosition} mapId={process.env._MAP_ID}>
                 <AdvancedMarker position={certainPosition}>
                     <Pin background={"#FEC947"} borderColor={"#5C4F31"} glyphColor={"#5C4F31"}></Pin>
                 </AdvancedMarker>
