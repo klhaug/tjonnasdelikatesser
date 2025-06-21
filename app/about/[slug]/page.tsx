@@ -13,18 +13,6 @@ import GoogleMaps from "@/components/googlemaps/GoogleMaps";
 import Button from "@/components/ui/Button";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
-type Params = Promise<{ slug: string }>
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
-
-export async function generateMetadata(props: {
-  params: Params
-  searchParams: SearchParams
-}) {
-  const params = await props.params
-  const searchParams = await props.searchParams
-  const slug = params.slug
-  const query = searchParams.query
-}
 
 const ABOUT_QUERY = defineQuery(`*[_type=="about" && aboutName == $slug][0] {
   aboutName,
@@ -199,7 +187,8 @@ export default async function Page({
     norvald: "Norvald"
   }
 
-  const currentLabel = label[slug]
+  const isValidSlug = typeof slug === "string" && slug in label;
+  const currentLabel = isValidSlug ? label[slug as keyof typeof label] : "";
 
   
   
@@ -309,31 +298,43 @@ export default async function Page({
           </div>
           ): null}
         </section>
-        <section id="where" className={`flex flex-col justify-center items-center px-6 py-18 gap-6 ${dependantStyling[colorInput]}`}>
+       {whereSectionData ? ( <section id="where" className={`flex flex-col justify-center items-center px-6 py-18 gap-6 ${dependantStyling[colorInput]}`}>
           <div className="flex flex-col gap-2 max-w-[768px]">
-            <Text variant="headline" content={whereSectionData.headline} extraStyling="text-left w-full" as="h2" />
-            <Text variant="primary" content={whereSectionData.text} as="p" />
+            {whereSectionData.headline ? (
+              <Text variant="headline" content={whereSectionData.headline} extraStyling="text-left w-full" as="h2" />
+              ): null}
+            {whereSectionData.text ? (
+              <Text variant="primary" content={whereSectionData.text} as="p" />
+              ): null}
           </div>
           <div className="rounded-md overflow-hidden w-full max-w-[768px]">
-            <GoogleMaps position={whereSectionData.coordinates} />
+            {whereSectionData.coordinates?.lat && whereSectionData.coordinates.lng ? (
+              <GoogleMaps position={whereSectionData.coordinates} />
+              ): null}
           </div>
           <div className="flex flex-col gap-2 w-full mt-4 max-w-[768px]">
-            <Text variant="headline" extraStyling="text-left w-full"  content={whereSectionData.secHeadline} as="h2" />
-            <Text variant="primary"  extraStyling="text-left w-full" content={whereSectionData.secText} as="p" />
+            {whereSectionData.secHeadline ? (
+              <Text variant="headline" extraStyling="text-left w-full"  content={whereSectionData.secHeadline} as="h2" />
+              ): null}
+            {whereSectionData.secText ? (<Text variant="primary"  extraStyling="text-left w-full" content={whereSectionData.secText} as="p" />): null}
             <div className="flex flex-col w-full">
-              {whereSectionData.openingHours.map((openingHour, index) => {
+              {whereSectionData?.openingHours?.map((openingHour, index) => {
                 const {day, time} = openingHour;
             
                 return (
                   <div key={`${day}_${index}`} className="flex justify-between w-full  gap-4">
-                    <Text variant="primary" extraStyling="flex-1" content={`${day}:`} as="p" />
-                    <Text variant="primary" extraStyling="flex-1" content={time} as="p" />
+                    {day ? (
+                      <Text variant="primary" extraStyling="flex-1" content={`${day}:`} as="p" />
+                      ):null}
+                    {time ? (
+                      <Text variant="primary" extraStyling="flex-1" content={time} as="p" />
+                      ): null}
                   </div>
                 )
               })}
             </div>
           </div>
-        </section>
+        </section>) : null}
         <Contact />
     </div>
   )

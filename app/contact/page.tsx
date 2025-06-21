@@ -67,7 +67,6 @@ const urlFor = (source: SanityImageSource) =>
       }
 
       const {title, eyebrow, text, imageUrl, imageAlt, photoCredits, whereTitle, whereText, whereSecHeadline, whereSecText, coordinates, openingHours} = destructuredContactData
-      console.log(whereTitle)
 
       return (
         <div>
@@ -110,21 +109,26 @@ const urlFor = (source: SanityImageSource) =>
                 <GoogleMaps position={coordinates} />
               </div>
                 <div className="flex flex-col gap-2 w-full mt-4 max-w-[768px] py-4">
-                 { whereSecHeadline || whereSecText ?
-                 (<>
-                   <Text variant="headline" extraStyling="text-left w-full"  content={whereSecHeadline} as="h2" />
-                    <Text variant="primary"  extraStyling="text-left w-full" content={whereSecText} as="p" />
-                 </>
-                  ) :null}
+
+                   {whereSecHeadline ? (
+                    <Text variant="headline" extraStyling="text-left w-full"  content={whereSecHeadline} as="h2" />
+                    ): null}
+                    {whereSecText ? (
+                      <Text variant="primary"  extraStyling="text-left w-full" content={whereSecText} as="p" />
+                      ):null}
                {openingHours ? (
                   <div className="flex flex-col w-full">
-                  {openingHours.map((openingHour: {day: string, time: string}, index: number) => {
-                    const {day, time} = openingHour;
+                  {openingHours.map((openingHour) => {
+                    const {day, time, _id} = openingHour;
             
                     return (
-                      <div key={`${day}_${index}`} className="flex justify-between w-full  gap-4">
-                        <Text variant="primary" extraStyling="flex-1" content={`${day}:`} as="p" />
-                        <Text variant="primary" extraStyling="flex-1" content={time} as="p" />
+                      <div key={_id} className="flex justify-between w-full  gap-4">
+                        {day ? (
+                          <Text variant="primary" extraStyling="flex-1" content={`${day}:`} as="p" />
+                          ): null}
+                        {time ? (
+                          <Text variant="primary" extraStyling="flex-1" content={time} as="p" />
+                          ): null}
                       </div>
                     )
                   })}

@@ -5,7 +5,6 @@ import React from 'react'
 import Contact from '@/components/sections/Contact';
 import { defineQuery } from 'next-sanity';
 import { sanityFetch } from '@/sanity/live';
-import { MenuSelectSkeleton, MenuSkeleton } from '@/components/ui/Skeletons';
 
 
 const TJONNAS_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {

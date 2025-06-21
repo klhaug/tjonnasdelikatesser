@@ -8,6 +8,8 @@ import { notFound } from 'next/navigation';
 import { defineQuery } from 'next-sanity';
 import { client } from '@/sanity/client';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import {ProductItem} from '@/sanity/types'
+
 
 
 
@@ -43,7 +45,9 @@ export default  async function Products() {
 
    const {menuItems} = products;
 
-   const dsMenuItems = menuItems.map((item) => {
+
+
+   const dsMenuItems = menuItems.map((item: ProductItem) => {
     return (
       {
         name: item?.productName ?? null,

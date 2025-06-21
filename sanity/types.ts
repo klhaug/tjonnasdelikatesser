@@ -13,6 +13,21 @@
  */
 
 // Source: schema.json
+export type RecommendedProducts = {
+  _id: string;
+  _type: "recommendedProducts";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  menuItems?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "productItem";
+  }>;
+};
+
 export type Contact = {
   _id: string;
   _type: "contact";
@@ -510,7 +525,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Contact | OpeningHours | About | AboutWhere | Address | AboutInspiration | AboutFocus | FocusPoint | AboutAbout | AboutHero | ProductItem | MenuItem | MenuCategory | Menu | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = RecommendedProducts | Contact | OpeningHours | About | AboutWhere | Address | AboutInspiration | AboutFocus | FocusPoint | AboutAbout | AboutHero | ProductItem | MenuItem | MenuCategory | Menu | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../tjonnas-website/app/about/[slug]/page.tsx
 // Variable: ABOUT_QUERY
@@ -670,6 +685,62 @@ export type ABOUT_QUERYResult = {
   } | null;
 } | null;
 
+// Source: ../tjonnas-website/app/contact/page.tsx
+// Variable: CONTACT_QUERY
+// Query: *[_type=="contact"] {  aboutWhere -> {    coordinates,    headline,    secHeadline,    secText,    text,    openingHours[] ->  },  title,  eyebrow,  image,  text}
+export type CONTACT_QUERYResult = Array<{
+  aboutWhere: {
+    coordinates: Geopoint | null;
+    headline: string | null;
+    secHeadline: string | null;
+    secText: string | null;
+    text: string | null;
+    openingHours: Array<{
+      _id: string;
+      _type: "openingHours";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      day?: string;
+      time?: string;
+    }> | null;
+  } | null;
+  title: string | null;
+  eyebrow: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredits?: string;
+    _type: "image";
+  } | null;
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+}>;
+
 // Source: ../tjonnas-website/app/menu/page.tsx
 // Variable: TJONNAS_QUERY
 // Query: *[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {  _id,  nameOfMenu,  menuItems[] -> {      _id,       conditionalPrice,         name,      categoriTitle,      description,      housePick,      price       },}
@@ -818,6 +889,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type==\"about\" && aboutName == $slug][0] {\n  aboutName,\n  about -> {\n    headline,\n    image, \n    text,\n  },\n  focus ->{\n    headline,\n    focusPoint1,\n    focusPoint2,\n    focusPoint3\n  },\n  hero -> {\n    whichAbout,\n    eyebrow,\n    image,\n    text,\n  },\n  inspiration -> {\n    headline,\n    image1,\n    image2,\n    image3,\n    image4\n  },\n  where -> {\n    address,\n    headline,\n    text, \n    secHeadline,\n    secText,\n    coordinates {\n    lat,\n    lng\n    },\n    openingHours[] -> {\n      day,\n      time\n    }\n  }\n} ": ABOUT_QUERYResult;
+    "*[_type==\"contact\"] {\n  aboutWhere -> {\n    coordinates,\n    headline,\n    secHeadline,\n    secText,\n    text,\n    openingHours[] ->\n  },\n  title,\n  eyebrow,\n  image,\n  text\n}": CONTACT_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"tjonnasdelikatesser\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": TJONNAS_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"catering\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": CATERING_QUERYResult;
     "*[_type==\"menu\" && nameOfMenu ==\"norvald\"] {\n  _id,\n  nameOfMenu,\n  menuItems[] -> {\n      _id,\n       conditionalPrice,\n         name,\n      categoriTitle,\n      description,\n      housePick,\n      price     \n  },\n}\n": NORVALD_QUERYResult;

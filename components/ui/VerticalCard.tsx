@@ -6,7 +6,7 @@ import Image from 'next/image'
 type Card = {
     imageUrl: string | null
     name: string | null
-    price: string | null
+    price: number | null
     description: string | null
     slug: string | null
     imageAlt: string | null

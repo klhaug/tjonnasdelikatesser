@@ -9,39 +9,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import VerticalCard from './VerticalCard';
 
-type Food = {
-  name: string
-  price: string
-  description: string
-  imageUrl: string
-  productId: number
-}
+type Props = {
+  name: string | null,
+  lead: string | null,
+  price: number | null,
+  slug: string | null,
+  imageUrl: string | null,
+  imageAlt: string | null,
+  id: string | null
+ }
 
-const fakeFoodDataBase: Food[] = [
-  {
-      productId: 1,
-      name: "Tortillalefser",
-      price: "199,-",
-      description: "Myke og smidige lefser som passer perfekt til taco, wraps og burritos. Enkle å rulle, gode å spise.",
-      imageUrl: "/images/241A8964.jpg"
-  },
-  {
-      productId: 2,
-      name: "Tortillalefser",
-      price: "199,-",
-      description: "Myke og smidige lefser som passer perfekt til taco, wraps og burritos. Enkle å rulle, gode å spise.",
-      imageUrl: "/images/241A8964.jpg"
-  },
-  {
-      productId: 3,
-      name: "Tortillalefser",
-      price: "199,-",
-      description: "Myke og smidige lefser som passer perfekt til taco, wraps og burritos. Enkle å rulle, gode å spise.",
-      imageUrl: "/images/241A9129.jpg"
-  },
-]
 
-export default function Carousel({recProducts}) {
+export default function Carousel({recProducts}: {recProducts: Props[]}) {
   return (
     <>
       <Swiper
