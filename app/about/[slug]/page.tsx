@@ -190,7 +190,7 @@ export default async function Page({
     norvald: "bg-blue-50"
   }
 
-  const colorInput: "tjonnasdelikatesser" | "norma" | "norvald" = aboutName === "tjonnasdelikatesser" || aboutName === "norma" || aboutName === "norvald" ? aboutName : "grey"
+  const colorInput: "tjonnasdelikatesser" | "norma" | "norvald" = aboutName === "tjonnasdelikatesser" || aboutName === "norma" || aboutName === "norvald" ? aboutName : "tjonnasdelikatesser"
  
  
   const label = {

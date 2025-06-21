@@ -31,7 +31,14 @@ type Cafe = {
     }
   ]
 
-export default function About() {
+
+
+
+
+ 
+export default async function About() {
+ 
+
   return (
     <div className="flex relative justify-start items-center flex-col px-6 py-14 gap-8">
         <div className='w-[calc(100%+100px)] opacity-20 right-4 top-96 rounded-tr-full -rotate-16 -z-10 absolute h-36 bg-yellow-100'></div>

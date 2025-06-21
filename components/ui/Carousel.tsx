@@ -41,7 +41,7 @@ const fakeFoodDataBase: Food[] = [
   },
 ]
 
-export default function Carousel() {
+export default function Carousel({recProducts}) {
   return (
     <>
       <Swiper
@@ -60,11 +60,11 @@ export default function Carousel() {
         loop={true}
         className="w-full relative"
       >
-          {fakeFoodDataBase.map((product) => {
-                const {name, description, price, imageUrl, productId} = product;
+          {recProducts.map((product) => {
+                const {name, lead, price, slug, imageUrl, imageAlt, id} = product;
                 return (
-                    <SwiperSlide className='ml-6' key={productId} >
-                      <VerticalCard  name={name} description={description} price={price} imageUrl={imageUrl} />
+                    <SwiperSlide className='ml-6' key={id} >
+                      <VerticalCard  name={name} description={lead} slug={slug} price={price} imageUrl={imageUrl} imageAlt={imageAlt}/>
                     </SwiperSlide>
                 )
             })}

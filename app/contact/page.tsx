@@ -11,7 +11,6 @@ import Text from '@/components/ui/Text';
 import Image from 'next/image';
 import Contact from '@/components/sections/Contact';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import { ContactSkeleton } from '@/components/ui/Skeletons';
 
 
 const CONTACT_QUERY = defineQuery(`*[_type=="contact"] {
