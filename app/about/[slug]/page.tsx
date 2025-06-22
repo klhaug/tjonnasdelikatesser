@@ -12,6 +12,7 @@ import Text from "@/components/ui/Text";
 import GoogleMaps from "@/components/googlemaps/GoogleMaps";
 import Button from "@/components/ui/Button";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import { ABOUT_QUERYResult } from "@/sanity/types";
 
 
 const ABOUT_QUERY = defineQuery(`*[_type=="about" && aboutName == $slug][0] {
@@ -75,9 +76,6 @@ export default async function Page({
     query: ABOUT_QUERY,
     params: await params,
   });
-  if (!aboutData) {
-    notFound();
-  }
 
   const slug = (await params).slug
 
@@ -88,7 +86,9 @@ export default async function Page({
     hero,
     inspiration,
     where,
-  } = aboutData
+  } = aboutData ?? {}
+
+console.log(aboutData)
 
   const aboutSectionData = {
     headline: about?.headline ?? null,
@@ -97,6 +97,8 @@ export default async function Page({
     photoCredits: about?.image?.photoCredits ?? null,
     text: about?.text ?? null
   }
+
+  console.log(aboutSectionData)
 
   const focusSectionData = {
     headline: focus?.headline ?? null,
@@ -178,6 +180,9 @@ export default async function Page({
   const isValidSlug = typeof slug === "string" && slug in label;
   const currentLabel = isValidSlug ? label[slug as keyof typeof label] : "";
 
+  const isNullOrEmptyObject = (obj) =>
+    obj === null || (typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0);
+  
   
   
   return (
@@ -191,7 +196,7 @@ export default async function Page({
           },
         ]} />
       {/* HERO */}
-        <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
+        {!isNullOrEmptyObject(aboutData)  ? <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
               <Image src='/images/tjonnas_logo-blackcropped.png' alt="icon" height={80} width={250} />
             ) : null}
@@ -221,10 +226,14 @@ export default async function Page({
                  <PortableText value={heroSectionData.text} />
                </div>
           ): null}
-        </section>
+        </section> : 
+        <div className="h-[400px] p-4 flex flex-col">
+          <Text content="Noe gikk galt da vi prøvde å laste inn siden." variant="headline" as='h1'/>
+          <Text content="Vi jobber for å løse problemet så fort som mulig" variant="primary" as="p"/>
+        </div>}
 
         {/* ABOUT */}
-        <section id="about" className="flex flex-col bg-white justify-center items-center px-6 py-18 gap-6">
+       {about ? <section id="about" className="flex flex-col bg-white justify-center items-center px-6 py-18 gap-6">
           {aboutSectionData.headline ? (
             <Text variant="headline" content={aboutSectionData.headline} extraStyling="text-left w-full max-w-[768px]" as="h2" />
           ): null}
@@ -239,10 +248,10 @@ export default async function Page({
               <Text variant="primarySmall" content={`Foto: ${aboutSectionData?.photoCredits ?? "Kommer snart"}`} as="p" />
             </div>
           ): null}
-        </section>
+        </section> : null}
         
         {/* VAART FOKUS  */}
-        <section id="fokus" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
+       {focus ? <section id="fokus" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
         <div className="flex flex-col gap-4 items-start max-w-[768px]">
         {focusSectionData.headline ? (
             <Text variant="headline" content={focusSectionData.headline} extraStyling="text-left w-full max-w-[768px]" as="h2" />
@@ -263,9 +272,10 @@ export default async function Page({
           })
         ) : null}
         </div>
-        </section>
+        </section> : null}
+
         {/* INSPIRASJON */}
-        <section id="inspiration" className={`bg-white flex flex-col justify-center items-center px-6 py-18 gap-6`}>
+       {inspiration ? <section id="inspiration" className={`bg-white flex flex-col justify-center items-center px-6 py-18 gap-6`}>
           {inspirationSectionData.headline ? (
             <Text variant="headline" content={inspirationSectionData.headline} extraStyling="text-left w-full max-w-[768px]" as="h2" />
           ): null}
@@ -287,8 +297,10 @@ export default async function Page({
           <Button text="Se menyer" variant="secondary-fill" href="/menu" />
           </div>
           ): null}
-        </section>
-       {whereSectionData ? ( <section id="where" className={`flex flex-col justify-center items-center px-6 py-18 gap-6 ${dependantStyling[colorInput]}`}>
+        </section> : null}
+
+        {/* WHERE */}
+       {whereSectionData && where ? ( <section id="where" className={`flex flex-col justify-center items-center px-6 py-18 gap-6 ${dependantStyling[colorInput]}`}>
           <div className="flex flex-col gap-2 max-w-[768px]">
             {whereSectionData.headline ? (
               <Text variant="headline" content={whereSectionData.headline} extraStyling="text-left w-full" as="h2" />

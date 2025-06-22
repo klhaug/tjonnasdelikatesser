@@ -42,7 +42,7 @@ export default function Carousel({recProducts}: {recProducts: Props[]}) {
           {recProducts.map((product) => {
                 const {name, lead, price, slug, imageUrl, imageAlt, id} = product;
                 return (
-                    <SwiperSlide className='ml-6 h-full' key={id} >
+                    <SwiperSlide className='ml-6 h-12' key={id} >
                       <VerticalCard  name={name} description={lead} slug={slug} price={price} imageUrl={imageUrl} imageAlt={imageAlt}/>
                     </SwiperSlide>
                 )
