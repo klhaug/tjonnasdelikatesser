@@ -92,16 +92,23 @@ export default function MobileFilter({
         }, [sliderUrlUpdate, sliderValue, shadowPriceMinMax]);
         
 
+
+
+    const handleSliderChange = (event: number[]) => {
+      setSlider(event)
+      setShadowPriceMinMax(event)
+    }
+
     const closeMenu = () => {
-        sliderUrlUpdate.flush()
-        setActiveMenu(false)
-        document.body.style.overflowY = 'unset';
+      document.body.style.overflowY = 'unset';
+      setActiveMenu(false)
     }
 
     const showMenu = () => {
+      if (typeof window != 'undefined' && window.document) {
         setActiveMenu(true)
-        if (typeof window != 'undefined' && window.document) {
-            document.body.style.overflow = 'hidden';
+        window.scrollTo({ top: 0, behavior: "instant" });
+        document.body.style.overflow = 'hidden';
         }
 
     }
@@ -113,18 +120,6 @@ export default function MobileFilter({
             showMenu();
         }
     }
-
-    const handleSliderChange = (event: number[]) => {
-      setSlider(event)
-      setShadowPriceMinMax(event)
-    }
-
-    useEffect(() => {
-      if (activeMenu) {
-        window.scrollTo({ top: 0, behavior: "instant" });
-      }
-    }, [activeMenu]);
-
 
 
   return (
