@@ -99,20 +99,44 @@ export default function MobileFilter({
       setShadowPriceMinMax(event)
     }
 
-    const closeMenu = () => {
-      document.body.style.overflowY = 'unset';
-      setActiveMenu(false)
-    }
+    const scrollYRef = useRef(0);
 
     const showMenu = () => {
-      if (typeof window != 'undefined' && window.document) {
-        window.scrollTo({ top: 0, behavior: "instant" });
-        setActiveMenu(true)
-        document.body.style.overflow = 'hidden';
-        }
-
-    }
-
+      if (typeof window !== "undefined") {
+        scrollYRef.current = window.scrollY;
+    
+        // Defer scrollTo top until after DOM updates (for mobile reliability)
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+    
+          // Apply scroll lock *after* scroll, not before (important on iOS)
+          requestAnimationFrame(() => {
+            document.body.style.position = "fixed";
+            document.body.style.top = "0";
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.overflow = "hidden";
+          });
+        });
+      }
+    
+      setActiveMenu(true);
+    };
+    
+    const closeMenu = () => {
+      setActiveMenu(false);
+    
+      setTimeout(() => {
+        // Unlock scroll and restore position
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.overflow = "";
+    
+        window.scrollTo(0, scrollYRef.current);
+      }, 1); // Match your menu's transition duration
+    };
     const handleOnclick = () => {
         if(activeMenu) {
             closeMenu();
