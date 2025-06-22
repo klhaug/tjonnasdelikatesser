@@ -48,7 +48,7 @@ export default function TjonnasMenu({tjonnasMenu}: {tjonnasMenu: Tjonnas}) {
   return (
     <div>
       <div className="flex mt-2 items-center justify-between p-6 bg-yellow-300">
-        <Image src="/images/Tjønnås_Logo-sort2.png" height={55} width={175} alt='tjonnas logo' />
+        <Image src="/images/tjonnas_logo-blackcropped.png" height={55} width={175} alt='tjonnas logo' />
         <Text content='Kafè' variant='subheadline' as='p' />
       </div>
 
