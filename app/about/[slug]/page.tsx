@@ -2,7 +2,6 @@ import { client } from "@/sanity/client";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery, PortableText} from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import { notFound } from "next/navigation";
 import React from "react"
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Contact from "@/components/sections/Contact";
@@ -180,7 +179,7 @@ console.log(aboutData)
   const isValidSlug = typeof slug === "string" && slug in label;
   const currentLabel = isValidSlug ? label[slug as keyof typeof label] : "";
 
-  const isNullOrEmptyObject = (obj) =>
+  const isNullOrEmptyObject = (obj: ABOUT_QUERYResult) =>
     obj === null || (typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0);
   
   
