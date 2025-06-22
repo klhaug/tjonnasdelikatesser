@@ -193,7 +193,7 @@ export default async function Page({
       {/* HERO */}
         <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
-              <Image src='/images/Tjønnås_Logo-sort 2.png' alt="icon" height={80} width={250} />
+              <Image src='/images/tjonnas_logo-blackcropped.png' alt="icon" height={80} width={250} />
             ) : null}
             {aboutName === "norma" ? (
               <Text variant="hero" content="Norma" as="h1" />
