@@ -3,16 +3,20 @@ import Button from './Button'
 import Text from './Text'
 import Image from 'next/image'
 
-type Card = {
-    imageUrl: string | null
-    name: string | null
-    price: number | null
-    description: string | null
-    slug: string | null
-    imageAlt: string | null
-}
+type Props = {
+    name: string | null,
+    lead: string | null,
+    price: number | null,
+    slug: string | null,
+    imageUrl: string | null,
+    imageAlt: string | null,
 
-export default function VerticalCard({imageUrl, name, price, description, slug, imageAlt}: Card): React.JSX.Element {
+
+   }
+
+export default function VerticalCard({imageUrl, name, price, lead, slug, imageAlt}: Props): React.JSX.Element {
+        
+
                 return(
                     <article className='rounded-lg z-900 min-w-[275px]  bg-white h-full flex flex-col border-hidden w-full max-w-[500px]'>
                             {imageUrl ? (
@@ -26,8 +30,8 @@ export default function VerticalCard({imageUrl, name, price, description, slug, 
                             {price ? (
                                 <Text variant='primaryBold' extraStyling='' content={`${price},-`} as='p' />
                                 ): null}
-                            {description ? (
-                                <Text variant='primarySmall' content={description} extraStyling='h-21 overflow-hidden' as='p' />
+                            {lead ? (
+                                <Text variant='primarySmall' content={lead} extraStyling='h-21 overflow-hidden' as='p' />
                                 ): null}
                         </div>
                         {slug ? (

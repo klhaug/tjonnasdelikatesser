@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Work_Sans} from "next/font/google";
 import "./globals.css";
 import MobileNav from "@/components/sections/MobileNav";
+import DesktopNav from "@/components/sections/DesktopNav";
 import Footer from "@/components/sections/Footer";
 import { SanityLive } from "@/sanity/live";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={`${workSans.variable} noscroll max-w-full overflow-x-hidden antialiased h-screen`}
       >
         <MobileNav/>
+        <DesktopNav />
         {children}
         <SanityLive />
         <Footer />

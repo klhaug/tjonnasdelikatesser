@@ -1,4 +1,5 @@
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import SpecialRouteBackButton from '@/components/ui/SpecialRouteBackButton';
 import React from 'react'
 import { client } from "@/sanity/client";
 import { sanityFetch } from "@/sanity/live";
@@ -9,7 +10,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Tag from '@/components/ui/Tag';
 import Text from '@/components/ui/Text';
-import Link from 'next/link';
+
+
 
 const PRODUCT_QUERY = defineQuery(`*[_type == "productItem" && slug.current == $slug][0]`);
 
@@ -91,18 +93,10 @@ return(
                   <Image className='rounded-md object-cover' src={productImageUrl} height={500} width={768} alt={alt ? alt : ''} />
               )
               : null}
-            <Link
-              href={'/products'}
-              className='text-base h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full transition-all hover:bg-yellow-350 hover:cursor-pointer gap-2 group rounded-lg pl-6 pr-6'>
-                <Image
-                  src='/icons/arrow.svg'
-                  className='group-hover:-translate-x-1 transition-all rotate-180'
-                  alt='icon'
-                  height={16}
-                  width={16}
-                  />
-                    Tilbake
-              </Link>
+           <div className='flex gap-4'>
+             <SpecialRouteBackButton />
+             {/* <Button text={'Se alle produkter'} variant={'secondary-fixed'} href={'/products'} /> */}
+           </div>
           </div>
       </section>
     </div>

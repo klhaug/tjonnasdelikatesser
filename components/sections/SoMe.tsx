@@ -55,19 +55,20 @@ const handleOnclick = (event: MouseEvent<HTMLButtonElement>) => {
     return (
         <div className='flex flex-col items-center justify-center'>
             <Script src='https://cdn.lightwidget.com/widgets/lightwidget.js'/>
-            <div className='px-6 py-14 w-full max-w-[540px] flex flex-col gap-4 items-start'>
-                <div className='flex flex-col gap-2'>
-                    <Text content='Små øyeblikk' variant='subheadline' as='h3' />
-                    <Text content='Se hva som skjer' variant='headline' as='h2' />
-                </div>
-                <div className='flex gap-4'>
-                    <button onClick={handleOnclick} value="tjonnas" className={`${currentCafe === "tjonnas" ? "bg-yellow-300" : "bg-white"} px-2 border border-yellow-300 rounded-md hover:cursor-pointer`}>Tjønnås</button>
-                    <button onClick={handleOnclick} value="norvald" className={`${currentCafe === "norvald" ? "bg-blue-300" : "bg-white"} px-2 border border-blue-300 rounded-md hover:cursor-pointer`}>Norvald</button>
-                    <button onClick={handleOnclick} value="norma" className={`${currentCafe === "norma" ? "bg-red-300" : "bg-white"} px-2 border border-red-300 rounded-md hover:cursor-pointer`}>Norma</button>
+            <div className='px-6 py-14 w-full max-w-[540px] flex flex-col md:flex-row md:max-w-none gap-4 md:gap-8 md:px-12 items-start md:items-center'>
+                <div className='flex flex-col  md:w-1/2 gap-4'>
+                    <div className='flex flex-col gap-2'>
+                        <Text content='Små øyeblikk' variant='subheadline' as='h3' />
+                        <Text content='Se hva som skjer' variant='headline' as='h2' />
+                    </div>
+                    <div className='flex md:flex-col gap-4'>
+                        <button onClick={handleOnclick} value="tjonnas" className={`${currentCafe === "tjonnas" ? "bg-yellow-300" : "bg-white"} px-2 border border-yellow-300 rounded-md hover:cursor-pointer md:h-[54px]`}>Tjønnås</button>
+                        <button onClick={handleOnclick} value="norvald" className={`${currentCafe === "norvald" ? "bg-blue-300" : "bg-white"} px-2 border border-blue-300 rounded-md hover:cursor-pointer md:h-[54px]`}>Norvald</button>
+                        <button onClick={handleOnclick} value="norma" className={`${currentCafe === "norma" ? "bg-red-300" : "bg-white"} px-2 border border-red-300 rounded-md hover:cursor-pointer md:h-[54px]`}>Norma</button>
+                    </div>
                 </div>
                 {currentCafe === "tjonnas" ?
-                
-                   <div className='w-full max-w-[540px]'>
+                   <div className='w-full md:w-1/2 max-w-[540px]'>
                     <div className='flex py-4 gap-4 '>
                 <div className='h-[44px] w-[44px] rounded-full'>
                     <Image src="/images/241A9090 2.png" className='object-none rounded-full object-[36%_36%]' height={100} width={100} alt='profile-pic' />
@@ -80,7 +81,7 @@ const handleOnclick = (event: MouseEvent<HTMLButtonElement>) => {
                         <Image src="/icons/instagramsd 1.svg" width={33} height={33} alt='icon' />
                     </div>
                 </div>
-                   <div>
+                   <div className='md:min-h-[450px]'>
                        <iframe
                          src="//lightwidget.com/widgets/c3ad9979c86054c39b1754e0cf98a43a.html"
                          id="lightwidget-widget"
