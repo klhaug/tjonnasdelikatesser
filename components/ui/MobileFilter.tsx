@@ -136,12 +136,12 @@ export default function MobileFilter({
          <div
             className={`${
                 activeMenu ? "left-0" : "-left-[800px]"
-            } h-full w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
+            } h-[6000px] w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
         >
             <Form 
                 // ref={formRef} 
                 action={''} 
-                className='w-full px-6'
+                className='w-full flex flex-col justify-start h-[calc(100vh-83px)] px-6'
             >
                     <div className="flex justify-between border-b border-grey-100 py-6">
                         <Text variant='headline' extraStyling='order-1' content='Filter' as='h2'/>
@@ -167,7 +167,7 @@ export default function MobileFilter({
                             <label className="text-base" htmlFor='priceDesc'>Pris synkende</label>
                         </div>
                     </fieldset>
-                    <fieldset className=' flex flex-col h-full gap-8 mt-4'>
+                    <fieldset className=' flex flex-col gap-8 mt-4'>
                         <legend className='text-base font-bold mb-4'>Pris</legend>
                          <div className='flex justify-between'>
                              <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 min-w-[75px] w-1/6'>{sliderValue[0]}</h1>

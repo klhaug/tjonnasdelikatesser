@@ -15,9 +15,9 @@ export default function MobileNav() {
 
     const showMenu = () => {
       if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden';
-        window.scrollTo({ top: 0, behavior: "instant" });
         setActiveMenu(true)
+        document.body.style.overflow = 'hidden';
+          window.scrollTo({ top: 0, behavior: "instant" });
         }
 
     }
@@ -36,9 +36,9 @@ export default function MobileNav() {
         <div
           className={`${
             activeMenu ? "w-full" : "w-0"
-          } h-screen flex items-center justify-center overflow-hidden bg-yellow-50 absolute top-0 right-0 z-[999]  duration-500`}
+          }  flex h-[6000px] items-start justify-center overflow-hidden bg-yellow-50 absolute top-0 right-0 z-[999]  duration-500`}
         >
-          <nav className='text-nowrap '>
+          <nav className='text-nowrap h-[calc(100vh-83px)] flex flex-col justify-center '>
             <ul className='flex flex-col gap-8 relative'>
               <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Hjem' as='li' /></Link>
               <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'><Text variant='headline' content='Tjønnås delikatesser' as='li' /></Link>
