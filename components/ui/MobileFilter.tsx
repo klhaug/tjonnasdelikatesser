@@ -148,15 +148,16 @@ export default function MobileFilter({
 
   return (
     <div className='flex justify-end p-6 border-b border-grey-100'>
-    <button onClick={handleOnclick} className="text-base bg-white flex justify-center items-center border gap2 text-nowrap  border-gray-500 text-black hover:bg-yellow-350 hover:border-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6">
+    <button onClick={handleOnclick} className="text-base bg-white flex justify-center items-center border gap-2 text-nowrap  border-gray-500 text-black hover:bg-yellow-350 hover:border-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6">
       <Image src="/icons/Sort.svg" height={30} width={30} alt='icon' />
       Filtrer og sorter ({resultsNumber})
+      { activeMenu ? <div className='fixed inset-0 z-40 bg-black opacity-50'></div> : null}
     </button>
          <div
             className={`${
                 activeMenu ? "left-0" : "-left-[800px]"
-            } h-[6000px] w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
-        >
+            } h-[6000px] w-full max-w-[800px] flex items-start justify-center bg-white z-999 absolute top-0 duration-500`}
+        >  
             <Form 
                 // ref={formRef} 
                 action={''} 
