@@ -119,6 +119,12 @@ export default function MobileFilter({
       setShadowPriceMinMax(event)
     }
 
+    useEffect(() => {
+      if (activeMenu) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+    }, [activeMenu]);
+
 
 
   return (
@@ -130,7 +136,7 @@ export default function MobileFilter({
          <div
             className={`${
                 activeMenu ? "left-0" : "-left-[800px]"
-            } h-screen w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
+            } h-full w-full max-w-[800px] flex items-start justify-center bg-white z-[999] absolute top-0 duration-500`}
         >
             <Form 
                 // ref={formRef} 
@@ -161,7 +167,7 @@ export default function MobileFilter({
                             <label className="text-base" htmlFor='priceDesc'>Pris synkende</label>
                         </div>
                     </fieldset>
-                    <fieldset className=' flex flex-col gap-8 mt-4'>
+                    <fieldset className=' flex flex-col h-full gap-8 mt-4'>
                         <legend className='text-base font-bold mb-4'>Pris</legend>
                          <div className='flex justify-between'>
                              <h1 className='border border-grey-300 rounded-md flex justify-center items-center p-2 min-w-[75px] w-1/6'>{sliderValue[0]}</h1>

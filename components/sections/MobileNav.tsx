@@ -9,14 +9,15 @@ export default function MobileNav() {
   const [activeMenu, setActiveMenu] = useState(false);
   
     const closeMenu = () => {
-        setActiveMenu(false)
-        document.body.style.overflowY = 'unset';
+      document.body.style.overflowY = 'unset';
+      setActiveMenu(false)
     }
 
     const showMenu = () => {
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden';
+        window.scrollTo({ top: 0, behavior: "instant" });
         setActiveMenu(true)
-        if (typeof window != 'undefined' && window.document) {
-            document.body.style.overflow = 'hidden';
         }
 
     }
