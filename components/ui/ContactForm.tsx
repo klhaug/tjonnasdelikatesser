@@ -8,11 +8,11 @@ export default function ContactForm() {
 
     const [result, setResult] = React.useState("");
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
       event.preventDefault();
       setResult("Sending....");
-      const formData = new FormData(event.target);
+      const formData = new FormData(event.currentTarget);
       formData.append("access_key", "f9401c4c-5bce-4ddb-b411-5109d802e289");
   
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -24,7 +24,7 @@ export default function ContactForm() {
   
       if (data.success) {
         setResult("Form Submitted Successfully");
-        event.target.reset();
+        event.currentTarget.reset();
       } else {
         console.log("Error", data);
         setResult(data.message);
