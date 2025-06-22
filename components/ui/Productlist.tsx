@@ -23,7 +23,7 @@ type Props = {
 export default function Productlist({products, query}: Props) {    
 
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 md:gap-8 py-8 gap-6'>
+    <div className='grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 md:gap-8 py-8 gap-6'>
         {products.length > 0 ? products.map((product) => {
           const {productName, _id, price, lead, image, category, inStock, slug} = product;
           const imgUrl = image ? urlFor(image)?.width(750).url() : null;

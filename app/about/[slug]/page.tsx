@@ -125,7 +125,6 @@ export default async function Page({
     imageAlt: hero?.image?.alt ?? null,
     photoCredits: hero?.image?.photoCredits ?? null,
   }
-  
 
   const inspirationSectionData = {
     headline: inspiration?.headline ?? null,
@@ -156,17 +155,6 @@ export default async function Page({
   const whereSectionData = where;
 
 
-
-
- 
-
-  console.log(aboutName)
-
-
-
-  // const productImageUrl = image
-  // ? urlFor(image)?.url()
-  // : null;
 
   const iconList = [
     "/icons/staricon.svg","/icons/globeicon.svg","/icons/handshakeicon.svg"
@@ -218,7 +206,9 @@ export default async function Page({
             ): null} 
           <h1 className="sr-only">{aboutName}</h1>
           {heroSectionData.eyebrow ? (
-            <Tag variant={aboutName ? aboutName : "tjonnasdelikatesser"} textStyle="primary" content={heroSectionData.eyebrow}  /> 
+            <div className="w-full flex justify-center text-center py-4">
+              <Tag variant={aboutName ? aboutName : "tjonnasdelikatesser"} textStyle="primary" content={heroSectionData.eyebrow}  /> 
+            </div>
             ) : null}
           {heroSectionData.imageUrl ? (
             <div className="gap-2 flex flex-col">

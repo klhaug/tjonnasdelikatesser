@@ -47,11 +47,11 @@ export default function Footer() {
         </div>
         <div className="flex flex-col">
           <div className="flex">
-            <Image src="/icons/email.svg" height={24} width={24} alt='icon' />
+            <Image src="/icons/Email.svg" height={24} width={24} alt='icon' />
             <Text variant="primary" content="hei@tjonnås.no" extraStyling="text-white" as="p"/>
           </div>
           <div className="flex">
-            <Image src="/icons/phone.svg" height={24} width={24} alt='icon' />
+            <Image src="/icons/Phone.svg" height={24} width={24} alt='icon' />
             <Text variant="primary" content="+47 123 45 789" extraStyling="text-white" as="p"/>
           </div>
           <div className="flex">
@@ -86,9 +86,9 @@ export default function Footer() {
           <Text variant="primary" content="Snarveier" extraStyling="text-white text-xl" as="h3"/>
         </div>
         <div className="px-4">
-         <Link href="/tjonnasdelikatesser" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Tjønnås Delikatesser" as="p" extraStyling="text-white"/></Link>
-         <Link href="/norma" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norma" as="p" extraStyling="text-white"/></Link>
-         <Link href="/norvald" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norvald" as="p" extraStyling="text-white"/></Link>
+         <Link href="/about/tjonnasdelikatesser" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Tjønnås Delikatesser" as="p" extraStyling="text-white"/></Link>
+         <Link href="/about/norma" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norma" as="p" extraStyling="text-white"/></Link>
+         <Link href="/about/norvald" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Norvald" as="p" extraStyling="text-white"/></Link>
          <Link href="/products" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Produkter" as="p" extraStyling="text-white"/></Link>
          <Link href="/contact" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Kontakt" as="p" extraStyling="text-white"/></Link>
          <Link href="/menu" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Menyer" as="p" extraStyling="text-white"/></Link>
