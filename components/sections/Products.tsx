@@ -79,7 +79,7 @@ export default  async function Products() {
 
 
   return (
-    <div className='bg-linear-120 from-yellow-100 to-red-100 flex flex-col  justify-center items-center relative gap-4 py-14'>
+    <div className='bg-linear-120 from-yellow-100 to-red-100 flex flex-col  justify-center items-center relative gap-4 py-14 md:py-18'>
         <div 
           className='flex flex-col max-w-[768px] md:max-w-none px-6 md:px-12 w-full'>
             <Text 

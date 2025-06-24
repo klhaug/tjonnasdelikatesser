@@ -5,7 +5,7 @@ import Button from '../ui/Button'
 
 export default function Hero() {
   return (
-    <div className='flex flex-col md:flex-row justify-center items-center gap-8 py-14 md:py-18 md:px-12 px-6'>
+    <div className='flex flex-col md:flex-row justify-center lg:hidden items-center gap-8 py-14 md:py-18 md:px-12 px-6'>
       <div className='flex flex-col gap-4'>
         <div className="flex flex-col gap-6">
             <div className="flex w-full justify-center">

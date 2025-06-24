@@ -6,12 +6,11 @@ import Button from '../ui/Button';
 export default function DesktopNav() {
   return (
     <div className='hidden md:block'>
-       <nav className='text-nowrap flex items-center justify-between border-b border-b-grey-100 px-8 py-12 '>
+       <nav className='text-nowrap relative flex justify-between items-center border-b border-b-grey-100 md:px-12 lg:px-22 py-12 '>
          <Link href="/">
-                <Image src="/images/Tjønnås_Ikon-oker.png" className='h-[44px] w-full' height={34} width={28} alt='icon'/>
+                <Image src="/images/Tjønnås_Ikon-oker.png" className='h-[44px] w-[38px]' height={34} width={28} alt='icon'/>
             </Link>
-            <div className='w-full flex items-center justify-center'>
-              <ul className='flex items-center justify-center gap-12 relative'>
+              <ul className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 lg:gap-12 flex items-start justify-self-center  justify-between'>
                 <li>
                   <Link href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'>Tjønnås Delikatesser</Link>
                 </li>
@@ -31,7 +30,6 @@ export default function DesktopNav() {
                   <Link href="/contact" className='hover:underline underline-offset-2'></Link>
                 </li>
               </ul>
-            </div>
               <Button text={'Ta kontakt'} variant={'primary-fill'} href={'/contact'} />
           </nav>
     </div>
