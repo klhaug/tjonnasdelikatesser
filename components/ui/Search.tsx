@@ -14,7 +14,6 @@ export default function Search({ placeholder, setQuery, query }: Props) {
   console.log("Search Rebuilding")
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  // const { replace } = useRouter();
 
   const staggeredUrlUpdate = useDebouncedCallback((term) => {   
     const params = new URLSearchParams(searchParams);
@@ -25,7 +24,6 @@ export default function Search({ placeholder, setQuery, query }: Props) {
     }
     console.log("REPLACING URL", `${pathname}?${params.toString()}`);
     window.history.pushState(null, '', `${pathname}?${params.toString()}`);
-    // replace(`${pathname}?${params.toString()}`);
   }, 100);
 
   const handleSearch = (input: string) => {

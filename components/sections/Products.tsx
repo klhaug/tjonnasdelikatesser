@@ -81,7 +81,7 @@ export default  async function Products() {
   return (
     <div className='bg-linear-120 from-yellow-100 to-red-100 flex flex-col  justify-center items-center relative gap-4 py-14 md:py-18'>
         <div 
-          className='flex flex-col max-w-[768px] md:max-w-none px-6 md:px-12 w-full'>
+          className='flex flex-col max-w-[768px] md:max-w-[1440px] px-6 md:px-12 w-full'>
             <Text 
               variant='subheadline' 
               extraStyling="text-red-500" 
@@ -110,7 +110,7 @@ export default  async function Products() {
                     <Carousel 
                       recProducts = {dsMenuItems} />
                 </div>
-                <div className='grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-12 hidden md:grid'>
+                <div className='grid-cols-2 xl:grid-cols-4 gap-4 px-12 hidden max-w-[1440px] md:grid'>
                   {dsMenuItems.map((item: Props) => {
                         const {name, lead, price, slug, imageUrl, imageAlt, id} = item;
                     return (

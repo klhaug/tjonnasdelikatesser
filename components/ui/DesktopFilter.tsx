@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
-import Image from 'next/image';
+import React, { useEffect, useRef} from 'react'
 import Form from 'next/form'
 import Text from './Text';
 import RangeSlider from 'react-range-slider-input';
@@ -25,7 +24,6 @@ type Props = {
 export default function MobileFilter({
   resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
     
-    const [activeMenu, setActiveMenu] = useState(false);
     // const formRef = useRef<HTMLFormElement>(null)
     const isResetting = useRef(false);
     const searchParams = useSearchParams();
@@ -99,74 +97,20 @@ export default function MobileFilter({
       setShadowPriceMinMax(event)
     }
 
-    const scrollYRef = useRef(0);
-
-    const showMenu = () => {
-      if (typeof window !== "undefined") {
-        scrollYRef.current = window.scrollY;
-    
-        // Defer scrollTo top until after DOM updates (for mobile reliability)
-        requestAnimationFrame(() => {
-          window.scrollTo({ top: 0, behavior: "instant" });
-    
-          // Apply scroll lock *after* scroll, not before (important on iOS)
-          requestAnimationFrame(() => {
-            document.body.style.position = "fixed";
-            document.body.style.top = "0";
-            document.body.style.left = "0";
-            document.body.style.right = "0";
-            document.body.style.overflow = "hidden";
-          });
-        });
-      }
-    
-      setActiveMenu(true);
-    };
-    
-    const closeMenu = () => {
-      setActiveMenu(false);
-    
-      setTimeout(() => {
-        // Unlock scroll and restore position
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.left = "";
-        document.body.style.right = "";
-        document.body.style.overflow = "";
-    
-        window.scrollTo(0, scrollYRef.current);
-      }, 1); // Match your menu's transition duration
-    };
-    const handleOnclick = () => {
-        if(activeMenu) {
-            closeMenu();
-        } else {
-            showMenu();
-        }
-    }
-
 
   return (
-    <div className='flex justify-end p-6 border-b lg:hidden border-grey-100'>
-    <button onClick={handleOnclick} className="text-base bg-white flex justify-center items-center border gap-2 text-nowrap  border-gray-500 text-black hover:bg-yellow-350 hover:border-yellow-350 hover:cursor-pointer h-11 rounded-lg pl-6 pr-6">
-      <Image src="/icons/Sort.svg" height={30} width={30} alt='icon' />
-      Filtrer og sorter ({resultsNumber})
-      { activeMenu ? <div className='fixed inset-0 z-40 bg-black opacity-50'></div> : null}
-    </button>
+    <div className=' w-1/3 hidden lg:block'>
          <div
-            className={`${
-                activeMenu ? "left-0" : "-left-[800px]"
-            } h-[6000px] w-full max-w-[800px] flex items-start justify-center bg-white z-999 absolute top-0 duration-500`}
-        >  
+            className={`
+                flex items-start justify-center bg-white  top-0 duration-500`}>  
             <Form 
                 // ref={formRef} 
                 action={''} 
                 className='w-full flex flex-col justify-start h-[calc(100vh-83px)] px-6'
             >
-                    <div className="flex justify-between border-b border-grey-100 py-6">
-                        <Text variant='headline' extraStyling='order-1' content='Filter' as='h2'/>
+                    <div className="flex justify-between border-b gap-8 border-grey-100 py-6">
+                        <Text variant='headline' extraStyling='' content='Filter' as='h2'/>
                         <button onClick={resetFilter} type="reset" className='hover:cursor-pointer order-0 text-blue-500 hover:text-blue-600'>Nullstill</button>
-                        <Image className="hover:cursor-pointer active:bg-grey-100 order-2" onClick={handleOnclick} src='/icons/Close.svg' height={30} width={30} alt='icon' />
                     </div>
                     <fieldset className='flex flex-col gap-4 pt-4'>
                         <legend className='text-base font-bold pt-4'>Sorter</legend>
@@ -201,8 +145,8 @@ export default function MobileFilter({
                          />
 
                     </fieldset>
-                    <button type='button' onClick={closeMenu} className='text-base mt-8 h-[44px] bg-yellow-300 flex justify-center items-center text-nowrap w-full hover:bg-yellow-350 hover:cursor-pointer rounded-lg pl-6 pr-6'>
-                        Vis {resultsNumber} resultater</button>
+                    <button type='button' className='text-base mt-8 h-[44px] border flex justify-center items-center text-nowrap w-full hover:bg-yellow-350 hover:cursor-pointer rounded-lg pl-6 pr-6'>
+                        {resultsNumber} resultater</button>
             </Form>
         
         </div>

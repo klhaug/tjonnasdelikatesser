@@ -2,6 +2,7 @@
 
 import Search from '@/components/ui/Search'
 import MobileFilter from "@/components/ui/MobileFilter"
+import DesktopFilter from "@/components/ui/DesktopFilter"
 import Text from '@/components/ui/Text';
 import LoadMoreButton from '@/components/ui/LoadMoreButton';
 import Productlist from './Productlist';
@@ -175,7 +176,7 @@ const cappedProductList = productInfoArray.cappedProductList
     <div>
        <div className='flex flex-col justify-center items-center border-b border-grey-100 gap-4 py-8 px-6'>
         <Text content='Produkter' variant='headline' as='h1'/>
-        <div className='w-full'>
+        <div className='w-full max-w-[700px]'>
           <Search 
             placeholder='Søk blant våre produkter' 
             setQuery={updateQuery} 
@@ -192,15 +193,28 @@ const cappedProductList = productInfoArray.cappedProductList
         filter={filter} 
         sliderValue={priceMinMax}  
         resultsNumber={allProductsLength} />
-      <div className="flex flex-col gap-7 px-6 py-6">
+      
+      <div className="flex flex-col lg:flex-row gap-7 lg:gap-4 max-w-[1440px] m-auto px-6 lg:px-22 py-6">
         <Productlist 
           query={query} 
           products={cappedProductList} />
+          <DesktopFilter 
+          setFilter={updateFilter} 
+          setSlider={updateSlider} 
+          setQuery={updateQuery} 
+          shadowPriceMinMax={shadowPriceMinMax} 
+          setShadowPriceMinMax={setShadowPriceMinMax} 
+          setListLength={updateListLength} 
+          filter={filter} 
+          sliderValue={priceMinMax}  
+          resultsNumber={allProductsLength} />
       </div>
-      <LoadMoreButton 
-        fullListLength={allProductsLength} 
-        listLength={listLength} 
-        setListLength={updateListLength}/>
+      <div className='w-full max-w-[1440px] m-auto -mt-6 pb-8'>
+        <LoadMoreButton
+          fullListLength={allProductsLength}
+          listLength={listLength}
+          setListLength={updateListLength}/>
+      </div>
     </div>
   )
 }

@@ -51,7 +51,7 @@ export default function NorvaldMenu({norvaldMenu}: {norvaldMenu: Norvald}) {
 
   return (
     <div className='max-w-[1440px] m-auto'>
-      <div className="flex mt-2 items-center justify-between p-6 bg-blue-700 ">
+      <div className="flex items-center justify-between p-6 bg-blue-700 ">
         <Image src="/images/norvald_white_cropped.png" height={55} width={110} alt='tjonnas logo' />
         <Text content='vinbar' variant='subheadline' extraStyling='text-white' as='p' />
       </div>

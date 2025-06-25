@@ -46,7 +46,7 @@ export default function MenuSelectDropdown({selectedMenu, setSelectedMenu}: {sel
 
 
   return (
-    <div className='relative my-4'>
+    <div className='relative mb-8'>
       <div onClick={openSelectMenu} className={`hover:cursor-pointer border-2 rounded-md justify-between flex p-4 ${borderVariantsOpen[selectedMenu]}`}>
       <Text  variant='primary' extraStyling='' content={menuBasedOnState[selectedMenu]} as='p' />
       <Image  className={`${isOpen ? null : "-rotate-90" } transition-all`} src="/icons/Arrow drop down.svg" height={24} width={24} alt='icon' />

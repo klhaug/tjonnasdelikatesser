@@ -142,5 +142,12 @@ top: 75%;
   z-index: 9999;
 }
 
+.bg-gradient-image {
+  background-image: linear-gradient(#ffffff00,#00000038, #000000d4), url('/images/241A8984.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+
 
 

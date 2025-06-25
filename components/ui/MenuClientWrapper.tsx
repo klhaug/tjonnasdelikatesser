@@ -87,8 +87,8 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
     }
 
   return (
-    <div className=''>
-      <div className="px-4">
+    <div className='max-w-[1440px] m-auto lg:px-20'>
+      <div className='px-6 lg:px-0'>
         <MenuSelectDropdown selectedMenu={selectedMenu} setSelectedMenu={updateSelectedMenu} />
       </div>
       <MenuComponent selectedMenu={selectedMenu} tjonnasMenu={tjonnasMenu} norvaldMenu={norvaldMenu} cateringMenu={cateringMenu}/>

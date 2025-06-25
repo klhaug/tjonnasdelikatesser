@@ -53,9 +53,9 @@ const handleOnclick = (event: MouseEvent<HTMLButtonElement>) => {
 
   
     return (
-        <div className='flex flex-col items-center justify-center md:py-18'>
+        <div className='flex flex-col items-center max-w[-768px] justify-center md:py-18'>
             <Script src='https://cdn.lightwidget.com/widgets/lightwidget.js'/>
-            <div className='px-6 py-14 w-full max-w-[540px] flex flex-col md:flex-row md:max-w-none gap-4 md:gap-8 md:px-12 items-start md:items-center'>
+            <div className='px-6 py-14 w-full max-w-[540px] flex flex-col md:flex-row md:max-w-[1440px] gap-4 md:gap-8 md:px-12 items-start md:items-center'>
                 <div className='flex flex-col  md:w-1/2 gap-4'>
                     <div className='flex flex-col gap-2'>
                         <Text content='Små øyeblikk' variant='subheadline' as='h3' />
