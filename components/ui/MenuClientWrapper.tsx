@@ -6,7 +6,7 @@ import MenuComponent from '@/components/ui/MenuComponent';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 
-type Tjonnas = {
+type Menu = {
     _id: string;
     conditionalPrice: string | null;
     name: string | null;
@@ -17,34 +17,7 @@ type Tjonnas = {
 }[] | null
 
 
-type Norvald = {
-    _id: string;
-    conditionalPrice: string | null;
-    name: string | null;
-    categoriTitle: string | null;
-    description: string | null;
-    housePick: boolean | null;
-    price: string | null;
-}[] | null
-
-
-type Catering = {
-    _id: string;
-    conditionalPrice: string | null;
-    name: string | null;
-    categoriTitle: string | null;
-    description: string | null;
-
-    housePick: boolean | null;
-    price: string | null;
-}[] | null
-
-
-
-
-
-
-export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}: {tjonnasMenu: Tjonnas, norvaldMenu: Norvald, cateringMenu: Catering}) {
+export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMenu}: {tjonnasMenu: Menu, norvaldMenu: Menu, cateringMenu: Menu}) {
 
     const [selectedMenu, setSelectedMenu] = useState<"tjonnasdelikatesser"|"norvald"|"catering">("tjonnasdelikatesser")
     const [isHydrated, setIsHydrated] = useState(false);
@@ -73,12 +46,6 @@ export default function MenuClientWrapper({tjonnasMenu, norvaldMenu, cateringMen
         }
       }
     }
-
-  
-
-    
-
-    console.log(selectedMenu)
 
     const updateSelectedMenu = (input: "tjonnasdelikatesser" | "norvald" | "catering") => {
       console.log(input)

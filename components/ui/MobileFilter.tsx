@@ -24,7 +24,7 @@ type Props = {
 
 export default function MobileFilter({resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
 
-  // 🚨 Til Erik: Har ikke helt kontroll på useRef enda... 
+  // 🚨 Til Erik: Jeg har ikke helt kontroll på useRef enda... 
   // Det er en hook AI har sagt kan være lur å bruke. Men jeg tror den gjør mye av det samme som useState, men at det er en verdi som ikke påvirker renderingen(?)
 
     const [activeMenu, setActiveMenu] = useState(false);
@@ -71,6 +71,9 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
     replace(`${pathname}?${params.toString()}`);
   },200);
 
+
+ //🚨 Hvis jeg husker riktig så bruker jeg isResetting her for å ikke triggere useEffecten når man nullstiller filteret. Jeg slet med en bug hvor det funket å resette filteret, men 
+ // priceMinMax ble appended 2sek etterpå på nytt. 
     
   function resetFilter(){
     isResetting.current = true;
@@ -90,7 +93,6 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
         isResetting.current = false;
       }, 0);
     };
-    
 
     useEffect(() => {
       if (isResetting.current || shadowPriceMinMax.length === 0) return;
@@ -99,14 +101,13 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
         
 
 
-
     const handleSliderChange = (event: number[]) => {
       setSlider(event)
       setShadowPriceMinMax(event)
     }
 
     // 🚨 Her har jeg fått hjelp av AI... Hadde en bug hvor menyen og filteret ikke dekket hele skjermen dersom man ikke hadde scrollet helt opp før man åpnet de. 
-    // 
+  
 
     const scrollYRef = useRef(0);
 
