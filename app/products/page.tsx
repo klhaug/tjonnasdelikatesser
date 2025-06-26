@@ -29,8 +29,12 @@ export default async function Page() {
             active: true,
           },
         ]} />
+        
+  {/* Wrappet i Suspense fordi Clientwrapper bruker useSearchParams og Next ønsket det  */}
+
           <Suspense>
-            <ClientWrapper products={products} />
+            <ClientWrapper products={products} /> 
+            {/* 🚨 Til Erik: Er dette en dum måte å gjøre det på? Altså ha en server-komponent på toppen, for så å wrappe omtrent alt i en egen client-komponent for å ha tilgang på state?*/}
           </Suspense>
     </div>
   )

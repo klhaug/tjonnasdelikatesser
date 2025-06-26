@@ -110,7 +110,7 @@ export default function MobileFilter({
             >
                     <div className="flex justify-between border-b gap-8 border-grey-100 py-6">
                         <Text variant='headline' extraStyling='' content='Filter' as='h2'/>
-                        <button onClick={resetFilter} type="reset" className='hover:cursor-pointer order-0 text-blue-500 hover:text-blue-600'>Nullstill</button>
+                        <button onClick={resetFilter} type="reset" className='hover:cursor-pointer order-0 text-blue-600 hover:text-blue-800'>Nullstill</button>
                     </div>
                     <fieldset className='flex flex-col gap-4 pt-4'>
                         <legend className='text-base font-bold pt-4'>Sorter</legend>
@@ -141,7 +141,9 @@ export default function MobileFilter({
                          min={0}
                          max={2000}
                          value={[sliderValue[0], sliderValue[1]]}
-                         onInput={(event) => handleSliderChange(event) }
+                         onInput={(event) => handleSliderChange(event) 
+                          }
+                          ariaLabel={["Rangeslider minimum", "Rangeslider maximum"]}
                          />
 
                     </fieldset>

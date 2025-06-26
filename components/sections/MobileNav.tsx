@@ -10,6 +10,7 @@ export default function MobileNav() {
   
   const scrollYRef = useRef(0);
 
+
   const showMenu = () => {
     if (typeof window !== "undefined") {
       scrollYRef.current = window.scrollY;
@@ -66,13 +67,13 @@ export default function MobileNav() {
         >
           <nav className='text-nowrap h-[calc(100vh-83px)] flex flex-col justify-center '>
             <ul className='flex flex-col gap-8 relative'>
-              <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2'><Text variant='headline' content='Hjem' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'><Text variant='headline' content='Tjønnås delikatesser' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2'><Text variant='headline' content='Norvald' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2'><Text variant='headline' content='Norma' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/products" className='hover:underline underline-offset-2'><Text variant='headline' content='Produkter' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/menu" className='hover:underline underline-offset-2'><Text variant='headline' content='Menyer' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/contact" className='hover:underline underline-offset-2'><Text variant='headline' content='Kontakt oss' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2'><Text variant='headline'   content='Hjem' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'><Text variant='headline'  content='Tjønnås delikatesser' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2'><Text variant='headline'  content='Norvald' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2'><Text variant='headline'  content='Norma' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/products" className='hover:underline underline-offset-2'><Text variant='headline'  content='Produkter' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/menu" className='hover:underline underline-offset-2'><Text variant='headline'  content='Menyer' as='li' /></Link>
+              <Link onClick={handleOnclick} href="/contact" className='hover:underline underline-offset-2'><Text variant='headline'  content='Kontakt oss' as='li' /></Link>
             </ul>
           </nav>
         </div>
@@ -83,6 +84,7 @@ export default function MobileNav() {
           <div
             onClick={handleOnclick}
             className={`${activeMenu && "active"} ham-menu active:bg-grey-100`}
+            tabIndex={0}
           >
             <span className=""></span>
             <span className=""></span>

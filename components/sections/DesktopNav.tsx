@@ -26,9 +26,6 @@ export default function DesktopNav() {
                 <li>
                   <Link href="/menu" className='hover:underline underline-offset-2'>Menyer</Link>
                 </li>
-                <li>
-                  <Link href="/contact" className='hover:underline underline-offset-2'></Link>
-                </li>
               </ul>
               <Button text={'Ta kontakt'} variant={'primary-fill'} href={'/contact'} />
           </nav>

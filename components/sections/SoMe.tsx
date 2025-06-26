@@ -86,6 +86,7 @@ const handleOnclick = (event: MouseEvent<HTMLButtonElement>) => {
                          src="//lightwidget.com/widgets/c3ad9979c86054c39b1754e0cf98a43a.html"
                          id="lightwidget-widget"
                          className="w-full rounded-md"
+                         title='Tjonnas Instagram Embed'
                          scrolling='no'
                        />
                    </div>

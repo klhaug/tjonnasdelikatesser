@@ -5,6 +5,8 @@ export type Props = {
   content: string,
   as: keyof JSX.IntrinsicElements;
   extraStyling?: string;
+  role?: string
+  ariaLabel?: string
 }
 
 export const allVariants = {
@@ -18,10 +20,10 @@ export const allVariants = {
   captionLabel: "text-sm leading-[18px]",
 }
 
-export default function Text({variant, content, as = "p", extraStyling}: Props): JSX.Element {
+export default function Text({variant, content, as = "p", extraStyling, role, ariaLabel}: Props): JSX.Element {
   const Component = as;
   const className = allVariants[variant];
       return (
-          <Component className={`${className} ${extraStyling}`}>{content}</Component>
+          <Component className={`${className} ${extraStyling}`} role={role} aria-label={ariaLabel}>{content}</Component>
       );
 }
