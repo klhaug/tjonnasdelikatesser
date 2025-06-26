@@ -12,7 +12,7 @@ export default function ContactForm() {
     
         const formData = new FormData(e.currentTarget);
         const form = e.currentTarget;
-        const selectedCategories = formData.getAll("category"); // getAll returns an array of selected checkboxes
+        const selectedCategories = formData.getAll("category"); 
 
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -25,8 +25,8 @@ export default function ContactForm() {
             name: formData.get("name"),
             email: formData.get("email"),
             message: formData.get("message"),
-            category: selectedCategories, // optional: include selected checkboxes
-            personvernserklaering: formData.get("personvernserklaering"), // optional: include selected checkboxes
+            category: selectedCategories,
+            personvernserklaering: formData.get("personvernserklaering"),
           }),
         });
     
@@ -34,7 +34,7 @@ export default function ContactForm() {
         if (result.success) {
           console.log(result);
           form.reset(); 
-          redirect("/success")// optionally reset form
+          redirect("/success")
         } else {
           console.error(result);
             

@@ -8,7 +8,7 @@ export type Props = {
 }
 
 export const allVariants = {
-  hero: "text-[40px] leading-12",
+  hero: "text-[40px] leading-8",
   headline: "text-2xl leading-7 font-medium",
   subheadline: "text-sm uppercase",
   primary: "text-base",

@@ -4,7 +4,7 @@ import { defineQuery, PortableText} from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import React from "react"
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Contact from "@/components/sections/Contact";
+import ContactWhiteBG from "@/components/sections/ContactWhiteBG";
 import Tag from "@/components/ui/Tag";
 import Image from "next/image";
 import Text from "@/components/ui/Text";
@@ -197,7 +197,7 @@ console.log(aboutData)
       {/* HERO */}
         {!isNullOrEmptyObject(aboutData)  ? <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
-              <Image src='/images/tjonnas_logo-blackcropped.png' alt="icon" height={80} width={250} />
+                   <Text variant="hero" content="Tjønnås Delikatesser" as="h1" />
             ) : null}
             {aboutName === "norma" ? (
               <Text variant="hero" content="Norma" as="h1" />
@@ -210,7 +210,7 @@ console.log(aboutData)
             ): null} 
           <h1 className="sr-only">{aboutName}</h1>
           {heroSectionData.eyebrow ? (
-            <div className="w-full flex justify-center text-center py-4">
+            <div className="w-full flex justify-center text-center">
               <Tag variant={aboutName ? aboutName : "tjonnasdelikatesser"} textStyle="primary" content={heroSectionData.eyebrow}  /> 
             </div>
             ) : null}
@@ -336,7 +336,7 @@ console.log(aboutData)
             </div>
           </div>
         </section>) : null}
-        <Contact />
+        <ContactWhiteBG />
     </div>
   )
 

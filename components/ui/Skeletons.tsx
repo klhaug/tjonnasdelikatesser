@@ -24,7 +24,7 @@ export function CardSkeleton() {
 export function MenuSelectSkeleton() {
   return (
     <div
-      className={`animate-pulse relative flex flex-col gap-4 overflow-hidden rounded-md bg-gray-100 px-4 py-12 shadow-sm`}
+      className={`animate-pulse relative flex flex-col gap-4 max-w-[1280px] m-auto overflow-hidden rounded-md bg-gray-100 px-4 py-12 shadow-sm`}
     >
      
       <div className="flex w-full gap-4 flex-col">
@@ -43,9 +43,9 @@ export function MenuSelectSkeleton() {
 export function MenuSkeleton() {
   return (
     <div
-      className={`animate-pulse relative flex flex-col gap-4 overflow-hidden rounded-md h-screen bg-gray-100 shadow-sm`}
+      className={`animate-pulse relative flex flex-col max-w-[1280px] mt-12 m-auto gap-4 overflow-hidden rounded-md h-screen  bg-gray-100`}
     >
-     <div className="flex items-center justify-between w-full truncate rounded-xl bg-white px-4 py-8">
+     <div className="flex items-center justify-between w-full truncate rounded-xl bg-gray-50 px-4 py-8">
         <div className="h-8 w-22 rounded-md bg-gray-200" />
         <div className="h-4 w-12 rounded-md bg-gray-200" />
       </div>
