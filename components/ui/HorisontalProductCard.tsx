@@ -18,7 +18,7 @@ type Props = {
 
 export default function HorisontalProductCard({name, price, description, imgUrl, category, slug, inStock, alt}: Props) {
   return (
-    <Link href={`/products/${slug || null}`} className='shadow-md h-full max-h-[250px] hover:cursor-pointer rounded-md flex hover:shadow-lg active:scale-95'>
+    <Link href={`/products/${slug || null}`} className='shadow-md h-full max-h-[350px] lg:max-h-[250px] hover:cursor-pointer rounded-md flex hover:shadow-lg active:scale-95'>
       <div className='w-1/3'>
         <Image src={imgUrl || "https://placehold.co/550x310/png" }  className='w-full h-full rounded-l-lg object-cover' height={500} width={500} alt={alt || "Food"} />
       </div>
