@@ -15,10 +15,10 @@ export default function DesktopNav() {
                   <Link href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'>Tjønnås Delikatesser</Link>
                 </li>
                 <li>
-                  <Link href="/about/norvald" className='hover:underline underline-offset-2'>Norma</Link>
+                  <Link href="/about/norvald" className='hover:underline underline-offset-2'>Norvald</Link>
                 </li>
                 <li>
-                  <Link href="/about/norma" className='hover:underline underline-offset-2'>Norvald</Link>
+                  <Link href="/about/norma" className='hover:underline underline-offset-2'>Norma</Link>
                 </li>
                 <li>  
                   <Link href="/products" className='hover:underline underline-offset-2'>Produkter</Link>

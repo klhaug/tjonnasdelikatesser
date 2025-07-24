@@ -77,6 +77,8 @@ export default async function Page({
   });
 
   const slug = (await params).slug
+  {/* Sett opp en 404 dersom aboutData er tom */}
+  // kast notFound()
 
   const {
     about,
@@ -87,7 +89,8 @@ export default async function Page({
     where,
   } = aboutData ?? {}
 
-console.log(aboutData)
+
+
 
   const aboutSectionData = {
     headline: about?.headline ?? null,
@@ -97,7 +100,6 @@ console.log(aboutData)
     text: about?.text ?? null
   }
 
-  console.log(aboutSectionData)
 
   const focusSectionData = {
     headline: focus?.headline ?? null,
@@ -156,7 +158,6 @@ console.log(aboutData)
   const whereSectionData = where;
 
 
-
   const iconList = [
     "/icons/staricon.svg","/icons/globeicon.svg","/icons/handshakeicon.svg"
   ]
@@ -176,12 +177,15 @@ console.log(aboutData)
     norvald: "Norvald"
   }
 
+  // 🚨 Her har jeg også fått litt hjelp av AI for å fikse typeerrors når jeg prøver å indexe objekter ved hjelp av variabler. 
+
   const isValidSlug = typeof slug === "string" && slug in label;
   const currentLabel = isValidSlug ? label[slug as keyof typeof label] : "";
 
+  //🚨 Denne kom "Straight Outta AI", men med en spesifikk forespørsel om å skrive en funksjon for meg som sjekket akkurat dette.
+
   const isNullOrEmptyObject = (obj: ABOUT_QUERYResult) =>
     obj === null || (typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0);
-  
   
   
   return (
@@ -194,6 +198,7 @@ console.log(aboutData)
             active: true,
           },
         ]} />
+
       {/* HERO */}
         {!isNullOrEmptyObject(aboutData)  ? <section id="hero" className={`${dependantStyling[colorInput]} flex flex-col justify-center items-center px-6 py-18 gap-6`}>
             {aboutName === "tjonnasdelikatesser" ? (
