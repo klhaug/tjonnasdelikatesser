@@ -1,32 +1,8 @@
-'use client'
-
-import React, { useState, MouseEvent } from 'react'
-import SoMeCard from '../ui/SoMeCard'
 import Text from '../ui/Text'
 import Script from 'next/script'
-import Image from 'next/image'
-
-type FakeSomeDatabase = {
-    id: "tjonnas" | "norma" | "norvald"
-    account: string
-    date: string
-    post: string
-    imageUrl: string
-}
 
 
 export default function SoMe() {
-const [currentCafe, setCurrentCafe] = useState("tjonnas")
-
-
-const handleOnclick = (event: MouseEvent<HTMLButtonElement>) => {
-    setCurrentCafe(event.currentTarget.value)
-    console.log(currentCafe)
-}
-
-
-
-
   
     return (
         <div className='flex flex-col items-center max-w[-768px] justify-center md:py-18'>
