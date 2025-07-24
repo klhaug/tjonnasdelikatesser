@@ -24,7 +24,6 @@ type Props = {
 export default function MobileFilter({
   resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
     
-    // const formRef = useRef<HTMLFormElement>(null)
     const isResetting = useRef(false);
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -42,12 +41,11 @@ export default function MobileFilter({
     replace(`${pathname}?${params.toString()}`);
    }, 1);
 
-
-  useEffect(() => {
-    if (!filter) return;
-    debouncedRadioUrlUpdate(filter);
-  }, [filter, debouncedRadioUrlUpdate]);
-  
+    useEffect(() => {
+      if (!filter) return;
+      debouncedRadioUrlUpdate(filter);
+    }, [filter, debouncedRadioUrlUpdate]);
+        
 
 
   const sliderUrlUpdate = useDebouncedCallback( (input) => {
@@ -84,10 +82,10 @@ export default function MobileFilter({
     };
     
 
-        useEffect(() => {
-          if (isResetting.current || shadowPriceMinMax.length === 0) return;
-          sliderUrlUpdate(sliderValue)
-        }, [sliderUrlUpdate, sliderValue, shadowPriceMinMax]);
+    useEffect(() => {
+      if (isResetting.current || shadowPriceMinMax.length === 0) return;
+      sliderUrlUpdate(sliderValue)
+    }, [sliderUrlUpdate, sliderValue, shadowPriceMinMax]);
         
 
 

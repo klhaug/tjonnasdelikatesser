@@ -18,7 +18,7 @@ export default function VerticalCard({imageUrl, name, price, lead, slug, imageAl
         
 
                 return(
-                    <article className='rounded-lg z-900 min-w-[275px]  bg-white h-full flex flex-col border-hidden w-full max-w-[600px]'>
+                    <article className='rounded-lg z-100 min-w-[275px]  bg-white h-full flex flex-col border-hidden w-full max-w-[600px]'>
                             {imageUrl ? (
                                 <Image className='object-center rounded-t-lg h-[250px] object-cover' src={imageUrl} height={600} width={600} alt={imageAlt ?? "food"} />
                                 ): null}

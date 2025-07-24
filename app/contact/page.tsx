@@ -97,6 +97,7 @@ const urlFor = (source: SanityImageSource) =>
               ): null}
             </div>
           </section>
+          
           <section className='bg-white flex flex-col items-center gap-4'>
           <div className='max-w-[768px] px-6 py-12 flex flex-col justify-center items-start gap-4'>
             {whereTitle ? (

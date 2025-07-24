@@ -31,6 +31,8 @@ export default function ClientWrapper({products}: {products: PRODUCTS_QUERYResul
  const getQuery = searchParams.get("query")
  const getPriceMin = searchParams.get("price_min")
  const getPriceMax = searchParams.get("price_max")
+ //Bytt rekkefølge her, og bruk getFilter i staten til f.eks. priceMinMax
+ //URL gjelder alltid
 
 
 //Oppdaterer shadowstate dersom man laster siden med filter i URL-parameterne
@@ -142,6 +144,8 @@ export default function ClientWrapper({products}: {products: PRODUCTS_QUERYResul
       cappedProductList: PRODUCTS_QUERYResult
     }
 
+    //Denne calles på hver render, sjekk ut useMemo()
+    
   function getProducts(): ReturnTypes {
     const allProducts = filterBySearch(products, query)
     const allProductsWithinRange = filterByPriceRange(allProducts, priceMinMax)
