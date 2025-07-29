@@ -4,6 +4,7 @@ import MenuClientWrapper from '@/components/ui/MenuClientWrapper';
 import React from 'react'
 import { defineQuery } from 'next-sanity';
 import { sanityFetch } from '@/sanity/live';
+import { Metadata } from 'next';
 
 
 const TJONNAS_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {
@@ -49,7 +50,14 @@ const NORVALD_QUERY = defineQuery(`*[_type=="menu" && nameOfMenu =="norvald"] {
 }
 `);
 
+export const metadata: Metadata = {
+  title: 'Meny - Tjønnås Delikatesser',
+  description: 'En side med de ulike menyene på våre ulike konsepter.',
+}
+
+
 export default async function Page() {
+
 
 
   const getTjonnasMenu  = await sanityFetch({ query: TJONNAS_QUERY });
