@@ -9,26 +9,30 @@ type Cafe = {
     title: string
     ingress: string
     imageUrl: string
+    category: string
   }
   
   const fakeDataBase: Cafe[] = [
     {
       id: "tjonnasdelikatesser",
       title: "Tjønnås Delikatesser",
-      ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/TjonnasAboutResized.webp"
+      ingress: "Tjønnås Delikatesser ligger i gågata på Gjøvik og byr på håndplukkede smaker fra både inn- og utland. Her finner du oster, spekemat, oljer og søtsaker av høy kvalitet – perfekte gaver eller noe ekstra godt til helgen. En butikk for deg som setter pris på ekte matopplevelser i hverdagen.",
+      imageUrl: "/images/TjonnasAboutResized.webp",
+      category: "Kafè"
     },
     {
       id: "norma",
       title: "Norma",
-      ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/TjonnasAboutResized.webp"
+      ingress: "En liten butikk midt i byen med sans for det enkle og varige. Hos Norma finner du tekstiler i naturlige kvaliteter, håndplukkede detaljer til hjemmet og keramiske kaffekopper med særpreg – alt valgt for å gi hverdagen en roligere rytme og et personlig preg.",
+      imageUrl: "/images/NormaAboutResized.webp",
+      category: "Butikk"
     },
     {
       id: "norvald",
       title: "Norvald",
       ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/TjonnasAboutResized.webp"
+      imageUrl: "/images/NorvaldAboutImageResized.webp",
+      category: "Kafè"
     }
   ]
 
@@ -68,9 +72,9 @@ export default async function About() {
         </div>
         <div className='hidden md:flex flex-col w-full gap-14 items-center'>
           {fakeDataBase.map((cafe, index) => {
-              const {id, title, ingress, imageUrl} = cafe
+              const {id, title, ingress, imageUrl, category} = cafe
               return (
-                <HorisontalAboutCard key={id} id={id} indexNumber={index} title={title} ingress={ingress} imageUrl={imageUrl}/>
+                <HorisontalAboutCard key={id} id={id} indexNumber={index} category={category} title={title} ingress={ingress} imageUrl={imageUrl}/>
               )
             })
               }

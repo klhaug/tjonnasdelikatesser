@@ -43,11 +43,11 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} id='contactform' className='px-6 flex flex-col w-full max-w-[576px] gap-4'>
         <input type="hidden" name="access_key" value="f9401c4c-5bce-4ddb-b411-5109d802e289"/>
-        <label htmlFor="name">
-            <input className='h-11 px-4 w-full rounded-md bg-grey-100  focus:outline-yellow-350' name="name" required id='name' type='text' placeholder='Navn'/>
+        <label htmlFor="name">Navn:
+            <input className='h-11 px-4 w-full rounded-md bg-grey-100  focus:outline-yellow-350' name="name" required id='name' type='text' placeholder='Fornavn Etternavn'/>
         </label>
-        <label htmlFor="email">
-            <input className='h-11 px-4 w-full rounded-md bg-grey-100  focus:outline-yellow-350' name='email' required id='email' type='email' placeholder='E-post'/>
+        <label htmlFor="email">E-post:
+            <input className='h-11 px-4 w-full rounded-md bg-grey-100  focus:outline-yellow-350' name='email' required id='email' type='email' placeholder='dinepost@epost.no'/>
         </label>
         <fieldset className='px-4'>
             <legend className='inline-block'>Hva gjelder det?</legend>
@@ -58,7 +58,7 @@ export default function ContactForm() {
                 <label htmlFor="other"><input className='focus:outline-yellow-350 accent-yellow-350' name='category' id='other' value="other" type='checkbox'/>    Annet</label>
             </div>
         </fieldset>
-        <label className='w-full' htmlFor="message"><textarea id='message' name='message' className='bg-grey-100 w-full p-4 rounded-md focus:outline-yellow-350' required rows={8} placeholder='Melding'/></label>
+        <label className='w-full' htmlFor="message">Melding:<textarea id='message' name='message' className='bg-grey-100 w-full p-4 rounded-md focus:outline-yellow-350' required rows={8} placeholder='Jeg skulle gjerne bestilt catering til et selskap på 20 personer. Kan dere hjelpe meg med det?'/></label>
         <div className="flex flex-row gap-1">
                   <input id="personvernserklaering" name="personvernserklaering" type="checkbox" required className=""></input>
                   <label htmlFor="personvernserklaering" className="font-sec text-sm">Jeg samtykker til at min informasjon blir lagret</label>

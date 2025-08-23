@@ -10,10 +10,11 @@ type Props = {
     ingress: string
     imageUrl: string
     indexNumber: number
+    category: string
 }
 
 
-export default function HorisontalAboutCard({id, title, ingress, imageUrl, indexNumber}: Props) {
+export default function HorisontalAboutCard({id, title, ingress, imageUrl, indexNumber, category}: Props) {
 
     if(!id  || !title || !ingress || !imageUrl ) {
         return undefined;
@@ -31,14 +32,14 @@ export default function HorisontalAboutCard({id, title, ingress, imageUrl, index
                 <Tag
                     variant={id}
                     textStyle='primarySmall'
-                    content='Butikk' />
+                    content={category} />
                 <Text
                     variant='headline'
-                    content='Tjønnås Delikatesser'
+                    content={title}
                     as='h2' />
                 <Text
                     variant='primary'
-                    content='En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.'
+                    content={ingress}
                     extraStyling='max-w-[400px]'
                     as='h2' />
             </div>

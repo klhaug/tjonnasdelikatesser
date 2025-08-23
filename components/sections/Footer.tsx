@@ -99,7 +99,7 @@ export default function Footer() {
              <Link href="/menu" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Menyer" as="p" extraStyling="text-white"/></Link>
              <Link target="blank" href="https://www.facebook.com/tjonnasdelikatesser/?locale=nb_NO" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Facebook" as="p" extraStyling="text-white"/></Link>
              <Link target="blank" href="https://www.instagram.com/tjonnasdelikatesser/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Instagram" as="p" extraStyling="text-white"/></Link>
-             <Link target="blank" href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Informasjonskapsler" as="p" extraStyling="text-white"/></Link>
+             <Link target="blank" href="/cookies" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Informasjonskapsler" as="p" extraStyling="text-white"/></Link>
             </div>
             <hr className="text-gray-100 opacity-20 lg:hidden"></hr>
           </section>
