@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import React, { useRef, useState } from 'react'
-import Text from '../ui/Text'
 import Link from 'next/link';
 
 export default function MobileNav() {
