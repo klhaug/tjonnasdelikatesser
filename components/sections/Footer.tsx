@@ -11,7 +11,8 @@ const cafeInfo = [
       "Man-Fre", "07:00-16:00",
       "Lørdag", "10:00-13:00",
       "Søndag", "07:00-16:00",
-    ]
+    ],
+    extraHours: "https://share.google/iHH5VewphNLKI15Vs"
   },
   {
     name: "Norma",
@@ -19,7 +20,8 @@ const cafeInfo = [
       "Man-Fre", "07:00-16:00",
       "Lørdag", "10:00-13:00",
       "Søndag", "07:00-16:00",
-    ]
+    ],
+    extraHours: "https://share.google/9fmUtEpEAYDbSRhgZ"
   },
   {
     name: "Norvald",
@@ -27,7 +29,8 @@ const cafeInfo = [
       "Man-Fre", "07:00-16:00",
       "Lørdag", "10:00-13:00",
       "Søndag", "07:00-16:00",
-    ]
+    ],
+    extraHours: "https://share.google/09iA9Xd8mpo7kbIjc"
   },
 ]
 
@@ -73,12 +76,11 @@ export default function Footer() {
             </div>
             <div className="flex flex-col gap-2">
               {cafeInfo.map((cafe) => {
-                const {name, openingHours} = cafe;
+                const {name, openingHours, extraHours} = cafe;
                 return (
-                  <ToggleDropdown key={name} name={name} openingHours={openingHours} />
+                  <ToggleDropdown key={name} name={name} openingHours={openingHours} extraHours={extraHours} />
                 )
               })}
-              <a href="https://google.com">Ekstraordinære åpningstider</a>
             </div>
             <hr className="text-gray-100 opacity-20 lg:hidden"></hr>
           </section>
@@ -95,9 +97,9 @@ export default function Footer() {
              <Link href="/products" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Produkter" as="p" extraStyling="text-white"/></Link>
              <Link href="/contact" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Kontakt" as="p" extraStyling="text-white"/></Link>
              <Link href="/menu" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Menyer" as="p" extraStyling="text-white"/></Link>
-             <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Facebook" as="p" extraStyling="text-white"/></Link>
-             <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Instagram" as="p" extraStyling="text-white"/></Link>
-             <Link href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Informasjonskapsler" as="p" extraStyling="text-white"/></Link>
+             <Link target="blank" href="https://www.facebook.com/tjonnasdelikatesser/?locale=nb_NO" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Facebook" as="p" extraStyling="text-white"/></Link>
+             <Link target="blank" href="https://www.instagram.com/tjonnasdelikatesser/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Instagram" as="p" extraStyling="text-white"/></Link>
+             <Link target="blank" href="/" className="hover:cursor-pointer hover:underline underline-offset-2 text-white"><Text variant="primary" content="Informasjonskapsler" as="p" extraStyling="text-white"/></Link>
             </div>
             <hr className="text-gray-100 opacity-20 lg:hidden"></hr>
           </section>
