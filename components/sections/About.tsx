@@ -16,19 +16,19 @@ type Cafe = {
       id: "tjonnasdelikatesser",
       title: "Tjønnås Delikatesser",
       ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/241A9065.jpg"
+      imageUrl: "/images/TjonnasAboutResized.webp"
     },
     {
       id: "norma",
       title: "Norma",
       ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/241A9065.jpg"
+      imageUrl: "/images/TjonnasAboutResized.webp"
     },
     {
       id: "norvald",
       title: "Norvald",
       ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
-      imageUrl: "/images/241A9065.jpg"
+      imageUrl: "/images/TjonnasAboutResized.webp"
     }
   ]
 
