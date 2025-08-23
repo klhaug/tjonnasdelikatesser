@@ -41,7 +41,7 @@ export default function CateringMenu({cateringMenu}: {cateringMenu: Catering}) {
   return (
     <div>
       <div className="flex items-center justify-between p-6 bg-green-500">
-        <Image src="/images/norvald_white_cropped.png" height={55} width={110} alt='tjonnas logo' />
+        <Image priority={true} src="/images/norvald_white_cropped.png" height={55} width={110} alt='tjonnas logo' />
         <Text content='vinbar' variant='subheadline' extraStyling='text-white' as='p' />
       </div>
       <section className='bg-yellow-50 px-6 py-13'>
