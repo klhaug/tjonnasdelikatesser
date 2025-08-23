@@ -177,12 +177,8 @@ export default async function Page({
     norvald: "Norvald"
   }
 
-  // 🚨 Her har jeg også fått litt hjelp av AI for å fikse typeerrors når jeg prøver å indexe objekter ved hjelp av variabler. 
-
   const isValidSlug = typeof slug === "string" && slug in label;
   const currentLabel = isValidSlug ? label[slug as keyof typeof label] : "";
-
-  //🚨 Denne kom "Straight Outta AI", men med en spesifikk forespørsel om å skrive en funksjon for meg som sjekket akkurat dette.
 
   const isNullOrEmptyObject = (obj: ABOUT_QUERYResult) =>
     obj === null || (typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0);
@@ -221,7 +217,7 @@ export default async function Page({
             ) : null}
           {heroSectionData.imageUrl ? (
             <div className="gap-2 flex flex-col">
-              <Image src={heroSectionData.imageUrl} className="rounded-md" alt={heroSectionData.imageAlt ? heroSectionData.imageAlt : "Image"} height={240} width={768} />
+              <Image src={heroSectionData.imageUrl} priority={true} className="rounded-md" alt={heroSectionData.imageAlt ? heroSectionData.imageAlt : "Image"} height={240} width={768} />
               <Text variant="primarySmall" content={`Foto: ${heroSectionData.photoCredits}`} as="p" />
             </div>
           ) : null}
