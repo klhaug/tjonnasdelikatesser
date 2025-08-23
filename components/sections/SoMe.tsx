@@ -18,7 +18,7 @@ export default function SoMe() {
                             {/* TJONNAS WIDGET */}
                             <div className='border rounded-md border-yellow-100 shadow p-4'>
                                <iframe
-                                 src="//lightwidget.com/widgets/ae77f54407dc568d8a66ea671ab4446b.html"
+                                 src="https://cdn.lightwidget.com/widgets/ae77f54407dc568d8a66ea671ab4446b.html"
                                  id="lightwidget-widget"
                                  className="w-full rounded-md"
                                  title='Tjonnas Instagram Embed'
@@ -28,7 +28,7 @@ export default function SoMe() {
                            {/* NORVALD WIDGET */}
                            <div className='border rounded-md border-blue-100 shadow p-4'>
                             <iframe
-                                src="//lightwidget.com/widgets/94ce69e33766541091adcf1f2b69c0b6.html"
+                                src="https://cdn.lightwidget.com/widgets/94ce69e33766541091adcf1f2b69c0b6.html"
                                 id="lightwidget-widget"
                                 className="w-full rounded-md"
                                 title='Tjonnas Instagram Embed'
@@ -38,7 +38,7 @@ export default function SoMe() {
                            {/* NORMA WIDGET */}
                            <div className='border rounded-md border-red-100 shadow p-4'>
                             <iframe
-                                src="//lightwidget.com/widgets/1554176b2dfb506f81404d88ec55e6df.html" 
+                                src="https://cdn.lightwidget.com/widgets/1554176b2dfb506f81404d88ec55e6df.html"
                                 id="lightwidget-widget"
                                 className="w-full rounded-md"
                                 title='Tjonnas Instagram Embed'
@@ -48,7 +48,6 @@ export default function SoMe() {
                    </section>
             </div>
         </div>
-
 
   )
 }
