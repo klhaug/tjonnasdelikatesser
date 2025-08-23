@@ -19,7 +19,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="max-w-[768px]">
-        <Image priority={true} className='rounded-lg' src="/images/HeroImgMobile.webp" height={700} width={579} alt='woman smiling in cafe with food around her' />
+        <Image priority={true} placeholder="blur" blurDataURL="/images/HeroImgMobileBlur.webp" className='rounded-lg' src="/images/HeroImgMobile.webp" height={700} width={579} alt='woman smiling in cafe with food around her' />
       </div>
     </div>
   )
