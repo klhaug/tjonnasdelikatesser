@@ -5,11 +5,11 @@ import Button from '../ui/Button'
 
 export default function Hero() {
   return (
-    <div className='flex flex-col md:flex-row justify-center lg:hidden items-center gap-8 py-14 md:py-18 md:px-12 px-6'>
+    <div className='flex flex-col md:flex-row justify-start lg:hidden items-center gap-8 py-14 md:py-18 md:px-12 px-6'>
       <div className='flex flex-col gap-4'>
         <div className="flex flex-col gap-6">
             <div className="flex w-full justify-center">
-                <Image src="/images/tjonaaslogohero.png"  height={200} width={200} alt="logo" />
+                <Image src="/images/tjonaaslogohero.png"  height={40} width={200} alt="logo" />
             </div>
             <Text variant='primary' content='Delikatesser laget med lidenskap, lokale råvarer og respekt for tradisjon.' extraStyling='text-center' as='p' />
         </div>
@@ -18,8 +18,8 @@ export default function Hero() {
             <Button text='Les mer' variant='secondary-fill' href='/about/tjonnasdelikatesser' />
         </div>
       </div>
-      <div>
-        <Image className='rounded-lg' src="/images/241A9090.jpg" height={576} width={576} alt='woman smiling in cafe with food around her' />
+      <div className="max-w-[768px]">
+        <Image priority={true} className='rounded-lg' src="/images/HeroImgMobile.webp" height={700} width={576} alt='woman smiling in cafe with food around her' />
       </div>
     </div>
   )
