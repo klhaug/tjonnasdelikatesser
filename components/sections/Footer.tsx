@@ -78,6 +78,7 @@ export default function Footer() {
                   <ToggleDropdown key={name} name={name} openingHours={openingHours} />
                 )
               })}
+              <a href="https://google.com">Ekstraordinære åpningstider</a>
             </div>
             <hr className="text-gray-100 opacity-20 lg:hidden"></hr>
           </section>
