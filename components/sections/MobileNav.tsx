@@ -67,13 +67,27 @@ export default function MobileNav() {
         >
           <nav className='text-nowrap h-[calc(100vh-83px)] flex flex-col justify-center '>
             <ul className='flex flex-col gap-8 relative'>
-              <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2'><Text variant='headline'   content='Hjem' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'><Text variant='headline'  content='Tjønnås delikatesser' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2'><Text variant='headline'  content='Norvald' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2'><Text variant='headline'  content='Norma' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/products" className='hover:underline underline-offset-2'><Text variant='headline'  content='Produkter' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/menu" className='hover:underline underline-offset-2'><Text variant='headline'  content='Menyer' as='li' /></Link>
-              <Link onClick={handleOnclick} href="/contact" className='hover:underline underline-offset-2'><Text variant='headline'  content='Kontakt oss' as='li' /></Link>
+              <li>
+                <Link onClick={handleOnclick} href="/" className='hover:underline underline-offset-2 font-medium text-xl'>Hjem</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2 text-xl font-medium'>Tjønnås delikatesser</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2 text-xl font-medium'>Norvald</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2 text-xl font-medium'>Norma</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/products" className='hover:underline underline-offset-2 text-xl font-medium'>Produkter</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/menu" className='hover:underline underline-offset-2 text-xl font-medium'>Menyer</Link>
+              </li>
+              <li>
+                <Link onClick={handleOnclick} href="/contact" className='hover:underline underline-offset-2 text-xl font-medium'>Kontakt</Link>
+              </li>
             </ul>
           </nav>
         </div>
