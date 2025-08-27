@@ -37,7 +37,6 @@ export default function NorvaldMenu({norvaldMenu}: {norvaldMenu: Norvald}) {
   const categoryArray = norvaldMenu.map((item) => item.categoriTitle)
   const uniqueCategories = getUniqueValues(categoryArray);
 
-  //Makes a new array based on the categories in the menu, and sorts the different items under their respective categories
 
   const filteredNorvaldMenu: FilteredMenu[]= [];
   uniqueCategories.map((category) => {

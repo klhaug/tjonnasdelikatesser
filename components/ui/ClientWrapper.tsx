@@ -13,11 +13,6 @@ import {PRODUCTS_QUERYResult} from '@/sanity/types'
 
 
 export default function ClientWrapper({products}: {products: PRODUCTS_QUERYResult}) {
-// Her har jeg valgt å ha en egen overordnet klient-komponent for å ha tilgang på state slik at jeg kan sende den videre ned i de forskjellige komponentene som filteret og produktlisten
-// 🚨 Til Erik: Nå skjønte jeg endelig hva du mente med "Shadow State", tror jeg. Altså ha en egen state som er den samme som URL-en, men at filtreringen baserer seg på staten i stedet for URL-en,
-// slik at det er kjappere. 
-
-// 🚨 Hva har jeg tenkt? 
 
  const [filter, setFilter] = useState("");
  const [query, setQuery] = useState("");
@@ -205,8 +200,6 @@ export default function ClientWrapper({products}: {products: PRODUCTS_QUERYResul
         filter={filter} 
         sliderValue={priceMinMax}  
         resultsNumber={allProductsLength} />
-
-      {/* 🚨Til Erik: Er dette en dum måte å gjøre det på? Altså separat mobilfilter og desktopfilter med akkurat det samme innholdet?*/}
 
       <div className="flex flex-col lg:flex-row gap-7 lg:gap-4 max-w-[1440px] m-auto px-6 lg:px-22 py-6">
         <Productlist 

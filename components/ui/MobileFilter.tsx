@@ -24,21 +24,12 @@ type Props = {
 
 export default function MobileFilter({resultsNumber, setFilter, setSlider, setQuery, shadowPriceMinMax, filter, sliderValue, setShadowPriceMinMax, setListLength}: Props) {
 
-  // 🚨 Til Erik: Jeg har ikke helt kontroll på useRef enda... 
-  // Det er en hook AI har sagt kan være lur å bruke. Men jeg tror den gjør mye av det samme som useState, men at det er en verdi som ikke påvirker renderingen(?)
-
     const [activeMenu, setActiveMenu] = useState(false);
     const isResetting = useRef(false);
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
 
-   
-  //Hvorfor gjør jeg denne debounced? 
-  // 1. Fordi jeg mest sannsynlig kopierte sliderUrlUpdate-funksjonen hvor jeg ønsket at den skulle være debounced slik at URL-slipper å oppdatere seg for hver minste lille verdi-endring
-  // 2. Fordi hvis jeg prøver å gjøre den om til en vanlig funksjon så får jeg en error med beskjed om at det kommer til å gjøre at useEffect-rendrer uendelig
-  // 🚨 AI sier at dette handler om at useDebouncedCallback gjør funksjonen stabil, 
-  // slik at den ikke endrer seg på hver render. Jeg skjønner det sånn nesten, men ønsker å få mer kontroll på React sin "render-cycle"
 
   const debouncedRadioUrlUpdate = useDebouncedCallback((input: string) => {
     const params = new URLSearchParams(searchParams);
@@ -71,9 +62,6 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
     replace(`${pathname}?${params.toString()}`);
   },200);
 
-
- //🚨 Hvis jeg husker riktig så bruker jeg isResetting her for å ikke triggere useEffecten når man nullstiller filteret. Jeg slet med en bug hvor det funket å resette filteret, men 
- // priceMinMax ble appended 2sek etterpå på nytt. 
     
   function resetFilter(){
     isResetting.current = true;
@@ -105,8 +93,6 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
       setSlider(event)
       setShadowPriceMinMax(event)
     }
-
-    // 🚨 Her har jeg fått hjelp av AI... Hadde en bug hvor menyen og filteret ikke dekket hele skjermen dersom man ikke hadde scrollet helt opp før man åpnet de. 
   
 
     const scrollYRef = useRef(0);
@@ -115,11 +101,9 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
       if (typeof window !== "undefined") {
         scrollYRef.current = window.scrollY;
     
-        // Defer scrollTo top until after DOM updates (for mobile reliability)
         requestAnimationFrame(() => {
           window.scrollTo({ top: 0, behavior: "instant" });
     
-          // Apply scroll lock *after* scroll, not before (important on iOS)
           requestAnimationFrame(() => {
             document.body.style.position = "fixed";
             document.body.style.top = "0";
@@ -137,7 +121,6 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
       setActiveMenu(false);
     
       setTimeout(() => {
-        // Unlock scroll and restore position
         document.body.style.position = "";
         document.body.style.top = "";
         document.body.style.left = "";
@@ -145,7 +128,7 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
         document.body.style.overflow = "";
     
         window.scrollTo(0, scrollYRef.current);
-      }, 1); // Match your menu's transition duration
+      }, 1); 
     };
 
     const handleOnclick = () => {
@@ -170,7 +153,6 @@ export default function MobileFilter({resultsNumber, setFilter, setSlider, setQu
             } h-[6000px] w-full max-w-[800px] flex items-start justify-center bg-white z-999 absolute top-0 duration-500`}
         >  
             <Form 
-                // ref={formRef} 
                 action={''} 
                 className='w-full flex flex-col justify-start h-[calc(100vh-83px)] px-6'
             >

@@ -102,7 +102,6 @@ export default function MobileFilter({
             className={`
                 flex items-start justify-center bg-white  top-0 duration-500`}>  
             <Form 
-                // ref={formRef} 
                 action={''} 
                 className='w-full flex flex-col justify-start h-[calc(100vh-83px)] px-6'
             >

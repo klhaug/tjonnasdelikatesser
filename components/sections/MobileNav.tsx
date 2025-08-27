@@ -14,11 +14,9 @@ export default function MobileNav() {
     if (typeof window !== "undefined") {
       scrollYRef.current = window.scrollY;
   
-      // Defer scrollTo top until after DOM updates (for mobile reliability)
       requestAnimationFrame(() => {
         window.scrollTo({ top: 0, behavior: "instant" });
   
-        // Apply scroll lock *after* scroll, not before (important on iOS)
         requestAnimationFrame(() => {
           document.body.style.position = "fixed";
           document.body.style.top = "0";
@@ -36,7 +34,6 @@ export default function MobileNav() {
     setActiveMenu(false);
   
     setTimeout(() => {
-      // Unlock scroll and restore position
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
@@ -44,7 +41,7 @@ export default function MobileNav() {
       document.body.style.overflow = "";
   
       window.scrollTo(0, scrollYRef.current);
-    }, 1); // Match your menu's transition duration
+    }, 1); 
   };
 
     const handleOnclick = () => {
