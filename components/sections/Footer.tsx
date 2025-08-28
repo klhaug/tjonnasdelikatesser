@@ -41,7 +41,7 @@ export default function Footer() {
   return (
     <div className="w-full bg-grey-500">
       <div className=' bg-grey-500 m-auto flex flex-col h-auto lg:flex-row py-6 px-6 lg:py-24 lg:px-20 lg:items-start lg:max-w-[1440px] gap-8 lg:gap-24 pb-24 justify-center items-center'>
-          <div className="flex gap-8 flex-col items-center w-1/3 lg:items-start  lg:order-1">
+          <div className="flex gap-8 flex-col items-center lg:w-1/3 lg:items-start  lg:order-1">
             <Image src="/images/Tjønnås logo med ikon-hvit.svg" height={240} width={240} alt='tjonnas logo' />
             <Text variant="primarySmall" content="Tjønnås er paraplyen som samler Tjønnås Delikatesser, kaféen Norma og kaffebaren Norvald – alle knyttet sammen av Mari-Mette sin lidenskap for smak, kvalitet og gode møteplasser. Ett hjerte, tre uttrykk." extraStyling="text-white hidden lg:block" as="p"/>
           </div>
