@@ -4,7 +4,7 @@ import { allVariants } from './Text'
 
 type TagProps = {
     variant: "tjonnasdelikatesser" | "norma" | "norvald"
-    content: string
+    content: string | null
     textStyle: keyof typeof allVariants;
 }
 
@@ -19,7 +19,7 @@ export default function Tag({variant, textStyle, content}: TagProps): React.JSX.
   
     return (
     <div className={className}>
-        <Text variant={textStyle} content={content} as='p' />
+        <Text variant={textStyle} content={content ? content : null} as='p' />
     </div>
   )
 }

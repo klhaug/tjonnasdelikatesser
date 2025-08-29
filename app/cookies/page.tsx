@@ -2,6 +2,7 @@ import React from "react";
 
 
 export default function Cookies() {
+
     return(
         <>
         <main className="h-[55%] flex flex-col items-center  p-12">

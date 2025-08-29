@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
         destination: '/norvald',
         permanent: true,
       },
+      
     ]
   },
   images: {
