@@ -91,7 +91,7 @@ export default  async function Products() {
                 className='flex justify-between w-full items-end'>
                   <Text 
                     variant='headline' 
-                    content='Smaker du må prøve' 
+                    content='Våre favoritter' 
                     as='h3' />
                   <Link 
                     className='hover:cursor-pointer hover:underline text-red-500 underline-offset-2 z-50'  
