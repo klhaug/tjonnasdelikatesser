@@ -16,6 +16,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-is": "^19.1.0",
+    "react-lines-ellipsis": "^0.16.1",
     "react-loading-skeleton": "^3.5.0",
     "react-range-slider-input": "^3.2.1",
     "styled-components": "^6.1.18",

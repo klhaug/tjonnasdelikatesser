@@ -18,21 +18,21 @@ type Cafe = {
       title: "Tjønnås Delikatesser",
       ingress: "Tjønnås Delikatesser ligger i gågata på Gjøvik og byr på håndplukkede smaker fra både inn- og utland. Her finner du oster, spekemat, oljer og søtsaker av høy kvalitet – perfekte gaver eller noe ekstra godt til helgen. En butikk for deg som setter pris på ekte matopplevelser i hverdagen.",
       imageUrl: "/images/TjonnasAboutResized.webp",
-      category: "Kafè"
+      category: "Delikatessebutikk"
     },
     {
       id: "norma",
       title: "Norma",
       ingress: "En unik nisjebutikk på vakre Gjøvik gård. Holder sesongåpent om sommeren. Vi fyller hyllene med håndplukkede varer av høy kvalitet til deg og hjemmet. Her finner du gaver til deg selv, og de du bryr deg om. Velkommen innom for en titt. ",
       imageUrl: "/images/NormaAboutResized.webp",
-      category: "Butikk"
+      category: "Gavebutikk"
     },
     {
       id: "norvald",
       title: "Norvald",
       ingress: "En lun kafé midt i hjertet av Gjøvik Gård for studenter og alle andre. Her får du nybrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause i hverdagen eller et rolig møte med gode venner.",
-      imageUrl: "/images/NorvaldAboutImageResized.webp",
-      category: "Kafè"
+      imageUrl: "/images/NorvaldAboutImageRezised2.webp",
+      category: "Kafe og vinbar"
     }
   ]
 
@@ -59,9 +59,9 @@ export default async function About() {
         </section>
         <div className='md:hidden flex flex-col w-full gap-4 items-center'>
           {fakeDataBase.map((cafe) => {
-              const {id, title, ingress, imageUrl} = cafe
+              const {id, title, ingress, imageUrl, category} = cafe
               return (
-                <VerticalAccordionCard key={id} id={id} title={title} ingress={ingress} imageUrl={imageUrl}/>
+                <VerticalAccordionCard key={id} id={id} title={title} category={category} ingress={ingress} imageUrl={imageUrl}/>
               )
             })
               }

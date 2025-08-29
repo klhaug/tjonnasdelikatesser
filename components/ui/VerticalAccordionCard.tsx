@@ -10,6 +10,7 @@ type Props = {
     id: "tjonnasdelikatesser" | "norma" | "norvald",
     title: string,
     ingress: string
+    category: string
     imageUrl: string
 }
 
@@ -25,10 +26,10 @@ const borderVariantsOpen = {
     norvald: "border-blue-500"
 }
 
-export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Props) {
+export default function VerticalAccordionCard({id, title, ingress, imageUrl, category}: Props) {
     const [isOpen, setIsOpen] = useState(false);
     
-    if(!id  || !title || !ingress || !imageUrl ) {
+    if(!id  || !title || !ingress || !imageUrl || !category) {
         return undefined;
     }
 
@@ -44,11 +45,11 @@ export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Pr
     }
 
   return (
-        <div onClick={openAccordion} className={`border-2 bg-white ${isOpen ? `h-[550px] justify-start ${borderVariantsOpen[id]}` : `h-[101px] hover:cursor-pointer justify-center ${borderVariantsClosed[id]}`} overflow-hidden flex rounded-md transition-all w-full max-w-[540px] flex-col`}>
+        <div onClick={openAccordion} className={`border-2 bg-white ${isOpen ? `h-fit justify-start ${borderVariantsOpen[id]}` : `h-[101px] hover:cursor-pointer justify-center ${borderVariantsClosed[id]}`} overflow-hidden flex rounded-md transition-all w-full max-w-[540px] flex-col`}>
             {isOpen ? <Image className='mb-6 h-1/2 object-cover' loading='eager' src={imageUrl} width={540} height={540} alt='woman in cafe making food' /> : null}
             <div className='flex px-6 justify-between'>
                 <div className='flex flex-col gap-2'>
-                    <Tag variant={id} textStyle='captionLabel' content={id === "tjonnasdelikatesser" ? 'Delikatessebutikk' : "Kafe"}/>
+                    <Tag variant={id} textStyle='captionLabel' content={category}/>
                     <Text variant='headline' content={title} as='h3' />
                 </div>
                     {isOpen ? null : <Image src="/icons/add.svg" width={24} height={24} onClick={handleClick} className='hover:cursor-pointer' alt="Open accordion icon"/>}
