@@ -9,7 +9,7 @@ export default function DesktopHero() {
       <div className='py-20 flex flex-col items-center gap-4'>
         <div className='flex flex-col max-w-2/3 gap-4'>
           <Image priority={true} src="/images/Tjønnås_Logo-hvit 1.svg" alt='tjonnas icon' height={90} width={600} />
-          <Text variant='primary' content="Delikatesser laget med lidenskap, lokale råvarer og respekt for tradisjon." extraStyling='text-white text-center' as={'p'} />
+          <Text variant='primary' content="Mat, hygge og kvalitet i sentrum" extraStyling='text-white text-center' as={'p'} />
         </div>
         <div className='flex gap-8'>
             <Button text={'Les mer'} variant={'primary-fixed'} href={'/about/tjonnasdelikatesser'} />

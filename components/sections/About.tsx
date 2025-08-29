@@ -23,22 +23,18 @@ type Cafe = {
     {
       id: "norma",
       title: "Norma",
-      ingress: "En liten butikk midt i byen med sans for det enkle og varige. Hos Norma finner du tekstiler i naturlige kvaliteter, håndplukkede detaljer til hjemmet og keramiske kaffekopper med særpreg – alt valgt for å gi hverdagen en roligere rytme og et personlig preg.",
+      ingress: "En unik nisjebutikk på vakre Gjøvik gård. Holder sesongåpent om sommeren. Vi fyller hyllene med håndplukkede varer av høy kvalitet til deg og hjemmet. Her finner du gaver til deg selv, og de du bryr deg om. Velkommen innom for en titt. ",
       imageUrl: "/images/NormaAboutResized.webp",
       category: "Butikk"
     },
     {
       id: "norvald",
       title: "Norvald",
-      ingress: "En lun kafé midt i hjertet av campus. Her får du håndbrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause mellom forelesninger eller et rolig møte med gode venner.",
+      ingress: "En lun kafé midt i hjertet av Gjøvik Gård for studenter og alle andre. Her får du nybrygget kaffe, ferske bakverk og ekte mat laget med omtanke – perfekt for en pause i hverdagen eller et rolig møte med gode venner.",
       imageUrl: "/images/NorvaldAboutImageResized.webp",
       category: "Kafè"
     }
   ]
-
-
-
-
 
  
 export default async function About() {
@@ -58,7 +54,7 @@ export default async function About() {
             as='h2' />
           <Text 
             variant='primaryCenter' 
-            content='Tjønnås er paraplyen som samler Tjønnås Delikatesser, kaféen Norma og kaffebaren Norvald – alle knyttet sammen av Mari-Mette sin lidenskap for smak, kvalitet og gode møteplasser. Ett hjerte, tre uttrykk.' 
+            content='Tjønnås er paraplyen som samler Tjønnås Delikatesser, gavebutikken Norma og Norvald Kafe og vinbar – alle knyttet sammen av Mari-Mette sin lidenskap for smak, kvalitet og gode møteplasser. Ett hjerte, tre uttrykk.' 
             as='p' />
         </section>
         <div className='md:hidden flex flex-col w-full gap-4 items-center'>

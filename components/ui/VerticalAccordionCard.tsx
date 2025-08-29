@@ -48,7 +48,7 @@ export default function VerticalAccordionCard({id, title, ingress, imageUrl}: Pr
             {isOpen ? <Image className='mb-6 h-1/2 object-cover' loading='eager' src={imageUrl} width={540} height={540} alt='woman in cafe making food' /> : null}
             <div className='flex px-6 justify-between'>
                 <div className='flex flex-col gap-2'>
-                    <Tag variant={id} textStyle='captionLabel' content='Kafè'/>
+                    <Tag variant={id} textStyle='captionLabel' content={id === "tjonnasdelikatesser" ? 'Delikatessebutikk' : null}/>
                     <Text variant='headline' content={title} as='h3' />
                 </div>
                     {isOpen ? null : <Image src="/icons/add.svg" width={24} height={24} onClick={handleClick} className='hover:cursor-pointer' alt="Open accordion icon"/>}

@@ -10,12 +10,12 @@ export default function DesktopNav() {
          <Link href="/">
                 <Image src="/images/Tjønnås_Ikon-oker.png" className='h-[44px] w-[35px]' height={34} width={28} alt='icon'/>
             </Link>
-              <ul className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 lg:gap-12 flex items-start justify-self-center  justify-between'>
+              <ul className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 lg:gap-8 xl:gap-12 flex items-start justify-self-center  justify-between'>
                 <li>
                   <Link href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2'>Tjønnås Delikatesser</Link>
                 </li>
                 <li>
-                  <Link href="/about/norvald" className='hover:underline underline-offset-2'>Norvald</Link>
+                  <Link href="/about/norvald" className='hover:underline underline-offset-2'>Norvald Kafe</Link>
                 </li>
                 <li>
                   <Link href="/about/norma" className='hover:underline underline-offset-2'>Norma</Link>

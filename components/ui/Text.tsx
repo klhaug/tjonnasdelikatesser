@@ -2,7 +2,7 @@ import React, { JSX } from 'react'
 
 export type Props = {
   variant: keyof typeof allVariants;
-  content: string,
+  content: string | null,
   as: keyof JSX.IntrinsicElements;
   extraStyling?: string;
   role?: string

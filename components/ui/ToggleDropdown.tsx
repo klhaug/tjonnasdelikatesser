@@ -7,7 +7,7 @@ import Text from '../ui/Text';
 type Props = {
     name: string
     openingHours: string[]
-    extraHours: string
+    extraHours: string | null
 }
 
 
@@ -33,7 +33,7 @@ const handleClick = () => {
                             )
                         })}
                     </div>
-                        <a className="text-white pl-6 hover:underline text-sm" target="blank" href={extraHours}>Ekstraordinære åpningstider</a>
+{ extraHours !== null ?                       <a className="text-white pl-6 hover:underline text-sm" target="blank" href={extraHours}>Ekstraordinære åpningstider</a> : null}
                 </div>
     </div>
   )

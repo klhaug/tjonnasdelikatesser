@@ -8,27 +8,24 @@ const cafeInfo = [
   {
     name: "Tjønnås Delikatesser",
     openingHours: [
-      "Man-Fre", "07:00-16:00",
-      "Lørdag", "10:00-13:00",
-      "Søndag", "07:00-16:00",
+      "Man-Fre", "10:00-17:00",
+      "Lørdag", "10:00-16:00",
     ],
     extraHours: "https://share.google/iHH5VewphNLKI15Vs"
   },
   {
     name: "Norma",
     openingHours: [
-      "Man-Fre", "07:00-16:00",
-      "Lørdag", "10:00-13:00",
-      "Søndag", "07:00-16:00",
+      "Midlertidig stengt", "",
+      "Vi sees sommeren 2026"
     ],
-    extraHours: "https://share.google/9fmUtEpEAYDbSRhgZ"
+    extraHours: null
   },
   {
     name: "Norvald",
     openingHours: [
-      "Man-Fre", "07:00-16:00",
-      "Lørdag", "10:00-13:00",
-      "Søndag", "07:00-16:00",
+      "Ons-Lør", "11:00-18:00",
+      "Søndag", "12:00-18:00",
     ],
     extraHours: "https://share.google/09iA9Xd8mpo7kbIjc"
   },
@@ -45,6 +42,7 @@ export default function Footer() {
             <Image src="/images/Tjønnås logo med ikon-hvit.svg" height={240} width={240} alt='tjonnas logo' />
             <Text variant="primarySmall" content="Tjønnås er paraplyen som samler Tjønnås Delikatesser, kaféen Norma og kaffebaren Norvald – alle knyttet sammen av Mari-Mette sin lidenskap for smak, kvalitet og gode møteplasser. Ett hjerte, tre uttrykk." extraStyling="text-white hidden lg:block" as="p"/>
           </div>
+
         {/* KONTAKT */}
         <div className="lg:flex-row flex flex-col justify-between gap-4  w-full lg:w-2/3 lg:order-2">
           <section className=" flex flex-col gap-4 w-full lg:order-4">
@@ -55,11 +53,15 @@ export default function Footer() {
             <div className="flex flex-col gap-2">
               <div className="flex">
                 <Image src="/icons/Email.svg" height={24} width={24} alt='icon' />
-                <Text variant="primary" content="hei@tjonnås.no" extraStyling="text-white" as="p"/>
+                <Text variant="primary" content="hei@tjonnas.com" extraStyling="text-white" as="p"/>
               </div>
               <div className="flex">
                 <Image src="/icons/Phone.svg" height={24} width={24} alt='icon' />
-                <Text variant="primary" content="+47 123 45 789" extraStyling="text-white" as="p"/>
+                <Text variant="primary" content="+47 467 00 669 - Tjønnås" extraStyling="text-white" as="p"/>
+              </div>
+              <div className="flex">
+                <Image src="/icons/Phone.svg" height={24} width={24} alt='icon' />
+                <Text variant="primary" content="+47 488 54 554 - Norvald " extraStyling="text-white" as="p"/>
               </div>
               <div className="flex">
                 <Image src="/icons/Frame 329.svg" height={24} width={24} alt='icon' />

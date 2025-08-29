@@ -102,11 +102,15 @@ export default function Contact() {
             <div className="flex gap-2 flex-col">
               <div className="flex">
                 <MailIcon className='text-black' />
-                <Text variant="primary" content="hei@tjonnås.no" extraStyling="text-black" as="p"/>
+                <Text variant="primary" content="hei@tjonnas.com" extraStyling="text-black" as="p"/>
               </div>
               <div className="flex">
                 <PhoneIcon className='text-black' />
-                <Text variant="primary" content="+47 123 45 789" extraStyling="text-black" as="p"/>
+                <Text variant="primary" content="+47 467 00 669 - Tjønnås" extraStyling="text-black" as="p"/>
+              </div>
+              <div className="flex">
+                <PhoneIcon className='text-black' />
+                <Text variant="primary" content="+47 488 54 554 - Norvald" extraStyling="text-black" as="p"/>
               </div>
               <div className="flex">
                 <LocationIcon className='text-black' />

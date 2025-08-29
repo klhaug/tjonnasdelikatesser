@@ -53,6 +53,7 @@ export default function MobileNav() {
     }
 
     return (
+      
       <div className="lg:hidden">
         { activeMenu ? <div className='fixed inset-0 z-40 bg-black opacity-50'></div> : null}
         {/* off-screen menu */}
@@ -70,7 +71,7 @@ export default function MobileNav() {
                 <Link onClick={handleOnclick} href="/about/tjonnasdelikatesser" className='hover:underline underline-offset-2 text-xl font-medium'>Tjønnås delikatesser</Link>
               </li>
               <li>
-                <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2 text-xl font-medium'>Norvald</Link>
+                <Link onClick={handleOnclick} href="/about/norvald" className='hover:underline underline-offset-2 text-xl font-medium'>Norvald Kafe</Link>
               </li>
               <li>
                 <Link onClick={handleOnclick} href="/about/norma" className='hover:underline underline-offset-2 text-xl font-medium'>Norma</Link>
