@@ -20,12 +20,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/s-projects-basic',
-        destination: '/norvald',
+        destination: 'about/norvald',
         permanent: true,
       },
       {
         source: '/s-projects-basic-1',
-        destination: '/norvald',
+        destination: 'about/norma',
         permanent: true,
       },
       
