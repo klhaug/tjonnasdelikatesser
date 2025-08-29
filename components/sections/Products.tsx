@@ -25,7 +25,7 @@ type Props = {
 
 
 const RECPRODUCTS_QUERY = defineQuery(`*[_type=="recommendedProducts"][0]{
- menuItems[] -> {
+ menuItems[0...4] -> {
    productName,
   _id,
    price,
