@@ -12,8 +12,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tjønnås · Norma · Norvald – Smaker, tekstiler og opplevelser på Gjøvik",
-  description: "Utforsk Tjønnås Delikatesser, Norma interiør og Norvald kaffebar – tre unike konsepter samlet i hjertet av Gjøvik. Velkommen innom til en smakfull og inspirerende opplevelse.",
+  title: "Delikatessebutikk og kafe på Gjøvik",
+  description: "Utforsk Tjønnås delikatesser, Norma gavebutikk og Norvald Kafe og vinbar – tre unike konsepter samlet i hjertet av Gjøvik. Velkommen innom til en smakfull og inspirerende opplevelse.",
 };
 
 export default function RootLayout({
