@@ -5,6 +5,7 @@ import MobileNav from "@/components/sections/MobileNav";
 import DesktopNav from "@/components/sections/DesktopNav";
 import Footer from "@/components/sections/Footer";
 import { SanityLive } from "@/sanity/live";
+import Script from "next/script";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SanityLive />
         <Footer />
       </body>
+      <Script defer data-domain="tjonnas.com" src="https://plausible.io/js/script.js"/>
     </html>
   );
 }
