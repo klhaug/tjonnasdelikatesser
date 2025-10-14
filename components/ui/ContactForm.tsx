@@ -21,12 +21,15 @@ export default function ContactForm() {
             Accept: "application/json",
           },
           body: JSON.stringify({
-            access_key: "73432160-3975-4d1c-962c-09a93ff48b7f",
+            //access_key: "73432160-3975-4d1c-962c-09a93ff48b7f",
+            //Tjonnas access key 
+            access_key: "f9401c4c-5bce-4ddb-b411-5109d802e289",
             name: formData.get("name"),
             email: formData.get("email"),
             message: formData.get("message"),
             category: selectedCategories,
             personvernserklaering: formData.get("personvernserklaering"),
+            subject: `KONTAKTSKJEMA: ${formData.get('name')} har sendt deg en forespørsel`
           }),
         });
     
