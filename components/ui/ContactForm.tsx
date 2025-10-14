@@ -27,6 +27,7 @@ export default function ContactForm() {
             message: formData.get("message"),
             category: selectedCategories,
             personvernserklaering: formData.get("personvernserklaering"),
+            subject: `KONTAKTSKJEMA: ${formData.get('name')} har sendt deg en forespørsel`
           }),
         });
     
