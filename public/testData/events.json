@@ -1,3 +1,46 @@
-{
-    "title": "Hvordan lage din egen kaffe"
-}
+[
+    {
+    "title": "Hvordan lage din egen kaffe",
+    "datetime": "2026-03-12T09:15:00Z",
+    "address": "Storgata 3, 2813 Gjøvik",
+    "price": 990,
+    "discount": null,
+    "description": "Lurer du på hvordan du kan lage din egen, ekte mexikanske taco? Delta på en spennende kveld hvor vi lœrer deg alt fra å lage dine egne tortilla-lefser til en herlig mango-salsa.",
+    "eventLink": "https://google.com",
+    "location": "tjonnasdelikatesser",
+    "id": 1
+    },
+    {
+    "title": "Lær å lage din egen kjole",
+    "datetime": "2017-02-12T09:15:00Z",
+    "address": "Storgata 3, 2813 Gjøvik",
+    "price": null,
+    "discount": null,
+    "description": "Bli med på en kreativ og praktisk workshop der du lærer steg for steg hvordan du kan designe og sy din egen kjole. Kurset passer både for nybegynnere og deg som har litt erfaring fra før. Du får veiledning i valg av stoff, mønster og teknikker, og går hjem med et plagg du har laget helt selv. Perfekt for deg som vil lære noe nytt, møte andre kreative mennesker og skape noe unikt.",
+    "eventLink": "https://google.com",
+    "location": "norma",
+    "id": 2
+    },
+    {
+    "title": "Kaffesmaking",
+    "datetime": "2026-04-12T09:15:00Z",
+    "address": "Storgata 3, 2813 Gjøvik",
+    "price": 990,
+    "discount": 750,
+    "description": "Oppdag nye smaker og aromaer gjennom en guidet kaffesmaking der du får prøve ulike bønner, bryggemetoder og brenningsgrader. Passer både for nybegynnere og kaffeentusiaster.",
+    "eventLink": "https://google.com",
+    "location": "norvald",
+    "id": 3
+    },
+    {
+    "title": "Kaffesmaking",
+    "datetime": "2026-03-13T09:15:00Z",
+    "address": "Storgata 3, 2813 Gjøvik",
+    "price": 990,
+    "discount": 750,
+    "description": "Oppdag nye smaker og aromaer gjennom en guidet kaffesmaking der du får prøve ulike bønner, bryggemetoder og brenningsgrader. Passer både for nybegynnere og kaffeentusiaster.",
+    "eventLink": "https://google.com",
+    "location": "norvald",
+    "id": 4
+    }
+]
