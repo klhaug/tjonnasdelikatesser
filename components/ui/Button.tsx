@@ -6,6 +6,7 @@ type ButtonProps = {
   variant: keyof typeof variants
   href: string
   color?: string
+  target?: string
 }
 
  
@@ -18,10 +19,10 @@ const variants= {
   "tertiary-fixed":   "text-base bg-white flex justify-start items-center w-[300px] justify-center gap-3 items-center hover:text-shadow-sm hover:cursor-pointer transition group rounded-lg",
 }
 
-export default function Button({text, variant, href, color}: ButtonProps): React.JSX.Element {
+export default function Button({text, variant, href, color, target}: ButtonProps): React.JSX.Element {
   return (
     <div>
-      <Link href={href} className={`${variants[variant]} ${color}`}>
+      <Link href={href} className={`${variants[variant]} ${color}`} target={target}>
         {text}
        {variant === "tertiary-fixed" || variant === "tertiary-fill" ? <svg className='transition group-hover:translate-x-2' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="black"/>

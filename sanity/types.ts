@@ -13,6 +13,22 @@
  */
 
 // Source: schema.json
+export type EventType = {
+  _id: string;
+  _type: "eventType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  datetime: string;
+  address?: string;
+  price?: number;
+  discount?: number;
+  description?: string;
+  eventLink?: string;
+  location?: "tjonnasdelikatesser" | "norvald" | "norma";
+};
+
 export type RecommendedProducts = {
   _id: string;
   _type: "recommendedProducts";
@@ -76,6 +92,29 @@ export type Contact = {
   };
 };
 
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Address = {
+  _type: "address";
+  address?: string;
+  postNo?: number;
+  place?: string;
+};
+
 export type OpeningHours = {
   _id: string;
   _type: "openingHours";
@@ -84,6 +123,12 @@ export type OpeningHours = {
   _rev: string;
   day?: string;
   time?: string;
+};
+
+export type FocusPoint = {
+  _type: "focusPoint";
+  title?: string;
+  text?: string;
 };
 
 export type About = {
@@ -147,11 +192,11 @@ export type AboutWhere = {
   coordinates?: Geopoint;
 };
 
-export type Address = {
-  _type: "address";
-  address?: string;
-  postNo?: number;
-  place?: string;
+export type Geopoint = {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
 };
 
 export type AboutInspiration = {
@@ -231,12 +276,6 @@ export type AboutFocus = {
   focusPoint1?: FocusPoint;
   focusPoint2?: FocusPoint;
   focusPoint3?: FocusPoint;
-};
-
-export type FocusPoint = {
-  _type: "focusPoint";
-  title?: string;
-  text?: string;
 };
 
 export type AboutAbout = {
@@ -368,6 +407,12 @@ export type ProductItem = {
   inStock?: boolean;
 };
 
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type MenuItem = {
   _id: string;
   _type: "menuItem";
@@ -433,20 +478,15 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -469,6 +509,13 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -494,38 +541,7 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
-export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type AllSanitySchemaTypes = RecommendedProducts | Contact | OpeningHours | About | AboutWhere | Address | AboutInspiration | AboutFocus | FocusPoint | AboutAbout | AboutHero | ProductItem | MenuItem | MenuCategory | Menu | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = EventType | RecommendedProducts | Contact | SanityImageCrop | SanityImageHotspot | Address | OpeningHours | FocusPoint | About | AboutWhere | Geopoint | AboutInspiration | AboutFocus | AboutAbout | AboutHero | ProductItem | Slug | MenuItem | MenuCategory | Menu | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../tjonnas-website/app/about/[slug]/page.tsx
 // Variable: ABOUT_QUERY
@@ -746,7 +762,7 @@ export type CONTACT_QUERYResult = Array<{
 // Query: *[_type=="menu" && nameOfMenu =="tjonnasdelikatesser"] {  _id,  nameOfMenu,  menuItems[] -> {      _id,       conditionalPrice,         name,      categoriTitle,      description,      housePick,      price       },}
 export type TJONNAS_QUERYResult = Array<{
   _id: string;
-  nameOfMenu: "catering" | "norvald" | "tjonnasdelikatesser" | null;
+  nameOfMenu: "tjonnasdelikatesser";
   menuItems: Array<{
     _id: string;
     conditionalPrice: string | null;
@@ -761,7 +777,7 @@ export type TJONNAS_QUERYResult = Array<{
 // Query: *[_type=="menu" && nameOfMenu =="catering"] {  _id,  nameOfMenu,  menuItems[] -> {      _id,       conditionalPrice,         name,      categoriTitle,      description,      housePick,      price       },}
 export type CATERING_QUERYResult = Array<{
   _id: string;
-  nameOfMenu: "catering" | "norvald" | "tjonnasdelikatesser" | null;
+  nameOfMenu: "catering";
   menuItems: Array<{
     _id: string;
     conditionalPrice: string | null;
@@ -776,7 +792,7 @@ export type CATERING_QUERYResult = Array<{
 // Query: *[_type=="menu" && nameOfMenu =="norvald"] {  _id,  nameOfMenu,  menuItems[] -> {      _id,       conditionalPrice,         name,      categoriTitle,      description,      housePick,      price       },}
 export type NORVALD_QUERYResult = Array<{
   _id: string;
-  nameOfMenu: "catering" | "norvald" | "tjonnasdelikatesser" | null;
+  nameOfMenu: "norvald";
   menuItems: Array<{
     _id: string;
     conditionalPrice: string | null;
