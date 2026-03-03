@@ -5,9 +5,14 @@ import { getDateTimeParts, formatMonthString } from "@/app/actions";
 import Tag from "../ui/Tag";
 import Text from "../ui/Text";
 import Button from "../ui/Button";
+import { EventType } from "@/sanity/types";
 
+type Props = {
+  data: EventType[]
+}
 
-export default function EventsList({data}) {
+export default function EventsList({data}: Props) {
+
   const [isComing, setIsComing] = useState(true);
   const [listLength, increaseListLength] = useState(10);
 
@@ -17,16 +22,21 @@ export default function EventsList({data}) {
   const upComingEvents = [];
   const finishedEvents = [];
 
+
   for (const event of data) {
-    if (currentDate.toISOString() > event.datetime) {
-      finishedEvents.push(event);
-    } else {
-      upComingEvents.push(event);
+    if(event.datetime) {
+      if (currentDate.toISOString() > event.datetime) {
+        finishedEvents.push(event);
+      } else {
+        upComingEvents.push(event);
+      }
     }
   }
+  
+  finishedEvents.sort((a, b) => a.datetime < b.datetime ? 1 : -1);
 
-  upComingEvents.sort((a, b) => (a.datetime > b.datetime ? 1 : -1));
-  finishedEvents.sort((a, b) => (a.datetime < b.datetime ? 1 : -1));
+  const hasDateTime = (item: EventType) => item.datetime !== undefined
+  upComingEvents.every(hasDateTime) ? upComingEvents.sort((a, b) => (a.datetime > b.datetime ? 1 : -1)) : null
 
   const cappedFinishedEvents = finishedEvents.slice(0, listLength);
 
@@ -59,7 +69,7 @@ export default function EventsList({data}) {
               eventLink,
               location,
               discount,
-              id,
+              _id,
             } = e;
 
             const dateTimeParts = getDateTimeParts(datetime);
@@ -82,7 +92,7 @@ export default function EventsList({data}) {
 
             return (
               <div
-                key={id}
+                key={_id}
                 className="flex lg:flex-row flex-col gap-4 border-b border-gray-200 lg:pb-4 pb-8"
               >
                 <div className="flex flex-row gap-4 lg:gap-2">
@@ -102,11 +112,11 @@ export default function EventsList({data}) {
                   </div>
                   <div className="lg:mx-6 flex flex-col justify-center gap-2">
                     <div className="flex gap-2">
-                      <Tag
+                      {location ? <Tag
                         variant={location}
                         content={locationForTag}
                         textStyle={"captionLabel"}
-                      />
+                      /> : null}
                       {discount ? (
                         <span className="bg-green-500 flex items-center px-1 w-max rounded-sm text-sm leading-[18px] text-white">
                           Rabatt %
@@ -114,12 +124,12 @@ export default function EventsList({data}) {
                       ) : null}
                     </div>
                     <Text variant={"headline"} content={title} as={"h3"} />
-                    <Text
+                  {  description ? <Text
                       variant={"primary"}
                       content={description}
                       extraStyling="hidden lg:block"
                       as={"p"}
-                    />
+                    /> : null}
                     <a
                       href={`https://maps.google.com/?q=${address}`}
                       target="_blank"
@@ -128,12 +138,12 @@ export default function EventsList({data}) {
                     </a>
                   </div>
                 </div>
-                <Text
+                {description ? <Text
                   variant={"primary"}
                   content={description}
                   extraStyling="lg:hidden"
                   as={"p"}
-                />
+                /> : null }
                 <div className="lg:w-[250px] lg:mx-6 flex flex-shrink-0 flex-col justify-center">
                   <span>Pris:</span>
                   <span className="text-2xl lg:text-nowrap flex flex-start leading-7 font-medium">
@@ -178,7 +188,7 @@ export default function EventsList({data}) {
               eventLink,
               location,
               discount,
-              id,
+              _id,
             } = e;
 
             const dateTimeParts = getDateTimeParts(datetime);
@@ -201,7 +211,7 @@ export default function EventsList({data}) {
 
             return (
               <div
-                key={id}
+                key={_id}
                 className="flex grayscale lg:flex-row flex-col gap-4 border-b border-gray-200 lg:pb-4 pb-8"
               >
                 <div className="flex flex-row gap-2">
@@ -221,11 +231,11 @@ export default function EventsList({data}) {
                   </div>
                   <div className="lg:mx-6 flex flex-col justify-center gap-2">
                     <div className="flex gap-2">
-                      <Tag
+                   {location ?   <Tag
                         variant={location}
                         content={locationForTag}
                         textStyle={"captionLabel"}
-                      />
+                      /> : null}
                       {discount ? (
                         <span className="bg-green-500 flex items-center px-1 w-max rounded-sm text-sm leading-[18px] text-white">
                           Rabatt %
@@ -233,12 +243,12 @@ export default function EventsList({data}) {
                       ) : null}
                     </div>
                     <Text variant={"headline"} content={title} as={"h3"} />
-                    <Text
+                   {description ? <Text
                       variant={"primary"}
                       content={description}
                       extraStyling="hidden lg:block"
                       as={"p"}
-                    />
+                    /> : null}
                     <a
                       href={`https://maps.google.com/?q=${address}`}
                       target="_blank"
@@ -247,12 +257,12 @@ export default function EventsList({data}) {
                     </a>
                   </div>
                 </div>
-                <Text
+               { description ? <Text
                   variant={"primary"}
                   content={description}
                   extraStyling="lg:hidden"
                   as={"p"}
-                />
+                /> : null}
                 <div className="lg:w-[250px] lg:mx-6 flex flex-shrink-0 flex-col justify-center">
                   <span>Pris:</span>
                   <span className="text-2xl lg:text-nowrap flex flex-start leading-7 font-medium">
