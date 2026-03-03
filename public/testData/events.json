@@ -12,7 +12,7 @@
     },
     {
     "title": "Lær å lage din egen kjole",
-    "datetime": "2017-02-12T09:15:00Z",
+    "datetime": "2026-04-13T08:15:00Z",
     "address": "Storgata 3, 2813 Gjøvik",
     "price": null,
     "discount": null,
@@ -42,5 +42,16 @@
     "eventLink": "https://google.com",
     "location": "norvald",
     "id": 4
+    },
+    {
+    "title": "Kaffesmaking",
+    "datetime": "2026-04-13T09:15:00Z",
+    "address": "Storgata 3, 2813 Gjøvik",
+    "price": 990,
+    "discount": 750,
+    "description": "Oppdag nye smaker og aromaer gjennom en guidet kaffesmaking der du får prøve ulike bønner, bryggemetoder og brenningsgrader. Passer både for nybegynnere og kaffeentusiaster.",
+    "eventLink": "https://google.com",
+    "location": "norvald",
+    "id": 5
     }
 ]

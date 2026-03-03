@@ -37,14 +37,4 @@ export function formatMonthString(month: string | undefined){
 
 }
 
-type tagTypes = {
-  tjonnasdelikatesser: "Tjønnås delikatesser",
-  norma: "Norma",
-  norvald: "Norvald"
-}
 
-export const tagVariants: tagTypes = {
-  tjonnasdelikatesser: "Tjønnås delikatesser",
-  norma: "Norma",
-  norvald: "Norvald"
-}
